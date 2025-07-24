@@ -8,11 +8,20 @@ namespace Bntu.Library.CardGenerator.Domain.ValueObjects
 {
     public class StudyGroup
     {
+        public enum DepartmentType
+        {
+            Fulltime,
+            Correspondence
+        }
+
+        public DepartmentType Department { get; }
+
         public string Number { get; }
 
-        public StudyGroup(string number)
+        public StudyGroup(string number, DepartmentType department)
         {
             Number = number;
+            Department = department;
         }
     }
 }
