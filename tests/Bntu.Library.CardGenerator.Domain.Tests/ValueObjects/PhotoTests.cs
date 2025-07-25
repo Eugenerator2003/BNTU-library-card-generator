@@ -15,7 +15,7 @@ namespace Bntu.Library.CardGenerator.Domain.Tests.ValueObjects
         [DataRow("312321838.jpg")]
         [DataRow("dasda-masmdas.png")]
         [DataRow(@"/files/photos/39129312.jpg")]
-        public void Initialize(string name)
+        public void InitializeTest(string name)
         {
             Photo photo = new Photo(name);
             Assert.AreEqual(name, photo.Name);
