@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ValueObjects\" />
+    <ProjectReference Include="..\..\src\Bntu.Library.CardGenerator.Domain\Bntu.Library.CardGenerator.Domain.csproj" />
   </ItemGroup>
 
 </Project>
