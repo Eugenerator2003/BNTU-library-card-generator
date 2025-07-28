@@ -6,13 +6,28 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.Util
 {
-    public class ApplicationResult<T>
+    public class ApplicationResult<T> where T : class
     {
         public enum ResultType
         {
             ValidationError,
             Error,
             Success
+        }
+
+        public static ApplicationResult<T> ValidationError(string? message)
+        {
+            return new ApplicationResult<T>(ResultType.ValidationError, null, message);
+        }
+
+        public static ApplicationResult<T> Error(string? message)
+        {
+            return new ApplicationResult<T>(ResultType.Error, null, message);
+        }
+
+        public static ApplicationResult<T> Success(T? value, string? message)
+        {
+            return new ApplicationResult<T>(ResultType.Success, value, message);
         }
 
         public ResultType Type { get; }
