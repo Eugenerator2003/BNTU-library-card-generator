@@ -1,5 +1,5 @@
 ﻿using Bntu.Library.CardGenerator.Application.Services;
-using Bntu.Library.CardGenerator.Application.UseCases.Results;
+using Bntu.Library.CardGenerator.Application.UseCases.DTO.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
