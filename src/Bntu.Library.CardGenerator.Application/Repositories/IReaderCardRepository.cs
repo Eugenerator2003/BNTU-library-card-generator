@@ -14,5 +14,7 @@ namespace Bntu.Library.CardGenerator.Application.Repositories
         ReaderCard GetCardByCodbar(int codbar);
 
         ReaderCard GetCardByPid(int pid);
+
+        IList<ReaderCard> GetCardsByGroup(string groupNumber);
     }
 }
