@@ -36,6 +36,12 @@ namespace Bntu.Library.CardGenerator.Application.Util
 
         public string Message { get; }
 
+        public bool IsSuccess => Type == ResultType.Success;
+
+        public bool IsOperationError => Type == ResultType.Error;
+        
+        public bool IsValidationError => Type == ResultType.ValidationError;
+
         public ApplicationResult(ResultType type, T? value, string? message)
         {
             Type = type;
