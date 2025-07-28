@@ -10,5 +10,9 @@ namespace Bntu.Library.CardGenerator.Application.Repositories
     public interface IReaderCardRepository
     {
         IList<ReaderCard> GetAllCards();
+
+        ReaderCard GetCardByCodbar(int codbar);
+
+        ReaderCard GetCardByPid(int pid);
     }
 }
