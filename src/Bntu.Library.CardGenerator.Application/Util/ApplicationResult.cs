@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.Util
 {
-    public class ApplicationResult
+    public class ApplicationResult<T>
     {
         public enum ResultType
         {
@@ -16,5 +16,16 @@ namespace Bntu.Library.CardGenerator.Application.Util
         }
 
         public ResultType Type { get; }
+
+        public T? Value { get; }
+
+        public string Message { get; }
+
+        public ApplicationResult(ResultType type, T? value, string? message)
+        {
+            Type = type;
+            Value = value;
+            Message = message ?? "";
+        }
     }
 }
