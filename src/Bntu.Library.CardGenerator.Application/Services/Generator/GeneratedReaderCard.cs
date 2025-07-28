@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.Services.Generator
 {
-    public abstract class GeneratedReaderCard
+    public class GeneratedReaderCard
     {
         public int CodbarValue { get; }
         public int PId { get; }
