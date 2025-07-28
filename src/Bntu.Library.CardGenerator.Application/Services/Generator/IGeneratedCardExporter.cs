@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bntu.Library.CardGenerator.Application.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Bntu.Library.CardGenerator.Application.Services.Generator
 {
     public interface IGeneratedCardExporter<T> where T : IGeneratedReaderCard
     {
-        void Export(IList<T> values);
+        ApplicationResult<EmptyResult> Export(IList<T> values);
     }
 }

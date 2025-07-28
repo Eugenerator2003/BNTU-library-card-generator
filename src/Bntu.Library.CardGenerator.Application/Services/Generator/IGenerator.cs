@@ -1,4 +1,5 @@
-﻿using Bntu.Library.CardGenerator.Domain.Entities;
+﻿using Bntu.Library.CardGenerator.Application.Util;
+using Bntu.Library.CardGenerator.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Bntu.Library.CardGenerator.Application.Services.Generator
 {
     public interface IGenerator<T> where T : IGeneratedReaderCard
     {
-        IList<T> Generate(IList<ReaderCard> readerCards);
+        ApplicationResult<IList<T>> Generate(IList<ReaderCard> readerCards);
     }
 }
