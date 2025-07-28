@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Application.Service
+namespace Bntu.Library.CardGenerator.Application.Services
 {
     public class ReaderCardService
     {
