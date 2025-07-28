@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.Services.Generator
 {
-    public interface IGeneratedCardExporter<T> where T : IGeneratedReaderCard
+    public interface IGeneratedCardExporter
     {
-        ApplicationResult<EmptyResult> Export(IList<T> values);
+        ApplicationResult<EmptyResult> Export(IList<GeneratedReaderCard> values);
     }
 }
