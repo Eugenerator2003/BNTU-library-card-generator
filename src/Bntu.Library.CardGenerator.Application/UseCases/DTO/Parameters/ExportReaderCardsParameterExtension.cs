@@ -10,14 +10,9 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters
 {
     public static class ExportReaderCardsParameterExtension
     {
-        public static ExportReaderCardsParameter FromGenerateReaderCardsCaseResult(this GenerateReaderCardsCaseResult result)
+        public static ExportReaderCardsParameter FromGenerateReaderCardsCaseResult(this GenerateReaderCardsCaseResult result, string group)
         {
-            var dict = new Dictionary<string, IReadOnlyCollection<GeneratedReaderCard>>();
-            foreach(var pair in result.GeneratedCards)
-            {
-                dict.Add(pair.Key, pair.Value);
-            }
-            return new ExportReaderCardsParameter(dict);
+            return new ExportReaderCardsParameter(result.GeneratedCards[group]);
         }
     }
 }
