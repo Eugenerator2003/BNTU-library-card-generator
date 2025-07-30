@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters
 {
-    public class GetReaderCardsUseParameter
+    public class GetReaderCardsCaseParameter
     {
         public IReadOnlyCollection<string> Groups
         {
@@ -19,7 +19,7 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters
 
         private List<string> groups;
 
-        public GetReaderCardsUseParameter(List<string> groups)
+        public GetReaderCardsCaseParameter(List<string> groups)
         {
             this.groups = groups;
         }
