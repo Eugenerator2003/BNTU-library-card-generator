@@ -10,11 +10,11 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters
 {
     public class ExportReaderCardsParameter
     {
-        public IReadOnlyDictionary<string, IReadOnlyCollection<GeneratedReaderCard>> GeneratedCards { get; }
+        public IReadOnlyCollection<GeneratedReaderCard> GeneratedCards { get; }
 
-        public ExportReaderCardsParameter(IDictionary<string, IReadOnlyCollection<GeneratedReaderCard>> generatedCards)
+        public ExportReaderCardsParameter(IReadOnlyCollection<GeneratedReaderCard> generatedCards)
         {
-            GeneratedCards = new ReadOnlyDictionary<string, IReadOnlyCollection<GeneratedReaderCard>>(generatedCards);
+            GeneratedCards = new ReadOnlyCollection<GeneratedReaderCard>(generatedCards.ToList());
         }
     }
 }
