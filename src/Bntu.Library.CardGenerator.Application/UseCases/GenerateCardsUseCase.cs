@@ -11,9 +11,9 @@ namespace Bntu.Library.CardGenerator.Application.UseCases
 {
     public class GenerateCardsUseCase
     {
-        public GenerateReaderCardCaseResult Generate(GenerateReaderCardCaseParameter parameter)
+        public GenerateReaderCardsCaseResult Generate(GenerateReaderCardsCaseParameter parameter)
         {
-            var result = new GenerateReaderCardCaseResult();
+            var result = new GenerateReaderCardsCaseResult();
             var parameterDict = parameter.ReaderCards;
             foreach(var group in parameterDict.Keys)
             {

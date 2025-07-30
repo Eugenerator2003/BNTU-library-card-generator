@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
 {
-    public class GenerateReaderCardCaseResult
+    public class GenerateReaderCardsCaseResult
     {
         public string[] Groups => generatedCards.Keys.ToArray();
 
@@ -23,7 +23,7 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
 
         private Dictionary<string, IReadOnlyCollection<GeneratedReaderCard>> generatedCards;
 
-        public GenerateReaderCardCaseResult()
+        public GenerateReaderCardsCaseResult()
         {
             generatedCards = new Dictionary<string, IReadOnlyCollection<GeneratedReaderCard>>();
         }

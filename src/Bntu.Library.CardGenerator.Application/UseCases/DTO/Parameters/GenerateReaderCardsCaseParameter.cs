@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters
 {
-    public class GenerateReaderCardCaseParameter
+    public class GenerateReaderCardsCaseParameter
     {
         public string[] Groups => groupCards.Keys.ToArray();
 
@@ -22,7 +22,7 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters
 
         private Dictionary<string, IReadOnlyCollection<ReaderCard>> groupCards;
 
-        public GenerateReaderCardCaseParameter(IDictionary<string, IList<ReaderCard>?> groupedReaderCards)
+        public GenerateReaderCardsCaseParameter(IDictionary<string, IList<ReaderCard>?> groupedReaderCards)
         {
             groupCards = new Dictionary<string, IReadOnlyCollection<ReaderCard>>();
             foreach(var pair in groupedReaderCards)

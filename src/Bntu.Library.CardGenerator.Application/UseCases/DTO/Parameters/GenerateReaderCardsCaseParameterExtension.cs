@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters
 {
-    public static class GenerateReaderCardCaseParameterExtension
+    public static class GenerateReaderCardsCaseParameterExtension
     {
-        public static GenerateReaderCardCaseParameter FromGetReaderCardsCaseResult(GetReaderCardsCaseResult result)
+        public static GenerateReaderCardsCaseParameter FromGetReaderCardsCaseResult(GetReaderCardsCaseResult result)
         {
             var dict = new Dictionary<string, IList<ReaderCard>?>();
             foreach(var key in result.Groups)
             {
                 dict.Add(key, result[key]?.ToList());
             }
-            return new GenerateReaderCardCaseParameter(dict);
+            return new GenerateReaderCardsCaseParameter(dict);
         } 
     }
 }
