@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
 {
-    public class ReaderCardsCaseResult
+    public class GetReaderCardsCaseResult
     {
-        private Dictionary<string, IList<ReaderCard>?> groupCards;
-
         public string[] Groups => groupCards.Keys.ToArray();
 
         public IList<ReaderCard>? this[string groupNumber]
@@ -25,7 +23,9 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
             }
         }
 
-        public ReaderCardsCaseResult(string[] groups)
+        private Dictionary<string, IList<ReaderCard>?> groupCards;
+
+        public GetReaderCardsCaseResult(string[] groups)
         {
             groupCards = new Dictionary<string, IList<ReaderCard>?>();
             foreach (var group in groups)

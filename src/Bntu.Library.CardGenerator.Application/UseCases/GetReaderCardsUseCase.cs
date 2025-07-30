@@ -18,10 +18,10 @@ namespace Bntu.Library.CardGenerator.Application.UseCases
             this.cardService = cardService;
         }
 
-        public ReaderCardsCaseResult GetReaderCards(GetReaderCardsCaseParameter parameter)
+        public GetReaderCardsCaseResult GetReaderCards(GetReaderCardsCaseParameter parameter)
         {
             var groups = parameter.Groups.ToArray();
-            var result = new ReaderCardsCaseResult(groups);
+            var result = new GetReaderCardsCaseResult(groups);
             foreach(var group in parameter.Groups)
             {
                 var groupCardsResult = cardService.GetReaderCardsByGroup(group);
