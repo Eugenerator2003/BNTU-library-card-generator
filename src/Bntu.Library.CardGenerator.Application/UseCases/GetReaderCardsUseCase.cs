@@ -1,4 +1,5 @@
 ﻿using Bntu.Library.CardGenerator.Application.Services;
+using Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters;
 using Bntu.Library.CardGenerator.Application.UseCases.DTO.Results;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,11 @@ namespace Bntu.Library.CardGenerator.Application.UseCases
             this.cardService = cardService;
         }
 
-        public ReaderCardsCaseResult GetReaderCards(params string[] groupNumbers)
+        public ReaderCardsCaseResult GetReaderCards(GetReaderCardsUseParameter parameter)
         {
-            var result = new ReaderCardsCaseResult(groupNumbers);
-            foreach(var group in groupNumbers)
+            var groups = parameter.Groups.ToArray();
+            var result = new ReaderCardsCaseResult(groups);
+            foreach(var group in parameter.Groups)
             {
                 var groupCardsResult = cardService.GetReaderCardsByGroup(group);
                 if (groupCardsResult.IsSuccess)
