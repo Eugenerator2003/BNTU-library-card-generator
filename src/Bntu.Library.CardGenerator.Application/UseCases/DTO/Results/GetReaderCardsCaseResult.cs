@@ -1,6 +1,7 @@
 ﻿using Bntu.Library.CardGenerator.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
     {
         public string[] Groups => groupCards.Keys.ToArray();
 
-        public IList<ReaderCard>? this[string groupNumber]
+        public IReadOnlyCollection<ReaderCard>? this[string groupNumber]
         {
             get
             {
@@ -23,11 +24,11 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
             }
         }
 
-        private Dictionary<string, IList<ReaderCard>?> groupCards;
+        private Dictionary<string, IReadOnlyCollection<ReaderCard>?> groupCards;
 
         public GetReaderCardsCaseResult(string[] groups)
         {
-            groupCards = new Dictionary<string, IList<ReaderCard>?>();
+            groupCards = new Dictionary<string, IReadOnlyCollection<ReaderCard>?>();
             foreach (var group in groups)
             {
                 groupCards.Add(group, null);
@@ -41,7 +42,7 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
                 throw new ArgumentException($"Коллекция не содержит указанной группы {groupNumber}");
             }
 
-            groupCards[groupNumber] = readerCards;
+            groupCards[groupNumber] = new ReadOnlyCollection<ReaderCard>(readerCards);
         }
     }
 }
