@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bntu.Library.CardGenerator.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bntu.Library.CardGenerator.Application", "src\Bntu.Library.CardGenerator.Application\Bntu.Library.CardGenerator.Application.csproj", "{0A391E87-0DA2-4FED-B0B7-00C815D99C52}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bntu.Library.CardGenerator.Application.Tests", "tests\Bntu.Library.CardGenerator.Application.Tests\Bntu.Library.CardGenerator.Application.Tests.csproj", "{A11F8005-DE9E-4014-B840-806D70A86B5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0A391E87-0DA2-4FED-B0B7-00C815D99C52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A391E87-0DA2-4FED-B0B7-00C815D99C52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A391E87-0DA2-4FED-B0B7-00C815D99C52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A11F8005-DE9E-4014-B840-806D70A86B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A11F8005-DE9E-4014-B840-806D70A86B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A11F8005-DE9E-4014-B840-806D70A86B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A11F8005-DE9E-4014-B840-806D70A86B5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
