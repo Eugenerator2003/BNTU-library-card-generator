@@ -1,4 +1,5 @@
-﻿using Bntu.Library.CardGenerator.Domain.Entities;
+﻿using Bntu.Library.CardGenerator.Application.Services.Generator;
+using Bntu.Library.CardGenerator.Domain.Entities;
 using Bntu.Library.CardGenerator.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,11 @@ namespace Bntu.Library.CardGenerator.Application.Tests
             Student student = new Student(GetStringLine(), GetStringLine(), faculty, studyGroup);
             Photo photo = new Photo(GetStringLine());
             return new ReaderCard(cardInfo, student, photo);
+        }
+
+        public static GeneratedReaderCard GenerateGeneratedReaderCard(string? group = null)
+        {
+            return new GeneratedReaderCard(GenerateRandomReaderCard(group));
         }
 
         public static string GetStringLine()
