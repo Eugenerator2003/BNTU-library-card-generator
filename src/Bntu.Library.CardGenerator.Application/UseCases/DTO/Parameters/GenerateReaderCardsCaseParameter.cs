@@ -27,7 +27,7 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters
             groupCards = new Dictionary<string, IReadOnlyCollection<ReaderCard>>();
             foreach(var pair in groupedReaderCards)
             {
-                if (pair.Value != null && pair.Value.Count == 0)
+                if (pair.Value != null && pair.Value.Count != 0)
                 {
                     groupCards.Add(pair.Key, new ReadOnlyCollection<ReaderCard>(pair.Value));
                 }
