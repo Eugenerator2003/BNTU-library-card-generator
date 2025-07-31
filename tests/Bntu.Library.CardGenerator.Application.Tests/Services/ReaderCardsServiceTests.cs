@@ -36,7 +36,8 @@ namespace Bntu.Library.CardGenerator.Application.Tests.Services
 
             Assert.IsTrue(result.IsSuccess);
             Assert.AreEqual(string.Empty, result.Message);
-            CollectionAssert.AreEqual((ICollection)list, (ICollection)result.Value!);
+            Assert.IsNotNull(result.Value);
+            CollectionAssert.AreEqual((ICollection)list, (ICollection)result.Value);
 
             repositoryMoq.Verify(s => s.GetCardsByGroup(group), Times.Once());
         }
