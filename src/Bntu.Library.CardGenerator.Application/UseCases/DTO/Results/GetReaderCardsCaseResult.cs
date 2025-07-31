@@ -18,7 +18,7 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
             {
                 if (!groupCards.ContainsKey(groupNumber))
                 {
-                    throw new ArgumentException($"Коллекция не содержит указанной группы {groupNumber}");
+                    throw new ArgumentException($"Коллекция не содержит указанной группы {groupNumber}", nameof(groupNumber));
                 }
                 return groupCards[groupNumber];
             }
@@ -39,7 +39,7 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
         {
             if (!groupCards.ContainsKey(groupNumber))
             {
-                throw new ArgumentException($"Коллекция не содержит указанной группы {groupNumber}");
+                throw new ArgumentException($"Коллекция не содержит указанной группы {groupNumber}", nameof(groupNumber));
             }
 
             groupCards[groupNumber] = new ReadOnlyCollection<ReaderCard>(readerCards);
