@@ -30,9 +30,9 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
 
         public void AddGeneratedCards(string groups, IList<GeneratedReaderCard> cards)
         {
-            if (generatedCards == null)
+            if (cards == null || cards.Count == 0)
             {
-                throw new ArgumentNullException("Сгенерированные билеты не могут быть null.");
+                throw new ArgumentException("Сгенерированные билеты не могут быть null и их количество должно быть больше 0.", nameof(cards));
             }
 
             generatedCards.Add(groups, new ReadOnlyCollection<GeneratedReaderCard>(cards));
