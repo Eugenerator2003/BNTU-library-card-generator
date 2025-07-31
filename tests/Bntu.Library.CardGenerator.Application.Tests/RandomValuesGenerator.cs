@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.Tests
 {
-    internal class RandomReaderCardGenerator
+    internal class RandomValuesGenerator
     {
         private static Random random = new Random();
 
@@ -31,7 +31,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests
             return new ReaderCard(cardInfo, student, photo);
         }
 
-        private static string GetStringLine()
+        public static string GetStringLine()
         {
             int count = random.Next(1, 50);
             StringBuilder sb = new StringBuilder();

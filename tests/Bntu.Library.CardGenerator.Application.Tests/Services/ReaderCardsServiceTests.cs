@@ -24,7 +24,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests.Services
             IList<ReaderCard> list = new List<ReaderCard>();
             for (int i = 0; i < count; i++)
             {
-                list.Add(RandomReaderCardGenerator.GenerateRandom(group));
+                list.Add(RandomValuesGenerator.GenerateRandom(group));
             }
             repositoryMoq.Setup(s => s.GetCardsByGroup(group)).Returns(() =>
             {
