@@ -43,5 +43,30 @@ namespace Bntu.Library.CardGenerator.Domain.Tests.Entities
             Assert.AreEqual(department, readerCard.Department);
             Assert.AreEqual(photoName, readerCard.PhotoName);
         }
+
+        [DataTestMethod]
+        [DataRow(1, 1, "10-01-2024", "29-06-2028", "Nikitov", "Valeriy", "TUG", "31231203", "fulltime", "31231.jpg")]
+        [DataRow(2139, 589915, "28-02-2019", "21-03-2021", "Vladov", "Vadim", "ATF-2026", "130850329", "correspondence", @"d://assets/students/photos/3129390.jpg")]
+        [DataRow(102930, 31729312, "01-09-2025", "30-06-2029", "Zhdanov", "Stanislav", "FMMP-25", "600393129", "fulltime", @"/student-photo/person31729312.png")]
+        public void EqualTest(int codbar, int pid, string issueDateS,
+                                   string expirationDateS, string lastname, string firstname,
+                                   string facultyName, string groupNumber, string departmentS,
+                                   string photoName)
+        {
+            DateTime issueDate = DateTime.Parse(issueDateS);
+            DateTime expirationDate = DateTime.Parse(expirationDateS);
+            CardInfo cardInfo = new CardInfo(codbar, pid, issueDate, expirationDate);
+            Faculty faculty = new Faculty(facultyName);
+
+            StudyGroup.DepartmentType department = Enum.Parse<StudyGroup.DepartmentType>(departmentS, true);
+            StudyGroup studyGroup = new StudyGroup(groupNumber, department);
+            Student student = new Student(lastname, firstname, faculty, studyGroup);
+
+            Photo photo = new Photo(photoName);
+            ReaderCard readerCard = new ReaderCard(cardInfo, student, photo);
+            ReaderCard readerCard2 = new ReaderCard(cardInfo, student, photo);
+
+            Assert.AreEqual(readerCard, readerCard2);
+        }
     }
 }
