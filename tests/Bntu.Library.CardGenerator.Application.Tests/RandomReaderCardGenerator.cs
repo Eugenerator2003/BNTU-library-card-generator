@@ -16,8 +16,8 @@ namespace Bntu.Library.CardGenerator.Application.Tests
         {
             int codbar = random.Next();
             int pid = random.Next();
-            int issueDays = random.Next();
-            int expirationDays = random.Next();
+            int issueDays = random.Next(365 * 2);
+            int expirationDays = random.Next(365 * 2);
 
             CardInfo cardInfo = new CardInfo(codbar, pid, DateTime.Now.AddDays(-issueDays), DateTime.Now.AddDays(expirationDays));
 
@@ -37,7 +37,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < count; i++)
             {
-                sb.Append(Convert.ToChar(random.Next()));
+                sb.Append(Convert.ToChar(random.Next(char.MaxValue)));
             }
             return sb.ToString();
         }
