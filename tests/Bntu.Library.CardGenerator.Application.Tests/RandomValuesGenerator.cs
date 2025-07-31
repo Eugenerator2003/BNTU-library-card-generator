@@ -12,7 +12,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests
     {
         private static Random random = new Random();
 
-        public static ReaderCard GenerateRandom(string? group = null)
+        public static ReaderCard GenerateRandomReaderCard(string? group = null)
         {
             int codbar = random.Next();
             int pid = random.Next();

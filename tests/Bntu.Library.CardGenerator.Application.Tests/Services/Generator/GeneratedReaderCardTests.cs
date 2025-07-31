@@ -44,7 +44,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests.Services.Generator
         [DataRow]
         public void InitializeFromReaderCardTest()
         {
-            var card = RandomValuesGenerator.GenerateRandom();
+            var card = RandomValuesGenerator.GenerateRandomReaderCard();
             var generatedCard = new GeneratedReaderCard(card);
 
             Assert.AreEqual(card.CodbarValue, generatedCard.CodbarValue);

@@ -20,7 +20,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests.Services.Generator
             var list = new List<ReaderCard>();
             for(int i = 0; i < itemCount; i++)
             {
-                list.Add(RandomValuesGenerator.GenerateRandom());
+                list.Add(RandomValuesGenerator.GenerateRandomReaderCard());
             }
 
             var generationResult = ReaderCardGenerator.Generate(list);
