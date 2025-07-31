@@ -19,9 +19,15 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters
 
         private List<string> groups;
 
-        public GetReaderCardsCaseParameter(List<string> groups)
+        public GetReaderCardsCaseParameter()
         {
-            this.groups = groups;
+            groups = new List<string>();
+        }
+
+        public GetReaderCardsCaseParameter(List<string> groups)
+            : this()
+        {
+            groups.AddRange(groups);
         }
 
         public void AddGroup(string group)
