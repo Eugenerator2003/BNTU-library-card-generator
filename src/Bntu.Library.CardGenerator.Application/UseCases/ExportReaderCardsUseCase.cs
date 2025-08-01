@@ -18,7 +18,7 @@ namespace Bntu.Library.CardGenerator.Application.UseCases
             this.exporter = exporter;
         }
 
-        public ExportReaderCardsCaseResult Export(ExportReaderCardsParameter parameter)
+        public ExportReaderCardsCaseResult Export(ExportReaderCardsCaseParameter parameter)
         {
             var exportResult = exporter.Export(parameter.GeneratedCards.ToList());
             return new ExportReaderCardsCaseResult(exportResult.IsSuccess, exportResult.Message);
