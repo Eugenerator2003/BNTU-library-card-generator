@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters
 {
-    public static class GenerateReaderCardsCaseParameterExtension
+    public static class GetReaderCardsCaseResultExtension
     {
         public static GenerateReaderCardsCaseParameter FromGetReaderCardsCaseResult(this GetReaderCardsCaseResult result)
         {
