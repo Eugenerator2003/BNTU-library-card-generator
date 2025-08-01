@@ -1,4 +1,4 @@
-﻿using Bntu.Library.CardGenerator.Application.UseCases.DTO.Results;
+﻿using Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters;
 using Bntu.Library.CardGenerator.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters
+namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
 {
     public static class GetReaderCardsCaseResultExtension
     {
