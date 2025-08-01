@@ -9,9 +9,9 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
 {
     public static class GenerateReaderCardsCaseResultExtension
     {
-        public static ExportReaderCardsParameter FromGenerateReaderCardsCaseResult(this GenerateReaderCardsCaseResult result, string group)
+        public static ExportReaderCardsCaseParameter ToExportReaderCardsCaseParameter(this GenerateReaderCardsCaseResult result, string group)
         {
-            return new ExportReaderCardsParameter(result.GeneratedCards[group]);
+            return new ExportReaderCardsCaseParameter(result.GeneratedCards[group]);
         }
     }
 }

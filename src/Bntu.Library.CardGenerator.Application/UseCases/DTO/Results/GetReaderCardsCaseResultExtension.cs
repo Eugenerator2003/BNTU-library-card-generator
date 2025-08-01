@@ -10,7 +10,7 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
 {
     public static class GetReaderCardsCaseResultExtension
     {
-        public static GenerateReaderCardsCaseParameter FromGetReaderCardsCaseResult(this GetReaderCardsCaseResult result)
+        public static GenerateReaderCardsCaseParameter ToGenerateReaderCardsCaseParameter(this GetReaderCardsCaseResult result)
         {
             var dict = new Dictionary<string, IList<ReaderCard>?>();
             foreach(var key in result.Groups)
