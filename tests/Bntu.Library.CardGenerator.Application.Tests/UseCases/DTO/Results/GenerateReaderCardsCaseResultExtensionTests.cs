@@ -35,10 +35,9 @@ namespace Bntu.Library.CardGenerator.Application.Tests.UseCases.DTO.Results
 
             int exptectedGroupNumber = Random.Shared.Next(groupsCount);
             string expectedGroup = groups[exptectedGroupNumber];
-            var exptectedCards = cards[exptectedGroupNumber];
 
             var actualResult = input.ToExportReaderCardsCaseParameter(expectedGroup);
-            CollectionAssert.AreEquivalent(exptectedCards, (ICollection)actualResult.GeneratedCards);
+            CollectionAssert.AreEquivalent((ICollection)input.GeneratedCards[expectedGroup], (ICollection)actualResult.GeneratedCards);
         }
     }
 }
