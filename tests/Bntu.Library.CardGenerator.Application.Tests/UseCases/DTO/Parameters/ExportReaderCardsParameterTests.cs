@@ -26,7 +26,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests.UseCases.DTO.Parameters
                 generatedList.Add(RandomValuesGenerator.GenerateGeneratedReaderCard(group));
             }
             var exptectedCollection = new ReadOnlyCollection<GeneratedReaderCard>(generatedList);
-            var param = new ExportReaderCardsParameter(exptectedCollection);
+            var param = new ExportReaderCardsCaseParameter(exptectedCollection);
             CollectionAssert.AreEqual(exptectedCollection, (ICollection)param.GeneratedCards);
         }
     }
