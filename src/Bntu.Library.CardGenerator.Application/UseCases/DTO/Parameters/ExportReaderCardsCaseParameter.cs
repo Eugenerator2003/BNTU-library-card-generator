@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Parameters
 {
-    public class ExportReaderCardsParameter
+    public class ExportReaderCardsCaseParameter
     {
         public IReadOnlyCollection<GeneratedReaderCard> GeneratedCards { get; }
 
-        public ExportReaderCardsParameter(IReadOnlyCollection<GeneratedReaderCard> generatedCards)
+        public ExportReaderCardsCaseParameter(IReadOnlyCollection<GeneratedReaderCard> generatedCards)
         {
             GeneratedCards = new ReadOnlyCollection<GeneratedReaderCard>(generatedCards.ToList());
         }
