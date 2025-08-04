@@ -19,9 +19,11 @@ namespace Bntu.Library.CardGenerator.Application.Services.Generator
         public string Faculty { get; }
         public string StudyGroup { get; }
         public StudyGroup.DepartmentType Department { get; }
+        public string PhotoName { get; }
 
         public GeneratedReaderCard(int codbarValue, int pId, DateTime issueDate, DateTime expirationDate, 
-                                   string lastname, string firstname, string faculty, string studyGroup, StudyGroup.DepartmentType department)
+                                   string lastname, string firstname, string faculty, string studyGroup, StudyGroup.DepartmentType department,
+                                   string photo)
         {
             CodbarValue = codbarValue;
             PId = pId;
@@ -32,12 +34,14 @@ namespace Bntu.Library.CardGenerator.Application.Services.Generator
             Faculty = faculty;
             StudyGroup = studyGroup;
             Department = department;
+            PhotoName = photo;
         }
 
         public GeneratedReaderCard(ReaderCard readerCard)
             : this(readerCard.CodbarValue, readerCard.PId, readerCard.IssueDate,
                    readerCard.ExpirationDate, readerCard.Lastname, readerCard.Firstname,
-                   readerCard.Faculty, readerCard.StudyGroup, readerCard.Department)
+                   readerCard.Faculty, readerCard.StudyGroup, readerCard.Department,
+                   readerCard.PhotoName)
         {
 
         }
