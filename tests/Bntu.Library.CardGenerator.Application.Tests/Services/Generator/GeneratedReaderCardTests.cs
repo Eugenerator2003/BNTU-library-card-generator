@@ -25,7 +25,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests.Services.Generator
             DateTime expirationDate = DateTime.Parse(expirationDateS);
             StudyGroup.DepartmentType department = Enum.Parse<StudyGroup.DepartmentType>(departmentS, true);
 
-            GeneratedReaderCard card = new GeneratedReaderCard(codbar, pid, issueDate, expirationDate, lastname, firstname, facultyName, groupNumber, department);
+            GeneratedReaderCard card = new GeneratedReaderCard(codbar, pid, issueDate, expirationDate, lastname, firstname, facultyName, groupNumber, department, photoName);
 
             Assert.AreEqual(codbar, card.CodbarValue);
             Assert.AreEqual(pid, card.PId);
@@ -36,6 +36,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests.Services.Generator
             Assert.AreEqual(facultyName, card.Faculty);
             Assert.AreEqual(groupNumber, card.StudyGroup);
             Assert.AreEqual(department, card.Department);
+            Assert.AreEqual(photoName, card.PhotoName);
         }
 
         [DataTestMethod]
@@ -56,6 +57,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests.Services.Generator
             Assert.AreEqual(card.Faculty, generatedCard.Faculty);
             Assert.AreEqual(card.StudyGroup, generatedCard.StudyGroup);
             Assert.AreEqual(card.Department, generatedCard.Department);
+            Assert.AreEqual(card.PhotoName, generatedCard.PhotoName);
         }
     }
 }
