@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bntu.Library.CardGenerator.Domain\Bntu.Library.CardGenerator.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
