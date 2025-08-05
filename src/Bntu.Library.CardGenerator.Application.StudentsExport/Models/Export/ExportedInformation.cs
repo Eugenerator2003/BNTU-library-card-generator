@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models.Export
 {
-    public abstract class ExportedInformation
+    public class ExportedInformation
     {
         public int Id { get; }
 
