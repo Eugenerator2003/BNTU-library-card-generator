@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models
+namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models.Export
 {
     public abstract class ExportedStudentInformation
     {
@@ -28,7 +28,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models
 
         public SexTypes Sex { get; }
 
-        public ExportedStudentInformation(string lastname, string firstname, string patronymic, 
+        public ExportedStudentInformation(string lastname, string firstname, string patronymic,
                                           DateTime birthDate, string passportNumber, string passportInfo, SexTypes sex)
         {
             Lastname = lastname;

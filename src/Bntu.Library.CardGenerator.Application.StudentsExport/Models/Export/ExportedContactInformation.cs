@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models
+namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models.Export
 {
     public abstract class ExportedContactInformation
     {
