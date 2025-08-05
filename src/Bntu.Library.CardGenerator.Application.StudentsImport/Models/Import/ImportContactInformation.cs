@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models
+namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
 {
     public class ImportContactInformation
     {
