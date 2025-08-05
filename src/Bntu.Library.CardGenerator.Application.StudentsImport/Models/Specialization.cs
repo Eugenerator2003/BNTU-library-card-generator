@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models.Import
+namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models
 {
     public class Specialization
     {
