@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bntu.Library.CardGenerator.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bntu.Library.CardGenerator.Infrastucture.DataSource", "src\Bntu.Library.CardGenerator.Infrastucture.DataSource\Bntu.Library.CardGenerator.Infrastucture.DataSource.csproj", "{2FF925E5-0717-49CE-BFC7-37021B4C25B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bntu.Library.CardGenerator.Application.StudentsImport", "src\Bntu.Library.CardGenerator.Application.StudentsExport\Bntu.Library.CardGenerator.Application.StudentsImport.csproj", "{FC05F5D1-7813-415A-B83F-AA8B38B0C8E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bntu.Library.CardGenerator.Application.StudentsImport", "src\Bntu.Library.CardGenerator.Application.StudentsImport\Bntu.Library.CardGenerator.Application.StudentsImport.csproj", "{4DC76BA4-AC21-4540-B99C-2215FDA641D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{2FF925E5-0717-49CE-BFC7-37021B4C25B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FF925E5-0717-49CE-BFC7-37021B4C25B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FF925E5-0717-49CE-BFC7-37021B4C25B7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC05F5D1-7813-415A-B83F-AA8B38B0C8E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC05F5D1-7813-415A-B83F-AA8B38B0C8E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC05F5D1-7813-415A-B83F-AA8B38B0C8E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC05F5D1-7813-415A-B83F-AA8B38B0C8E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DC76BA4-AC21-4540-B99C-2215FDA641D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC76BA4-AC21-4540-B99C-2215FDA641D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC76BA4-AC21-4540-B99C-2215FDA641D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC76BA4-AC21-4540-B99C-2215FDA641D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
