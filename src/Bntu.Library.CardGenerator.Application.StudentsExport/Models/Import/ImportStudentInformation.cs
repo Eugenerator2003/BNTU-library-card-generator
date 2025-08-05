@@ -8,7 +8,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models.Import
 {
     public class ImportStudentInformation
     {
-        public Person.SexType Set { get; }
+        public Person.SexType Sex { get; }
 
         public string Lastname { get; }
 
@@ -20,7 +20,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models.Import
 
         public ImportStudentInformation(Person.SexType set, string lastname, string givenName, DateTime birthDate, string passportInfromation)
         {
-            Set = set;
+            Sex = set;
             Lastname = lastname;
             GivenName = givenName;
             BirthDate = birthDate;
