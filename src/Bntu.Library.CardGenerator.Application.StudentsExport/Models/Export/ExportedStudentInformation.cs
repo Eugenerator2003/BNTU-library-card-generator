@@ -8,12 +8,6 @@ namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models.Export
 {
     public abstract class ExportedStudentInformation
     {
-        public enum SexTypes
-        {
-            Female,
-            Male
-        }
-
         public string Lastname { get; }
 
         public string Firstname { get; }
@@ -26,10 +20,10 @@ namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models.Export
 
         public string PassportInfo { get; }
 
-        public SexTypes Sex { get; }
+        public Person.SexType Sex { get; }
 
         public ExportedStudentInformation(string lastname, string firstname, string patronymic,
-                                          DateTime birthDate, string passportNumber, string passportInfo, SexTypes sex)
+                                          DateTime birthDate, string passportNumber, string passportInfo, Person.SexType sex)
         {
             Lastname = lastname;
             Firstname = firstname;
