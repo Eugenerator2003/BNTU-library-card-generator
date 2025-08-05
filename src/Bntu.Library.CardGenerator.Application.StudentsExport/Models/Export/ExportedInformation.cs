@@ -17,12 +17,16 @@ namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models.Export
 
         public ExportedContactInformation ContactInformation { get; }
 
-        protected ExportedInformation(int id, ExportedStudentInformation student, ExportedStudyInformation studyInformation, ExportedContactInformation contactInformation)
+        public string Photoname { get; }
+
+        protected ExportedInformation(int id, ExportedStudentInformation student, 
+                                      ExportedStudyInformation studyInformation, ExportedContactInformation contactInformation, string photoname)
         {
             Id = id;
             Student = student;
             StudyInformation = studyInformation;
             ContactInformation = contactInformation;
+            Photoname = photoname;
         }
     }
 }
