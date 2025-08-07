@@ -6,31 +6,19 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
 {
-    public class ProfessionCollection
+    public class ProfessionCollection : DictionaryCollection<Profession>
     {
         public Profession? this[int id]
         {
             get
             {
-                return professions.FirstOrDefault(p => p.Id == id);
+                return values.FirstOrDefault(p => p.Id == id);
             }
         }
 
-        private List<Profession> professions;
-
-        public ProfessionCollection()
+        protected override bool Contains(Profession item)
         {
-            professions = new List<Profession>();
-        }
-
-        public void Add(Profession profession)
-        {
-            if (professions.Any(p => p.Id == profession.Id || p.Name == profession.Name))
-            {
-                throw new ArgumentException("Коллекция профессий уже содержит данную профессию.", nameof(profession));
-            }
-
-            professions.Add(profession);
+            return values.Any(v => v.Id == item.Id || v.Name == item.Name);
         }
     }
 }
