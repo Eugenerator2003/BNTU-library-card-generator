@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bntu.Library.CardGenerator.Application.StudentsImport.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,14 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import.Ag
             get
             {
                 return values.FirstOrDefault(p => p.Id == id);
+            }
+        }
+
+        public Specialization? this[string number]
+        {
+            get
+            {
+                return values.FirstOrDefault(v => SpecializationNumberComparer.Compare(number, v.Name));
             }
         }
 
