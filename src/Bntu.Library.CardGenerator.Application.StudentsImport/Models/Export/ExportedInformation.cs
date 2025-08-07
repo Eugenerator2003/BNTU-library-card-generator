@@ -19,7 +19,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Export
 
         public string Photoname { get; }
 
-        protected ExportedInformation(int id, ExportedStudentInformation student, 
+        public ExportedInformation(int id, ExportedStudentInformation student, 
                                       ExportedStudyInformation studyInformation, ExportedContactInformation contactInformation, string photoname)
         {
             Id = id;
