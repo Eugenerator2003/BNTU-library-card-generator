@@ -1,6 +1,7 @@
 ﻿using Bntu.Library.CardGenerator.Application.StudentsImport.Models.Export;
 using Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import;
 using Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import.Aggregates;
+using Bntu.Library.CardGenerator.Application.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,29 +25,36 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Services
             _facultets = new FacultyCollection();
         }
 
-        public IList<ImportInformation> Transform(IList<ExportedInformation> exportedInformation, ImportingParameter parameter)
+        public ApplicationResult<IList<ImportInformation>> Transform(IList<ExportedInformation> exportedInformation, ImportingParameter parameter)
         {
             _groups.Reset();
             _facultets = new FacultyCollection();
             var list = new List<ImportInformation>();
 
-            int codbar = parameter.StartCodbar;
-            var libraryRegistration = GetLibraryRegistration(parameter.CurrentYear);
-            for (int i = 0; i < exportedInformation.Count; i++)
+            try
             {
-                if (exportedInformation[i].StudyInformation.StudyStartDate.Year != parameter.CurrentYear.Year)
-                    continue;
+                int codbar = parameter.StartCodbar;
+                var libraryRegistration = GetLibraryRegistration(parameter.CurrentYear);
+                for (int i = 0; i < exportedInformation.Count; i++)
+                {
+                    if (exportedInformation[i].StudyInformation.StudyStartDate.Year != parameter.CurrentYear.Year)
+                        continue;
 
-                var student = GetStudentInformation(exportedInformation[i].Student);
-                var contact = GetContactInformation(exportedInformation[i].ContactInformation);
-                var studyGroup = GetStudyGroup(exportedInformation[i].StudyInformation, parameter);
-                var lineResult = new ImportInformation(codbar, exportedInformation[i].Photoname, student, contact,
-                                                       studyGroup, libraryRegistration);
-                list.Add(lineResult);
-                codbar++;
+                    var student = GetStudentInformation(exportedInformation[i].Student);
+                    var contact = GetContactInformation(exportedInformation[i].ContactInformation);
+                    var studyGroup = GetStudyGroup(exportedInformation[i].StudyInformation, parameter);
+                    var lineResult = new ImportInformation(codbar, exportedInformation[i].Photoname, student, contact,
+                                                           studyGroup, libraryRegistration);
+                    list.Add(lineResult);
+                    codbar++;
+                }
+
+                return ApplicationResult<IList<ImportInformation>>.Success(list, null);
             }
-
-            return list;
+            catch (Exception ex)
+            {
+                return ApplicationResult<IList<ImportInformation>>.Error(ex.Message + "\n" + ex.StackTrace);
+            }
         }
 
         private ImportStudentInformation GetStudentInformation(ExportedStudentInformation studentInformation)
