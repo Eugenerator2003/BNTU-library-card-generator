@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
+{
+    public class SpecializationCollection : DictionaryCollection<Specialization>
+    {
+        public Specialization? this[int id]
+        {
+            get
+            {
+                return values.FirstOrDefault(p => p.Id == id);
+            }
+        }
+
+        protected override bool Contains(Specialization item)
+        {
+            return values.Any(v => v.Id == item.Id || v.Name == item.Name);
+        }
+    }
+}
