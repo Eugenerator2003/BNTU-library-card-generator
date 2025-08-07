@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.StudentsImport.UseCases.DTO.Parameters
 {
-    public class GetSpecializationsParameter
+    public class GetSpecializationsCaseParameter
     {
         public ProfessionCollection ProfessionCollection { get; }
 
-        public GetSpecializationsParameter(ProfessionCollection professionCollection)
+        public GetSpecializationsCaseParameter(ProfessionCollection professionCollection)
         {
             ProfessionCollection = professionCollection;
         }
