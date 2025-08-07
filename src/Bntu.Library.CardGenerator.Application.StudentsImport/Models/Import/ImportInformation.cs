@@ -18,11 +18,15 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
 
         public LibraryRegistration LibraryRegistration { get; }
 
-        public ImportInformation(int codbar, ImportStudentInformation student, ImportContactInformation contact, ImportStudyGroup group, LibraryRegistration libraryRegistration)
+        public string Photoname { get; }
+
+        public ImportInformation(int codbar, string photoname, ImportStudentInformation student, 
+                                 ImportContactInformation contact, ImportStudyGroup group, LibraryRegistration libraryRegistration)
         {
             Codbar = codbar;
             Student = student;
             Contact = contact;
+            Photoname = photoname;
             Group = group;
             LibraryRegistration = libraryRegistration;
         }
@@ -31,6 +35,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
         {
             return obj is ImportInformation information &&
                    Codbar == information.Codbar &&
+                   Photoname == information.Photoname &&
                    EqualityComparer<ImportStudentInformation>.Default.Equals(Student, information.Student) &&
                    EqualityComparer<ImportContactInformation>.Default.Equals(Contact, information.Contact) &&
                    EqualityComparer<ImportStudyGroup>.Default.Equals(Group, information.Group) &&
@@ -39,7 +44,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Codbar, Student, Contact, Group, LibraryRegistration);
+            return HashCode.Combine(Codbar, Photoname, Student, Contact, Group, LibraryRegistration);
         }
     }
 }
