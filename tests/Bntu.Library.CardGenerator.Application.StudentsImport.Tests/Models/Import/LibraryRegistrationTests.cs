@@ -8,7 +8,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Tests.Models.Imp
     public class LibraryRegistrationTests
     {
         [TestMethod]
-        public void ConstructorInitializeTest()
+        public void InitializeTest()
         {
             var date = new DateTime(2025, 8, 7);
             var registration = new LibraryRegistration(date);
