@@ -11,9 +11,9 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
     {
         public Faculty Faculty { get; }
 
-        public Specialization Specialization { get; }
+        public Specialization? Specialization { get; }
 
-        public Profession Profession { get; }
+        public Profession? Profession { get; }
 
         public string Number { get; }
 
@@ -21,7 +21,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
 
         public DateTime GraduationDate { get; }
 
-        public ImportStudyGroup(Faculty faculty, Profession profession, Specialization specialization, string number, StudyGroup.DepartmentType departmentType, DateTime graduationDate)
+        public ImportStudyGroup(Faculty faculty, Profession? profession, Specialization? specialization, string number, StudyGroup.DepartmentType departmentType, DateTime graduationDate)
         {
             Faculty = faculty;
             Profession = profession;
