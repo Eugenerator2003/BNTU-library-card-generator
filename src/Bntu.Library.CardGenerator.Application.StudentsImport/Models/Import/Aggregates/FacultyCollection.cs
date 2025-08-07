@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import.Aggregates
 {
-    internal class FacultyCollection : DictionaryCollection<Faculty>
+    public class FacultyCollection : DictionaryCollection<Faculty>
     {
         public Faculty? this[string name]
         {
