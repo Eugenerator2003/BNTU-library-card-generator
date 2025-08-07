@@ -10,7 +10,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
     {
         public string Name { get; }
 
-        public Faculty(int id, string name)
+        public Faculty(string name)
         {
             Name = name;
         }
