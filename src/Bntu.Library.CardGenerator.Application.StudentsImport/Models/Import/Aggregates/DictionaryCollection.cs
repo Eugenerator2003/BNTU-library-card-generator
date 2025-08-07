@@ -21,6 +21,8 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import.Ag
             {
                 throw new ArgumentException("Коллекция уже содержит данный элемент.", nameof(item));
             }
+
+            values.Add(item);
         }
 
         protected abstract bool Contains(T item);
