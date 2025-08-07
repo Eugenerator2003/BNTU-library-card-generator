@@ -8,11 +8,14 @@ namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models.Import
 {
     public class Faculty
     {
+        public int Id { get; set; }
+
         public string Name { get; }
 
-        public Faculty(string name)
+        public Faculty(int id, string name)
         {
             Name = name;
+            Id = id;
         }
 
         public override bool Equals(object? obj)
