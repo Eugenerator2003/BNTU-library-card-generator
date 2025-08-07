@@ -60,5 +60,24 @@ namespace Bntu.Library.CardGenerator.Application.Tests.StudentsImport.Services
             Assert.AreEqual("photo.jpg", result.Value[0].Photoname);
             Assert.AreEqual("Иванов", result.Value[0].Student.Lastname);
         }
+
+        [TestMethod]
+        public void TransformErrorTest()
+        {
+            var professions = new ProfessionCollection();
+            var specializations = new SpecializationCollection();
+
+            var service = new InformationTransformationService(professions, specializations);
+
+            var importParam = new ImportingParameter(DateTime.Now, 3000);
+
+            IList<ExportedInformation> exportedInformation = null!;
+
+            var result = service.Transform(exportedInformation!, importParam);
+
+            Assert.IsFalse(result.IsSuccess);
+            Assert.IsTrue(result.IsOperationError);
+            Assert.IsTrue(result.Message.Contains("System.NullReferenceException"));
+        }
     }
 }

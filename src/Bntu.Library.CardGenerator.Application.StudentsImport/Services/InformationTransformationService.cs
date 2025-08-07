@@ -53,7 +53,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Services
             }
             catch (Exception ex)
             {
-                return ApplicationResult<IList<ImportInformation>>.Error(ex.Message + "\n" + ex.StackTrace);
+                return ApplicationResult<IList<ImportInformation>>.Error($"{ex.GetType()}\n{ex.Message}\n{ex.StackTrace}");
             }
         }
 
