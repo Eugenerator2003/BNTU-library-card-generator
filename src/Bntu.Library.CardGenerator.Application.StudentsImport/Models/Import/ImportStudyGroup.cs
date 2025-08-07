@@ -13,15 +13,18 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
 
         public Specialization Specialization { get; }
 
+        public Profession Profession { get; }
+
         public string Number { get; }
 
         public StudyGroup.DepartmentType DepartmentType { get; }
 
         public DateTime GraduationDate { get; }
 
-        public ImportStudyGroup(Faculty faculty, Specialization specialization, string number, StudyGroup.DepartmentType departmentType, DateTime graduationDate)
+        public ImportStudyGroup(Faculty faculty, Profession profession, Specialization specialization, string number, StudyGroup.DepartmentType departmentType, DateTime graduationDate)
         {
             Faculty = faculty;
+            Profession = profession;
             Specialization = specialization;
             Number = number;
             DepartmentType = departmentType;
@@ -33,6 +36,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
             return obj is ImportStudyGroup group &&
                    EqualityComparer<Faculty>.Default.Equals(Faculty, group.Faculty) &&
                    EqualityComparer<Specialization>.Default.Equals(Specialization, group.Specialization) &&
+                   EqualityComparer<Profession>.Default.Equals(Profession, group.Profession) &&
                    Number == group.Number &&
                    DepartmentType == group.DepartmentType &&
                    GraduationDate == group.GraduationDate;
@@ -40,7 +44,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Faculty, Specialization, Number, DepartmentType, GraduationDate);
+            return HashCode.Combine(Faculty, Profession, Specialization, Number, DepartmentType, GraduationDate);
         }
     }
 }
