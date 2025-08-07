@@ -60,9 +60,9 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Services
         private ImportStudentInformation GetStudentInformation(ExportedStudentInformation studentInformation)
         {
             var import = new ImportStudentInformation(studentInformation.Sex, studentInformation.Lastname,
-                                                      studentInformation.Firstname + " " + studentInformation.Patronymic,
+                                                      $"{studentInformation.Firstname} {studentInformation.Patronymic}",
                                                       studentInformation.BirthDate,
-                                                      studentInformation.PassportNumber + " " + studentInformation.PassportInfo);
+                                                      $"{studentInformation.PassportNumber} {studentInformation.PassportInfo}");
             return import;
         }
 
@@ -88,7 +88,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Services
 
             group = new ImportStudyGroup(faculty, profession, specialization, studyInformation.GroupNumber, 
                                          studyInformation.Department, graduationDate);
-
+            _groups.Add(group);
             return group;
         }
 
