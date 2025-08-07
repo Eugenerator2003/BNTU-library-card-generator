@@ -7,11 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Bntu.Library.CardGenerator.Application\Bntu.Library.CardGenerator.Application.csproj" />
     <ProjectReference Include="..\Bntu.Library.CardGenerator.Domain\Bntu.Library.CardGenerator.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
