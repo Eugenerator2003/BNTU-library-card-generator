@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
+namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import.Aggregates
 {
     public class SpecializationCollection : DictionaryCollection<Specialization>
     {
