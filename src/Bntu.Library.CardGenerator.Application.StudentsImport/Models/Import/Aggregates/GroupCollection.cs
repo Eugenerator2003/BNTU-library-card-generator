@@ -16,6 +16,11 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import.Ag
             }
         }
 
+        public void Reset()
+        {
+            values.Clear();
+        }
+
         protected override bool Contains(ImportStudyGroup item)
         {
             return values.Any(v => v.Number == item.Number);
