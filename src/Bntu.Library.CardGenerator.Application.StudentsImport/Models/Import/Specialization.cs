@@ -8,26 +8,22 @@ namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models.Import
 {
     public class Specialization
     {
-        public string StudyDirection { get; }
+        public string Name { get; }
 
-        public string Profile { get; }
-
-        public Specialization(string studyDirection, string profile)
+        public Specialization(string name)
         {
-            StudyDirection = studyDirection;
-            Profile = profile;
+            Name = name;
         }
 
         public override bool Equals(object? obj)
         {
             return obj is Specialization specialization &&
-                   StudyDirection == specialization.StudyDirection &&
-                   Profile == specialization.Profile;
+                   Name == specialization.Name;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(StudyDirection, Profile);
+            return HashCode.Combine(Name);
         }
     }
 }
