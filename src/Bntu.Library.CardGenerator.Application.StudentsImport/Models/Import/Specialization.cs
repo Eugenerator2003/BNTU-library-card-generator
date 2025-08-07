@@ -30,13 +30,14 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
         public override bool Equals(object? obj)
         {
             return obj is Specialization specialization &&
-                   specialization.Id == Id && specialization.
-                   Name == specialization.Name;
+                   Id == specialization.Id && 
+                   Name == specialization.Name &&
+                   ProfessionId == specialization.ProfessionId;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Name);
+            return HashCode.Combine(Id, Name, ProfessionId);
         }
     }
 }
