@@ -1,4 +1,4 @@
-﻿using Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import;
+﻿using Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import.Aggregates;
 using Bntu.Library.CardGenerator.Application.Util;
 using System;
 using System.Collections.Generic;
