@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.StudentsImport.UseCases.DTO.Results
 {
-    public class GetProfessionsCaseResult
+    public class GetProfessionsCaseResult : CaseResult
     {
         public ProfessionCollection Professions { get; }
-
-        public GetProfessionsCaseResult(ProfessionCollection professions)
+        public GetProfessionsCaseResult(bool success, string message, ProfessionCollection professions) 
+            : base(success, message)
         {
             Professions = professions;
         }
