@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,13 @@ namespace Bntu.Library.CardGenerator.Application.StudentsExport.Models.Import
 
         public string Name { get; }
 
-        public Specialization(int id, string name)
+        public int ProfessionId { get; }
+
+        public Specialization(int id, string name, int professionId)
         {
             Name = name;
             Id = id;
+            ProfessionId = professionId;
         }
 
         public override bool Equals(object? obj)
