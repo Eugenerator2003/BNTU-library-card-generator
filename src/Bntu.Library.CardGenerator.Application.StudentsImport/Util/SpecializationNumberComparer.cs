@@ -13,7 +13,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Util
 
         public static string GetFormattedNumber(string semiformattedNumber)
         {
-            return semiformattedNumber.Replace("", "")
+            return semiformattedNumber.Replace(" ", "")
                                       .Replace("-", "");
         }
 
@@ -34,7 +34,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Util
         public static bool Compare(string semiformattedNumber, string notFormattedName)
         {
             string formattedNumber = GetFormattedNumber(semiformattedNumber);
-            string? number = GetSpecializationNumber(formattedNumber);
+            string? number = GetSpecializationNumber(notFormattedName);
             if (number == null)
                 return false;
             else
