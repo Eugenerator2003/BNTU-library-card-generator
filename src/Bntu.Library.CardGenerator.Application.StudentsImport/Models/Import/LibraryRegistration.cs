@@ -10,12 +10,10 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import
     {
         public DateTime RegistrationDate { get; }
 
-        public DateTime ExpirationDate { get; }
 
-        public LibraryRegistration(DateTime registrationDate, DateTime expirationDate)
+        public LibraryRegistration(DateTime registrationDate)
         {
             RegistrationDate = registrationDate;
-            ExpirationDate = expirationDate;
         }
     }
 }
