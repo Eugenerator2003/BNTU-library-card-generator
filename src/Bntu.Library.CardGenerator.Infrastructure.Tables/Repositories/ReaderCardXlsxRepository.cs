@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
 {
-    public class ReaderCardXlsRepository : IReaderCardRepository
+    public class ReaderCardXlsxRepository : IReaderCardRepository
     {
         private readonly string filename;
 
-        public ReaderCardXlsRepository(string filename)
+        public ReaderCardXlsxRepository(string filename)
         {
             this.filename = filename;
         }
