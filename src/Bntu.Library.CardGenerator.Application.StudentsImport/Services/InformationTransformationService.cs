@@ -69,7 +69,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Services
         private ImportContactInformation GetContactInformation(ExportedContactInformation contactInformation)
         {
             var import = new ImportContactInformation(contactInformation.City, contactInformation.GetAddress(),
-                                                      new List<string>(contactInformation.Phones), contactInformation.Email);
+                                                      contactInformation.Phones, contactInformation.Email);
             return import;
         }
 
