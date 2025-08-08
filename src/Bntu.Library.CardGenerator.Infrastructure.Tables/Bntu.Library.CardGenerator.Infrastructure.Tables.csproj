@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bntu.Library.CardGenerator.Application.StudentsImport\Bntu.Library.CardGenerator.Application.StudentsImport.csproj" />
+    <ProjectReference Include="..\Bntu.Library.CardGenerator.Application\Bntu.Library.CardGenerator.Application.csproj" />
+  </ItemGroup>
+
 </Project>
