@@ -2,7 +2,7 @@
 using Bntu.Library.CardGenerator.Application.StudentsImport.UseCases.DTO.Parameters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Bntu.Library.CardGenerator.Application.Tests.StudentsImport.UseCases.DTO.Parameters
+namespace Bntu.Library.CardGenerator.Application.StudentsImport.Tests.UseCases.DTO.Parameters
 {
     [TestClass]
     public class GetSpecializationsCaseParameterTests

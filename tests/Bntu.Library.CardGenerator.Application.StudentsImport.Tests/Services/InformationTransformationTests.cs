@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using Bntu.Library.CardGenerator.Application.StudentsImport.Models;
 using Bntu.Library.CardGenerator.Domain.ValueObjects;
 
-namespace Bntu.Library.CardGenerator.Application.Tests.StudentsImport.Services
+namespace Bntu.Library.CardGenerator.Application.StudentsImport.Tests.Services
 {
     [TestClass]
     public class InformationTransformationTests

@@ -7,7 +7,7 @@ using Bntu.Library.CardGenerator.Application.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Bntu.Library.CardGenerator.Application.Tests.StudentsImport.UseCases
+namespace Bntu.Library.CardGenerator.Application.StudentsImport.Tests.UseCases
 {
     [TestClass]
     public class GetSpecializationsUseCaseTests

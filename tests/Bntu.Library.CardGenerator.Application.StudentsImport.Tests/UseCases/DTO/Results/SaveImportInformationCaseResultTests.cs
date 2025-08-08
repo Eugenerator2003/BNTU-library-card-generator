@@ -1,7 +1,7 @@
 ﻿using Bntu.Library.CardGenerator.Application.StudentsImport.UseCases.DTO.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Bntu.Library.CardGenerator.Application.Tests.StudentsImport.UseCases.DTO.Results
+namespace Bntu.Library.CardGenerator.Application.StudentsImport.Tests.UseCases.DTO.Results
 {
     [TestClass]
     public class SaveImportInformationCaseResultTests
