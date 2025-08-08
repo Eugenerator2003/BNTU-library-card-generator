@@ -123,6 +123,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
             var facultyName = csv.GetField(Fields[++fieldIndex]);
             if (string.IsNullOrEmpty(facultyName))
                 throw new Exception($"Факультет не может быть пустым");
+            facultyName = facultyName.Split('-')[0];
 
             var group = csv.GetField(Fields[++fieldIndex]);
             if (string.IsNullOrEmpty(group))
