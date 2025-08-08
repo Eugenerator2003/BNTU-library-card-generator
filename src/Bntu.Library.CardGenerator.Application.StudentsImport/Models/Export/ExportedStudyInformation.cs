@@ -1,4 +1,5 @@
-﻿using Bntu.Library.CardGenerator.Domain.ValueObjects;
+﻿using Bntu.Library.CardGenerator.Application.StudentsImport.Util;
+using Bntu.Library.CardGenerator.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Export
             StudyStartDate = studyStartDate;
             GraduationDate = graduationDate;
             Faculty = faculty;
-            Specialization = specialization;
+            Specialization = SpecializationNumberComparer.GetSpecializationNumber(specialization) ?? "";
             GroupNumber = groupNumber;
             Department = department;
         }
