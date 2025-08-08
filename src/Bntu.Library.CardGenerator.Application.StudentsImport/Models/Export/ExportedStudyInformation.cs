@@ -27,7 +27,10 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Export
             StudyStartDate = studyStartDate;
             GraduationDate = graduationDate;
             Faculty = faculty;
-            Specialization = SpecializationNumberComparer.GetSpecializationNumber(specialization) ?? "";
+            if (specialization is null)
+                Specialization = "";
+            else
+                Specialization = SpecializationNumberComparer.GetSpecializationNumber(specialization) ?? "";
             GroupNumber = groupNumber;
             Department = department;
         }
