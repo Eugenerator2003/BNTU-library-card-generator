@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bntu.Library.CardGenerator.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bntu.Library.CardGenerator.Application.Tests", "tests\Bntu.Library.CardGenerator.Application.Tests\Bntu.Library.CardGenerator.Application.Tests.csproj", "{A11F8005-DE9E-4014-B840-806D70A86B5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bntu.Library.CardGenerator.Infrastucture.DataSource", "src\Bntu.Library.CardGenerator.Infrastucture.DataSource\Bntu.Library.CardGenerator.Infrastucture.DataSource.csproj", "{2FF925E5-0717-49CE-BFC7-37021B4C25B7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bntu.Library.CardGenerator.Application.StudentsImport", "src\Bntu.Library.CardGenerator.Application.StudentsImport\Bntu.Library.CardGenerator.Application.StudentsImport.csproj", "{4DC76BA4-AC21-4540-B99C-2215FDA641D6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bntu.Library.CardGenerator.Application.StudentsImport.Tests", "tests\Bntu.Library.CardGenerator.Application.StudentsImport.Tests\Bntu.Library.CardGenerator.Application.StudentsImport.Tests.csproj", "{97E28A41-1B43-4F2E-B6D4-572D522FAB5D}"
@@ -39,10 +37,6 @@ Global
 		{A11F8005-DE9E-4014-B840-806D70A86B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A11F8005-DE9E-4014-B840-806D70A86B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A11F8005-DE9E-4014-B840-806D70A86B5F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2FF925E5-0717-49CE-BFC7-37021B4C25B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FF925E5-0717-49CE-BFC7-37021B4C25B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FF925E5-0717-49CE-BFC7-37021B4C25B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FF925E5-0717-49CE-BFC7-37021B4C25B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4DC76BA4-AC21-4540-B99C-2215FDA641D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4DC76BA4-AC21-4540-B99C-2215FDA641D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DC76BA4-AC21-4540-B99C-2215FDA641D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
