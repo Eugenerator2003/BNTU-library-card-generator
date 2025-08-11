@@ -25,15 +25,12 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Tests.UseCases
         [TestMethod]
         public void GetSpecializationsSuccessTest()
         {
-            var professions = new ProfessionCollection();
             var specializations = new SpecializationCollection();
 
-            _serviceMock.Setup(s => s.GetSpecializations(professions))
+            _serviceMock.Setup(s => s.GetSpecializations())
                 .Returns(ApplicationResult<SpecializationCollection>.Success(specializations, "Success"));
 
-            var parameter = new GetSpecializationsCaseParameter(professions);
-
-            var result = _useCase.GetSpecializations(parameter);
+            var result = _useCase.GetSpecializations();
 
             Assert.IsTrue(result.Success);
             Assert.AreEqual("Success", result.Message);
@@ -45,12 +42,10 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Tests.UseCases
         {
             var professions = new ProfessionCollection();
 
-            _serviceMock.Setup(s => s.GetSpecializations(professions))
+            _serviceMock.Setup(s => s.GetSpecializations())
                 .Returns(ApplicationResult<SpecializationCollection>.Error("Error"));
 
-            var parameter = new GetSpecializationsCaseParameter(professions);
-
-            var result = _useCase.GetSpecializations(parameter);
+            var result = _useCase.GetSpecializations();
 
             Assert.IsFalse(result.Success);
             Assert.AreEqual("Error", result.Message);
