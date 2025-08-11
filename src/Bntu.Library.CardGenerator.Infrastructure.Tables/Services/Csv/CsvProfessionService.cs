@@ -1,32 +1,27 @@
-﻿using Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import.Aggregates;
+﻿using Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import;
+using Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import.Aggregates;
 using Bntu.Library.CardGenerator.Application.StudentsImport.Services;
 using Bntu.Library.CardGenerator.Application.Util;
 using Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories;
-using CsvHelper;
-using CsvHelper.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services
+namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
 {
-    public class ProfessionService : IProfessionService
+    public class CsvProfessionService : BaseCsvReadRepository<Profession>, IProfessionService
     {
-        private ProfessionCsvRepository csvRepository;
-
-        public ProfessionService(ProfessionCsvRepository csvRepository)
+        public CsvProfessionService(string filename) : base(filename)
         {
-            this.csvRepository = csvRepository;
         }
 
         public ApplicationResult<ProfessionCollection> GetProfessions()
         {
             try
             {
-                var items = csvRepository.GetProfessions();
+                var items = GetAllItems(a => true, false);
                 var profession = new ProfessionCollection();
                 foreach (var item in items)
                 {
@@ -38,6 +33,18 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services
             {
                 return ApplicationResult<ProfessionCollection>.Error(ex.Message);
             }
+        }
+
+        protected override CsvFields GetCsvFields()
+        {
+            return new CsvFields(["IdProfession", "Libelle"]);
+        }
+
+        protected override Profession ReadFromCurrentLine()
+        {
+            var id = int.Parse(CsvReader.GetField(NextField()) ?? "");
+            var name = CsvReader.GetField(NextField()) ?? "";
+            return new Profession(id, name);
         }
     }
 }
