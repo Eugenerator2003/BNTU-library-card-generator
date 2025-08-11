@@ -10,6 +10,6 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Services
 {
     public interface ISpecializationService
     {
-        ApplicationResult<SpecializationCollection> GetSpecializations(ProfessionCollection professionCollection);
+        ApplicationResult<SpecializationCollection> GetSpecializations();
     }
 }
