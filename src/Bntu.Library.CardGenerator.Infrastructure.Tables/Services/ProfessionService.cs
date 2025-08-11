@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
+namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services
 {
     public class ProfessionService : IProfessionService
     {
