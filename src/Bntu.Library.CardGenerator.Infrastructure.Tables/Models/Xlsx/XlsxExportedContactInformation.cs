@@ -11,7 +11,20 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
     {
         public string? CityType { get; }
 
-        public override string City { get => CityType + _city; }
+        public override string City
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(CityType))
+                {
+                    return "Не указан в базе данны";
+                }
+                else
+                {
+                    return CityType + _city;
+                }
+            }
+        }
 
         public string? StreetType { get; }
 
@@ -49,7 +62,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
             }
             else
             {
-                return "";
+                return "Не указан в базе данных";
             } 
                 
         }
