@@ -34,7 +34,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
 
         public string? Building { get; }
         
-        public string? Appartment { get; }
+        public string? Apartment { get; }
 
         private string? _city;
 
@@ -48,17 +48,37 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
             Street = street;
             House = house;
             Building = building;
-            Appartment = appartment;
+            Apartment = appartment;
         }
 
         public override string GetAddress()
         {
             if (!string.IsNullOrEmpty(_city) || !string.IsNullOrEmpty(CityType))
             {
-                string building = Building is null 
-                                    ? "" 
-                                    : $", корп. {Building}";
-                return $"{StreetType} {Street}, д. {House}{building}, кв. {Appartment}";
+                StringBuilder sb = new StringBuilder();
+                if (string.IsNullOrEmpty(StreetType))
+                {
+                    sb.Append(StreetType);
+                    sb.Append(' ');
+                    sb.Append(Street);
+                    sb.Append(", ");
+                }
+
+                sb.Append($"д. {House}");
+
+                if (string.IsNullOrEmpty(Building))
+                {
+                    sb.Append(", корпус");
+                    sb.Append(Building);
+                }
+
+                if (string.IsNullOrEmpty(Apartment))
+                {
+                    sb.Append(", кв");
+                    sb.Append(Apartment);
+                }
+
+                return sb.ToString();
             }
             else
             {
