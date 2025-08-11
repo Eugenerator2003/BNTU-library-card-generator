@@ -20,13 +20,20 @@ namespace Bntu.Library.CardGenerator.Application.Services
 
         public ApplicationResult<IList<ReaderCard>> GetReaderCardsByGroup(string number)
         {
-            var requestResult = readerCardRepository.GetCardsByGroup(number);
-            if (requestResult.Count == 0)
+            try
             {
-                return ApplicationResult<IList<ReaderCard>>.Error($"Отсутствует информация по студентам указаннной группы {number}");
-            }
+                var requestResult = readerCardRepository.GetCardsByGroup(number);
+                if (requestResult.Count == 0)
+                {
+                    return ApplicationResult<IList<ReaderCard>>.Error($"Отсутствует информация по студентам указаннной группы {number}");
+                }
 
-            return ApplicationResult<IList<ReaderCard>>.Success(requestResult, "");
+                return ApplicationResult<IList<ReaderCard>>.Success(requestResult, "");
+            }
+            catch(Exception ex)
+            {
+                return ApplicationResult<IList<ReaderCard>>.Error($"Ошибка получения данных читательских билетов: {ex.GetType()}:{ex.Message}\n{ex.StackTrace}");
+            }
         }
     }
 }
