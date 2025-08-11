@@ -8,7 +8,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Export
 {
     public abstract class ExportedContactInformation
     {
-        public string City { get; }
+        public virtual string City { get; }
 
         public List<string> Phones { get; }
 
