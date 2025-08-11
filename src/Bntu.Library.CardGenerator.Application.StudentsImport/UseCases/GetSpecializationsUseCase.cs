@@ -19,9 +19,9 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.UseCases
             this.specializationService = specializationService;
         }
 
-        public GetSpecializationCaseResult GetSpecializations(GetSpecializationsCaseParameter parameter)
+        public GetSpecializationCaseResult GetSpecializations()
         {
-            var result = specializationService.GetSpecializations(parameter.ProfessionCollection);
+            var result = specializationService.GetSpecializations();
             return new GetSpecializationCaseResult(result.IsSuccess, result.Message, result.Value ?? new SpecializationCollection());
         }
     }
