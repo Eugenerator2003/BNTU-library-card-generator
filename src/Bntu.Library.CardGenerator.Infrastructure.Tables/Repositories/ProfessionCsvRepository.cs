@@ -13,6 +13,11 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
         {
         }
 
+        public List<Profession> GetProfessions()
+        {
+            return GetAllItems(a => true, false);
+        }
+
         protected override CsvFields GetCsvFields()
         {
             return new CsvFields(["IdProfession", "Libelle"]); 
