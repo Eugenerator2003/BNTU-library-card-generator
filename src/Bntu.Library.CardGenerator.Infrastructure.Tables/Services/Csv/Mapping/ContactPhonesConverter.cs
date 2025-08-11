@@ -3,7 +3,7 @@ using CsvHelper.Configuration;
 using CsvHelper;
 using CsvHelper.TypeConversion;
 
-namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
+namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv.Mapping
 {
     public class ContactPhonesConverter : DefaultTypeConverter
     {

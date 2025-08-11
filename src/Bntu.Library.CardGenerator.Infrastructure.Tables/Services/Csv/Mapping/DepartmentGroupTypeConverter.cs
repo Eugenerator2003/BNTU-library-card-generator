@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Bntu.Library.CardGenerator.Domain.ValueObjects.StudyGroup;
 
-namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
+namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv.Mapping
 {
     public class DepartmentGroupTypeConverter : DefaultTypeConverter
     {

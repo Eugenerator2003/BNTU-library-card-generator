@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Bntu.Library.CardGenerator.Application.StudentsImport.Models.Person;
 
-namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
+namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv.Mapping
 {
     public class SexTypeConverter : DefaultTypeConverter
     {

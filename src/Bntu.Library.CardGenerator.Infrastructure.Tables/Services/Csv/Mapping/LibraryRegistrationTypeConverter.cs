@@ -4,7 +4,7 @@ using static Bntu.Library.CardGenerator.Domain.ValueObjects.StudyGroup;
 using CsvHelper.TypeConversion;
 using Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import;
 
-namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
+namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv.Mapping
 {
     public class LibraryRegistrationTypeConverter : DefaultTypeConverter
     {
