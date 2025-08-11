@@ -78,7 +78,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
             {
                 HasHeaderRecord = true,
                 IgnoreBlankLines = true,
-                BadDataFound = null
+                BadDataFound = null,
+                Delimiter = ";"
             });
         }
 
