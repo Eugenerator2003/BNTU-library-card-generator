@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlxs
+namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
 {
-    internal class XlxsExportedStudentInformation : ExportedStudentInformation
+    internal class XlsxExportedStudentInformation : ExportedStudentInformation
     {
-        public XlxsExportedStudentInformation(string lastname, string firstname, string patronymic, 
+        public XlsxExportedStudentInformation(string lastname, string firstname, string patronymic, 
                                               DateTime birthDate, string passportNumber, string passportInfo, Person.SexType sex) 
             : base(lastname, firstname, patronymic, birthDate, passportNumber, passportInfo, sex)
         {

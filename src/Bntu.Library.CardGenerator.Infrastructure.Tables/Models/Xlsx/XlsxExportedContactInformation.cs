@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlxs
+namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
 {
-    internal class XlxsExportedContactInformation : ExportedContactInformation
+    internal class XlsxExportedContactInformation : ExportedContactInformation
     {
         public string? CityType { get; }
 
@@ -25,7 +25,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlxs
 
         private string? _city;
 
-        public XlxsExportedContactInformation(string cityType, string city, string streetType, string street, 
+        public XlsxExportedContactInformation(string cityType, string city, string streetType, string street, 
                                               string house, string building, string appartment, List<string> phones, string? email) 
             : base(city, phones, email)
         {
