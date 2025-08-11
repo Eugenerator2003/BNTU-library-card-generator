@@ -87,10 +87,12 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
             }
             catch (Exception ex)
             {
+                throw new InvalidDataException($"Ошибка чтения данных в строке {index}. Текущее поле: {Fields[fieldIndex]}", ex);
+            }
+            finally
+            {
                 csv.Dispose();
                 reader.Dispose();
-
-                throw new InvalidDataException($"Ошибка чтения данных в строке {index}. Текущее поле: {Fields[fieldIndex]}", ex);
             }
             return cards;
         }
