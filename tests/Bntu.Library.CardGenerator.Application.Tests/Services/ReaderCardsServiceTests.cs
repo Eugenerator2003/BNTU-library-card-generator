@@ -58,5 +58,16 @@ namespace Bntu.Library.CardGenerator.Application.Tests.Services
             Assert.AreEqual($"Отсутствует информация по студентам указаннной группы {group}", result.Message);
             repositoryMoq.Verify(s => s.GetCardsByGroup(group), Times.Once);
         }
+
+        [TestMethod]
+        public void GetReaderCardsExceptionTest()
+        {
+            var repositoryMoq = new Mock<IReaderCardRepository>();
+            repositoryMoq.Setup(s => s.GetCardsByGroup("123")).Throws(new IOException(""));
+            var readerCardService = new ReaderCardService(repositoryMoq.Object);
+            var actualResult = readerCardService.GetReaderCardsByGroup("123");
+            Assert.IsTrue(actualResult.IsOperationError);
+            Assert.IsTrue(actualResult.Message.Contains(typeof(IOException).FullName ?? ""));
+        }
     }
 }
