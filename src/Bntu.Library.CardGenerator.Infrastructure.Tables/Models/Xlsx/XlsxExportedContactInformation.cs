@@ -38,8 +38,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
 
         private string? _city;
 
-        public XlsxExportedContactInformation(string cityType, string city, string streetType, string street, 
-                                              string house, string building, string appartment, List<string> phones, string? email) 
+        public XlsxExportedContactInformation(string? cityType, string? city, string? streetType, string? street, 
+                                              string? house, string? building, string? appartment, List<string> phones, string? email) 
             : base(city, phones, email)
         {
             _city = city;
@@ -53,7 +53,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
 
         public override string GetAddress()
         {
-            if (!string.IsNullOrEmpty(_city))
+            if (!string.IsNullOrEmpty(_city) || !string.IsNullOrEmpty(CityType))
             {
                 string building = Building is null 
                                     ? "" 
