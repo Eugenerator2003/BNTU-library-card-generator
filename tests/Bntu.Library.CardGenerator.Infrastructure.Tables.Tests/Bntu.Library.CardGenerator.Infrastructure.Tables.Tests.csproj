@@ -8,4 +8,8 @@
     <UseVSTest>true</UseVSTest>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Bntu.Library.CardGenerator.Infrastructure.Tables\Bntu.Library.CardGenerator.Infrastructure.Tables.csproj" />
+  </ItemGroup>
+
 </Project>
