@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
 {
-    internal class XlsxExportedStudentInformation : ExportedStudentInformation
+    public class XlsxExportedStudentInformation : ExportedStudentInformation
     {
         public XlsxExportedStudentInformation(string lastname, string firstname, string patronymic, 
                                               DateTime birthDate, string passportNumber, string passportInfo, Person.SexType sex) 

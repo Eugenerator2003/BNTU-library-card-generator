@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
 {
-    internal class XlsxExportedStudyInformation : ExportedStudyInformation
+    public class XlsxExportedStudyInformation : ExportedStudyInformation
     {
         public XlsxExportedStudyInformation(DateTime studyStartDate, DateTime graduationDate, string faculty,
                                             string specialization, string groupNumber, StudyGroup.DepartmentType department) 

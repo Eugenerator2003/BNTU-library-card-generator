@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
 {
-    internal class XlsxExportedContactInformation : ExportedContactInformation
+    public class XlsxExportedContactInformation : ExportedContactInformation
     {
         public string? CityType { get; }
 
