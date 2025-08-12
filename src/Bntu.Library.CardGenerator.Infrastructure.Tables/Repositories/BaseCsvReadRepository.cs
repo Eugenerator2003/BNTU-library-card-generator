@@ -9,7 +9,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
     {
         public string Filename { get; }
 
-        protected CsvReader CsvReader { get; } = null!;
+        protected CsvReader CsvReader { get; private set; } = null!;
 
         private StreamReader reader =null!;
         private readonly CsvFields fields;
@@ -26,6 +26,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
             {
                 throw new IOException($"Невозможно начать чтение файла с именем {Filename}");
             }
+            SetCsvReader();
 
             int index = 1;
             List<T> cards = new List<T>();
@@ -35,11 +36,13 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
                 CsvReader.ReadHeader();
                 while (CsvReader.Read())
                 {
-                    if (!rowFilter(CsvReader))
-                        continue;
-                    T card = ReadFromCurrentLine();
-                    if (firstItem)
-                        break;
+                    if (rowFilter(CsvReader))
+                    {
+                        T card = ReadFromCurrentLine();
+                        cards.Add(card);
+                        if (firstItem)
+                            break;
+                    }
                     index++;
                 }
             }
@@ -64,7 +67,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
             try
             {
                 reader = new StreamReader(Filename);
-                return false;
+                return true;
             }
             catch
             {
@@ -74,7 +77,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
 
         protected void SetCsvReader()
         {
-            var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
+            CsvReader = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 HasHeaderRecord = true,
                 IgnoreBlankLines = true,
