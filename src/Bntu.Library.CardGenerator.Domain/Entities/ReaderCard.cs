@@ -52,10 +52,7 @@ namespace Bntu.Library.CardGenerator.Domain.Entities
                    Faculty == card.Faculty &&
                    StudyGroup == card.StudyGroup &&
                    Department == card.Department &&
-                   PhotoName == card.PhotoName &&
-                   EqualityComparer<CardInfo>.Default.Equals(cardInfo, card.cardInfo) &&
-                   EqualityComparer<Student>.Default.Equals(student, card.student) &&
-                   EqualityComparer<Photo>.Default.Equals(photo, card.photo);
+                   PhotoName == card.PhotoName;
         }
 
         public override int GetHashCode()
