@@ -15,13 +15,13 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
         {
             get
             {
-                if (string.IsNullOrEmpty(CityType))
+                if (string.IsNullOrEmpty(CityType) || string.IsNullOrEmpty(_city))
                 {
                     return "Не указан в базе данны";
                 }
                 else
                 {
-                    return CityType + _city;
+                    return _city;
                 }
             }
         }
@@ -40,7 +40,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
 
         public XlsxExportedContactInformation(string? cityType, string? city, string? streetType, string? street, 
                                               string? house, string? building, string? appartment, List<string> phones, string? email) 
-            : base(city, phones, email)
+            : base(city!, phones, email)
         {
             _city = city;
             CityType = cityType;
