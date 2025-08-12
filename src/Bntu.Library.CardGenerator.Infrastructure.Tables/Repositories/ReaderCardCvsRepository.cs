@@ -51,7 +51,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
 
         public IList<ReaderCard> GetCardsByGroup(string groupNumber)
         {
-            return GetAllItems(r => (r.GetField(Fields[0]) ?? "") == groupNumber, true);
+            return GetAllItems(r => (r.GetField(Fields[6]) ?? "") == groupNumber, false);
         }
 
         protected override CsvFields GetCsvFields()
