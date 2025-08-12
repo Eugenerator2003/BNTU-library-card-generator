@@ -92,6 +92,13 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Repositories
             File.WriteAllLines(filepath, Lines);
         }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            File.Delete(filepath);
+            File.Delete(invalidfilePath);
+        }
+
         [TestMethod]
         public void GetAllCardsTest()
         {
