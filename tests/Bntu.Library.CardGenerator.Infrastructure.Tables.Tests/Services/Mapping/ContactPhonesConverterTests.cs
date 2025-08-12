@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Mapping
 {
     [TestClass]
-    public class ContactPhonesConverterTest
+    public class ContactPhonesConverterTests
     {
         [TestMethod]
         public void ConvertEmptyPhoneListTest()
