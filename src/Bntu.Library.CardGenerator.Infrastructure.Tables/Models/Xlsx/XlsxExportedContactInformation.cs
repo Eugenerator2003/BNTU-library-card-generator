@@ -17,7 +17,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
             {
                 if (string.IsNullOrEmpty(CityType) || string.IsNullOrEmpty(_city))
                 {
-                    return "Не указан в базе данны";
+                    return "Не указан в базе данных";
                 }
                 else
                 {
@@ -53,7 +53,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
 
         public override string GetAddress()
         {
-            if (!string.IsNullOrEmpty(_city) || !string.IsNullOrEmpty(CityType))
+            if (!string.IsNullOrEmpty(_city) && !string.IsNullOrEmpty(CityType))
             {
                 StringBuilder sb = new StringBuilder();
                 if (string.IsNullOrEmpty(StreetType))
