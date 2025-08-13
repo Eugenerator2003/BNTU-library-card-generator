@@ -86,5 +86,39 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
             } 
                 
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is XlsxExportedContactInformation information &&
+                   City == information.City &&
+                   information.Phones.Count == Phones.Count &&
+                   !Phones.Except(information.Phones).Any() &&
+                   Email == information.Email &&
+                   CityType == information.CityType &&
+                   City == information.City &&
+                   StreetType == information.StreetType &&
+                   Street == information.Street &&
+                   House == information.House &&
+                   Building == information.Building &&
+                   Apartment == information.Apartment &&
+                   _city == information._city;
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(City);
+            hash.Add(Phones);
+            hash.Add(Email);
+            hash.Add(CityType);
+            hash.Add(City);
+            hash.Add(StreetType);
+            hash.Add(Street);
+            hash.Add(House);
+            hash.Add(Building);
+            hash.Add(Apartment);
+            hash.Add(_city);
+            return hash.ToHashCode();
+        }
     }
 }

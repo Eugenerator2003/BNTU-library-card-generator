@@ -15,5 +15,21 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
             : base(studyStartDate, graduationDate, faculty, specialization, groupNumber, department)
         {
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is XlsxExportedStudyInformation information &&
+                   StudyStartDate == information.StudyStartDate &&
+                   GraduationDate == information.GraduationDate &&
+                   Faculty == information.Faculty &&
+                   Specialization == information.Specialization &&
+                   GroupNumber == information.GroupNumber &&
+                   Department == information.Department;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(StudyStartDate, GraduationDate, Faculty, Specialization, GroupNumber, Department);
+        }
     }
 }
