@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  
+  <ItemGroup>
     <ProjectReference Include="..\..\src\Bntu.Library.CardGenerator.Domain\Bntu.Library.CardGenerator.Domain.csproj" />
   </ItemGroup>
 
