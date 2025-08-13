@@ -16,6 +16,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Xlsx
         private static string filesDirectory = "XlsxExamples";
         private static string validFile = Path.Combine(filesDirectory, "valid.xlsx");
 
+        private static string GetPath(string path) => Path.Combine(filesDirectory, path); 
+
         private static ExportedInformation[] ExpectedInfos = [
             new ExportedInformation(1,
                 new XlsxExportedStudentInformation("Иванов", "Егор", "Алексеевич", new DateTime(2010, 9, 23), "МР 9264259", "ОВД г. Минска", Person.SexType.Female),
@@ -83,6 +85,66 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Xlsx
                 Assert.AreEqual(ExpectedInfos[i].Id, result.Value[i].Id);
                 Assert.AreEqual(ExpectedInfos[i].Photoname, result.Value[i].Photoname);
             }
+        }
+
+        [TestMethod]
+        public void GetExportedInformationDateGraduationErrorTest()
+        {
+            var service = new XlsxExportedInformationService(GetPath("invalid_date_graduation.xlsx"));
+            var result = service.GetExportedInformation();
+            Assert.IsTrue(result.IsOperationError);
+            Assert.IsTrue(result.Message.Contains("Строка данных - 3"));
+            Assert.IsTrue(result.Message.Contains("Даты начала и окончания обучения не могут быть пустыми и должны быть в формате ГГГГ-ММ-ДД"));
+        }
+
+        [TestMethod]
+        public void GetExportedInformationDateStudyErrorTest()
+        {
+            var service = new XlsxExportedInformationService(GetPath("invalid_date_study.xlsx"));
+            var result = service.GetExportedInformation();
+            Assert.IsTrue(result.IsOperationError);
+            Assert.IsTrue(result.Message.Contains("Строка данных - 2"));
+            Assert.IsTrue(result.Message.Contains("Даты начала и окончания обучения не могут быть пустыми и должны быть в формате ГГГГ-ММ-ДД"));
+        }
+
+        [TestMethod]
+        public void GetExportedInformationDepartmentErrorTest()
+        {
+            var service = new XlsxExportedInformationService(GetPath("invalid_department.xlsx"));
+            var result = service.GetExportedInformation();
+            Assert.IsTrue(result.IsOperationError);
+            Assert.IsTrue(result.Message.Contains("Строка данных - 4"));
+            Assert.IsTrue(result.Message.Contains("Группа или отделение не могут быть пустыми."));
+        }
+
+        [TestMethod]
+        public void GetExportedInformationFacultyErrorTest()
+        {
+            var service = new XlsxExportedInformationService(GetPath("invalid_faculty.xlsx"));
+            var result = service.GetExportedInformation();
+            Assert.IsTrue(result.IsOperationError);
+            Assert.IsTrue(result.Message.Contains("Строка данных - 2"));
+            Assert.IsTrue(result.Message.Contains("Факультет или специальность не могут быть пустыми."));
+        }
+
+        [TestMethod]
+        public void GetExportedInformationNameErrorTest()
+        {
+            var service = new XlsxExportedInformationService(GetPath("invalid_name.xlsx"));
+            var result = service.GetExportedInformation();
+            Assert.IsTrue(result.IsOperationError);
+            Assert.IsTrue(result.Message.Contains("Строка данных - 3"));
+            Assert.IsTrue(result.Message.Contains("Поля фамилии, имени и отчества не могут быть пустыми одновременно"));
+        }
+
+        [TestMethod]
+        public void GetExportedInformationSpecializationErrorTest()
+        {
+            var service = new XlsxExportedInformationService(GetPath("invalid_name.xlsx"));
+            var result = service.GetExportedInformation();
+            Assert.IsTrue(result.IsOperationError);
+            Assert.IsTrue(result.Message.Contains("Строка данных - 3"));
+            Assert.IsTrue(result.Message.Contains("Поля фамилии, имени и отчества не могут быть пустыми одновременно"));
         }
     }
 }
