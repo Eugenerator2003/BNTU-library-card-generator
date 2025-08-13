@@ -14,7 +14,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Xlsx
     public class XlsxExportedInformationServiceTests
     {
         private static string filesDirectory = "XlsxExamples";
-        private static string validFile = Path.Combine(filesDirectory, "valid.xslx");
+        private static string validFile = Path.Combine(filesDirectory, "valid.xlsx");
 
         private static ExportedInformation[] ExpectedInfos = [
             new ExportedInformation(1,
@@ -32,25 +32,25 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Xlsx
             new ExportedInformation(3,
                 new XlsxExportedStudentInformation("Морозов", "Сергей", "Алексеевич", new DateTime(1998, 12, 20), "ВН 3455589", "ОВД г. Минска", Person.SexType.Male),
                 new XlsxExportedStudyInformation(new DateTime(2018, 9, 1), new DateTime(2022, 6, 30), "ффииттрр", "40404", "120", Domain.ValueObjects.StudyGroup.DepartmentType.Fulltime),
-                new XlsxExportedContactInformation("г", "Минск", "ул", "улица Козлова", "89", "3", null, ["375256235551"], "сергей.морозов@yandex.by"),
+                new XlsxExportedContactInformation("г", "Минск", "ул", "улица Козлова", "89", "3", "", ["375256235551"], "сергей.морозов@yandex.by"),
                 "морозов_сергей.jpg"),
 
             new ExportedInformation(4,
                 new XlsxExportedStudentInformation("Кузнецов", "Алексей", "Викторович", new DateTime(1997, 4, 29), "МР 4022139", "ОВД г. Минска", Person.SexType.Female),
                 new XlsxExportedStudyInformation(new DateTime(2018, 9, 1), new DateTime(2022, 6, 30), "ааттфф", "20202", "173", Domain.ValueObjects.StudyGroup.DepartmentType.Fulltime),
-                new XlsxExportedContactInformation("г", "Минск", "ул", "улица Козлова", "65", null, "87", ["375331420507"], "алексей.кузнецов@gmail.com"),
+                new XlsxExportedContactInformation("г", "Минск", "ул", "улица Козлова", "65", "", "87", ["375331420507"], "алексей.кузнецов@gmail.com"),
                 "кузнецов_алексей.jpg"),
 
             new ExportedInformation(5,
                 new XlsxExportedStudentInformation("Сидоров", "Алексей", "Андреевич", new DateTime(2008, 11, 17), "ВН 6771411", "ОВД г. Минска", Person.SexType.Male),
                 new XlsxExportedStudyInformation(new DateTime(2018, 9, 1), new DateTime(2022, 6, 30), "ааттфф", "10101", "154", Domain.ValueObjects.StudyGroup.DepartmentType.Fulltime),
-                new XlsxExportedContactInformation("г", "Минск", "ул", "проспект Независимости", "174", null, "137", ["375294264758"], "алексей.сидоров@gmail.com"),
+                new XlsxExportedContactInformation("г", "Минск", "ул", "проспект Независимости", "174", "", "137", ["375294264758"], "алексей.сидоров@gmail.com"),
                 "сидоров_алексей.jpg"),
 
             new ExportedInformation(6,
                 new XlsxExportedStudentInformation("Егоров", "Максим", "Павлович", new DateTime(1998, 2, 27), "АН 2677469", "ОВД г. Минска", Person.SexType.Female),
                 new XlsxExportedStudyInformation(new DateTime(2018, 9, 1), new DateTime(2022, 6, 30), "ммттфф", "30303", "134", Domain.ValueObjects.StudyGroup.DepartmentType.Fulltime),
-                new XlsxExportedContactInformation("г", "Минск", null, null, null, null, null, ["375335846875"], "максим.егоров@gmail.com"),
+                new XlsxExportedContactInformation("г", "Минск", "", "", "", "", "", ["375335846875"], "максим.егоров@gmail.com"),
                 "егоров_максим.jpg"),
 
             new ExportedInformation(7,
@@ -62,7 +62,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Xlsx
             new ExportedInformation(8,
                 new XlsxExportedStudentInformation("Иванов", "Дмитрий", "Александрович", new DateTime(2012, 1, 13), "ВН 3864372", "ОВД г. Минска", Person.SexType.Female),
                 new XlsxExportedStudyInformation(new DateTime(2018, 9, 1), new DateTime(2022, 6, 30), "ффммпп", "40404", "150", Domain.ValueObjects.StudyGroup.DepartmentType.Fulltime),
-                new XlsxExportedContactInformation("г", "Минск", "ул", "проспект Независимости", "102", "2", null, ["375449051105"], "дмитрий.иванов@yandex.by"),
+                new XlsxExportedContactInformation("г", "Минск", "ул", "проспект Независимости", "102", "2", "", ["375449051105"], "дмитрий.иванов@yandex.by"),
                 "иванов_дмитрий.jpg")
             ];
 
@@ -77,7 +77,11 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Xlsx
             Assert.AreEqual(ExpectedInfos.Length, result.Value.Count);
             for(int i = 0; i < ExpectedInfos.Length; i++)
             {
-
+                Assert.AreEqual(ExpectedInfos[i].Student, result.Value[i].Student);
+                Assert.AreEqual(ExpectedInfos[i].StudyInformation, result.Value[i].StudyInformation);
+                Assert.AreEqual(ExpectedInfos[i].ContactInformation, result.Value[i].ContactInformation);
+                Assert.AreEqual(ExpectedInfos[i].Id, result.Value[i].Id);
+                Assert.AreEqual(ExpectedInfos[i].Photoname, result.Value[i].Photoname);
             }
         }
     }
