@@ -13,7 +13,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Xlsx
     [TestClass]
     public class XlsxExportedInformationServiceTests
     {
-        private static string filesDirectory = "TestAssests\\Xlsx";
+        private static string filesDirectory = "TestAssets\\Xlsx";
         private static string validFile = Path.Combine(filesDirectory, "valid.xlsx");
 
         private static string GetPath(string path) => Path.Combine(filesDirectory, path); 
