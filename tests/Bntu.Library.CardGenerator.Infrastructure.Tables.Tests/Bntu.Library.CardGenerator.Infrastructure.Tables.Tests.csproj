@@ -13,30 +13,34 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="TestAssests\XlsxExamples\invalid_date_graduation.xlsx">
+    <None Update="TestAssests\Xlsx\invalid_date_graduation.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="TestAssests\XlsxExamples\invalid_date_study.xlsx">
+    <None Update="TestAssests\Xlsx\invalid_date_study.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="TestAssests\XlsxExamples\invalid_department.xlsx">
+    <None Update="TestAssests\Xlsx\invalid_department.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="TestAssests\XlsxExamples\invalid_faculty.xlsx">
+    <None Update="TestAssests\Xlsx\invalid_faculty.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="TestAssests\XlsxExamples\invalid_name.xlsx">
+    <None Update="TestAssests\Xlsx\invalid_name.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="TestAssests\XlsxExamples\invalid_group.xlsx">
+    <None Update="TestAssests\Xlsx\invalid_group.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="TestAssests\XlsxExamples\invalid_specialization.xlsx">
+    <None Update="TestAssests\Xlsx\invalid_specialization.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="TestAssests\XlsxExamples\valid.xlsx">
+    <None Update="TestAssests\Xlsx\valid.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestAssests\Csv\" />
   </ItemGroup>
 
 </Project>
