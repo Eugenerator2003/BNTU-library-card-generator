@@ -105,7 +105,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
             }
             catch (Exception ex)
             {
-                return ApplicationResult<IList<ExportedInformation>>.Error($"Невозможно прочитать данные из файла {filename}. Строка данных - {i}: " +
+                return ApplicationResult<IList<ExportedInformation>>.Error($"Невозможно прочитать данные из файла {filename}. Строка данных - {i + 2}: " +
                                                                            $"{ex.GetType()}:{ex.Message}\n{ex.StackTrace}");
             }
             finally
@@ -117,7 +117,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
 
         private ExportedInformation GetFromRow(DataRow row)
         {
-            var id = (int)row["#"];
+            var id = int.Parse(row["#"].ToString()!);
             var student = GetStudentFromRow(row);
             var studyInformation = GetStudyFromRow(row);
             var contactInformation = GetContactFromRow(row);
@@ -129,25 +129,25 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
 
         private ExportedStudentInformation GetStudentFromRow(DataRow row)
         {
-            string? lastname = row[studentFieldIndices["Фамилия"]]?.ToString();
-            string? firstname = row[studentFieldIndices["Имя"]]?.ToString();
-            string? patronymic = row[studentFieldIndices["Отчество"]]?.ToString();
+            string? lastname = row[studentFields[studentFieldIndices["Фамилия"]]]?.ToString();
+            string? firstname = row[studentFields[studentFieldIndices["Имя"]]]?.ToString();
+            string? patronymic = row[studentFields[studentFieldIndices["Отчество"]]]?.ToString();
 
             if (string.IsNullOrEmpty(lastname) && string.IsNullOrEmpty(firstname) && string.IsNullOrEmpty(patronymic))
             {
                 throw new InvalidDataException("Поля фамилии, имени и отчества не могут быть пустыми одновременно");
             }
 
-            string? dateTimeString = row[studentFieldIndices["Дата рождения"]]?.ToString();
+            string? dateTimeString = row[studentFields[studentFieldIndices["Дата рождения"]]]?.ToString();
             if (!(!string.IsNullOrEmpty(dateTimeString) && DateTime.TryParse(dateTimeString, out DateTime birthDate)))
             {
                 birthDate = new DateTime(1900, 1, 1);
             }
 
-            string? passportNumber = row[studentFieldIndices["Серия и номер паспорта"]]?.ToString();
-            string? passportInfo = row[studentFieldIndices["Кем выдан паспорт"]]?.ToString();
+            string? passportNumber = row[studentFields[studentFieldIndices["Серия и номер паспорта"]]]?.ToString();
+            string? passportInfo = row[studentFields[studentFieldIndices["Кем выдан паспорт"]]]?.ToString();
 
-            string? sexString = row[studentFieldIndices["Пол"]]?.ToString();
+            string? sexString = row[studentFields[studentFieldIndices["Пол"]]]?.ToString();
             Person.SexType sexType;
             if (sexString == "девушка")
             {
@@ -165,20 +165,20 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
 
         private ExportedStudyInformation GetStudyFromRow(DataRow row)
         {
-            string? studyStartString = row[studyFieldIndices["Дата начала обучения"]]?.ToString();
-            string? studyEndString = row[studyFieldIndices["Дата окончания обучения"]]?.ToString();
+            string? studyStartString = row[studyFields[studyFieldIndices["Дата начала обучения"]]]?.ToString();
+            string? studyEndString = row[studyFields[studyFieldIndices["Дата окончания обучения"]]]?.ToString();
             if (string.IsNullOrEmpty(studyEndString) || string.IsNullOrEmpty(studyStartString) ||
                 !DateTime.TryParse(studyStartString, out DateTime studyDate) ||
                 !DateTime.TryParse(studyEndString, out DateTime graduationDate))
                 throw new InvalidDataException("Даты начала и окончания обучения не могут быть пустыми и должны быть в формате ГГГГ-ММ-ДД");
 
-            string? faculty = row[studyFieldIndices["Факультет"]]?.ToString();
-            string? specialization = row[studyFieldIndices["Код специальности"]]?.ToString();
+            string? faculty = row[studyFields[studyFieldIndices["Факультет"]]]?.ToString();
+            string? specialization = row[studyFields[studyFieldIndices["Код специальности"]]]?.ToString();
             if (string.IsNullOrEmpty(faculty) || string.IsNullOrEmpty(specialization))
                 throw new InvalidDataException("Факультет или специальность не могут быть пустыми.");
 
-            string? group = row[studyFieldIndices["Номер группы"]]?.ToString();
-            string? departmentString = row[studyFieldIndices["Форма обучения"]]?.ToString();
+            string? group = row[studyFields[studyFieldIndices["Номер группы"]]]?.ToString();
+            string? departmentString = row[studyFields[studyFieldIndices["Форма обучения"]]]?.ToString();
             if (string.IsNullOrEmpty(group) || string.IsNullOrEmpty(departmentString))
                 throw new InvalidDataException("Группа или отделение не могут быть пустыми.");
 
@@ -192,9 +192,9 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
 
         private ExportedContactInformation GetContactFromRow(DataRow row)
         {
-            string? email = row[contactFieldIndices["E-mail"]]?.ToString();
+            string? email = row[contactFields[contactFieldIndices["E-mail"]]]?.ToString();
             List<string> phones = new List<string>();
-            string? phonesLine = row[contactFieldIndices["Телефоны"]]?.ToString();
+            string? phonesLine = row[contactFields[contactFieldIndices["Телефоны"]]]?.ToString();
             if (!string.IsNullOrEmpty(phonesLine))
             {
                 foreach (var phoneS in phonesLine.Split(","))
@@ -203,26 +203,27 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
                                       .Replace("(", "")
                                       .Replace(")", "")
                                       .Replace("+", "")
-                                      .Replace("-", "");
+                                      .Replace("-", "")
+                                      .Replace(" ", "");
                     phones.Add(phone);
                 }
             }
 
             string? cityType = row[XlsxOperations.ColumnLetterToIndex("AH")].ToString();
-            string? city = row[contactFieldIndices["Город"]].ToString();
+            string? city = row[contactFields[contactFieldIndices["Город"]]].ToString();
             if (string.IsNullOrEmpty(cityType) || cityType.Equals("Не указан") || string.IsNullOrEmpty(city))
             {
                 return new XlsxExportedContactInformation(null, null, null, null, null, null, null, phones, email);
             }
 
             string? streetType = row[XlsxOperations.ColumnLetterToIndex("AJ")].ToString();
-            string? street = row[contactFieldIndices["Улица"]]?.ToString();
-            string? house = row[contactFieldIndices["Дом"]]?.ToString();
-            string? building = row[contactFieldIndices["Корпус"]]?.ToString();
-            string? apartment = row[contactFieldIndices["Квартира"]].ToString();
+            string? street = row[contactFields[contactFieldIndices["Улица"]]]?.ToString();
+            string? house = row[contactFields[contactFieldIndices["Дом"]]]?.ToString();
+            string? building = row[contactFields[contactFieldIndices["Корпус"]]]?.ToString();
+            string? apartment = row[contactFields[contactFieldIndices["Квартира"]]].ToString();
 
             var contact = new XlsxExportedContactInformation(cityType, city, streetType, street,
-                                                            house, building, apartment, phones, email);
+                                                             house, building, apartment, phones, email);
             return contact;
         }
     }
