@@ -99,5 +99,70 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Models.Xlsx
                                $"{(building is not null ? ", корпус " + building : "")}" +
                                $"{(apartment is not null ? ", кв. "  + apartment : "")}";
         }
+
+        [TestMethod]
+        public void EqualsTrueTest()
+        {
+            var phones = new List<string> { "375334842000", "375291234567" };
+
+            var info1 = new XlsxExportedContactInformation(
+                cityType: "г",
+                city: "Минск",
+                streetType: "ул",
+                street: "Пр. Независимости",
+                house: "102",
+                building: "2",
+                appartment: "6",
+                phones: phones,
+                email: "example@mail.com"
+            );
+
+            var info2 = new XlsxExportedContactInformation(
+                cityType: "г",
+                city: "Минск",
+                streetType: "ул",
+                street: "Пр. Независимости",
+                house: "102",
+                building: "2",
+                appartment: "6",
+                phones: new List<string>(phones),
+                email: "example@mail.com"
+            );
+
+            Assert.IsTrue(info1.Equals(info2));
+        }
+
+        [TestMethod]
+        public void EqualsFalseTest()
+        {
+            var phones1 = new List<string> { "375334842000" };
+            var phones2 = new List<string> { "375291234567" };
+
+            var info1 = new XlsxExportedContactInformation(
+                cityType: "г",
+                city: "Минск",
+                streetType: "ул",
+                street: "Пр. Независимости",
+                house: "102",
+                building: "2",
+                appartment: "6",
+                phones: phones1,
+                email: "example@mail.com"
+            );
+
+            var info2 = new XlsxExportedContactInformation(
+                cityType: "г",
+                city: "Минск",
+                streetType: "ул",
+                street: "Пр. Независимости",
+                house: "102",
+                building: "2",
+                appartment: "6",
+                phones: phones2,
+                email: "example@mail.com"
+            );
+
+            Assert.IsFalse(info1.Equals(info2));
+        }
     }
 }
