@@ -12,4 +12,14 @@
     <ProjectReference Include="..\..\src\Bntu.Library.CardGenerator.Infrastructure.Tables\Bntu.Library.CardGenerator.Infrastructure.Tables.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="XlsxExamples\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="XlsxExamples\valid.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
