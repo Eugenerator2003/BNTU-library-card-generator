@@ -37,11 +37,25 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
             "Форма обучения"
         ];
 
+        private static string[] contactFields = [
+            "E-mail",
+            "Телефоны",
+            "Город",
+            "Улица",
+            "Дом",
+            "Корпус",
+            "Квартира"
+        ];
+
         private static readonly Dictionary<string, int> studentFieldIndices = studentFields
             .Select((name, index) => new { name, index })
             .ToDictionary(x => x.name, x => x.index);
 
         private static readonly Dictionary<string, int> studyFieldIndices = studyFields
+            .Select((name, index) => new { name, index })
+            .ToDictionary(x => x.name, x => x.index);
+
+        private static readonly Dictionary<string, int> contactFieldIndices = contactFields
             .Select((name, index) => new { name, index })
             .ToDictionary(x => x.name, x => x.index);
 
@@ -178,9 +192,9 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
 
         private ExportedContactInformation GetContactFromRow(DataRow row)
         {
-            string? email = row["E-mail"]?.ToString();
+            string? email = row[contactFieldIndices["E-mail"]]?.ToString();
             List<string> phones = new List<string>();
-            string? phonesLine = row["Телефоны"]?.ToString();
+            string? phonesLine = row[contactFieldIndices["Телефоны"]]?.ToString();
             if (!string.IsNullOrEmpty(phonesLine))
             {
                 foreach (var phoneS in phonesLine.Split(","))
@@ -195,17 +209,17 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
             }
 
             string? cityType = row[XlsxOperations.ColumnLetterToIndex("AH")].ToString();
-            string? city = row["Город"].ToString();
+            string? city = row[contactFieldIndices["Город"]].ToString();
             if (string.IsNullOrEmpty(cityType) || cityType.Equals("Не указан") || string.IsNullOrEmpty(city))
             {
                 return new XlsxExportedContactInformation(null, null, null, null, null, null, null, phones, email);
             }
 
             string? streetType = row[XlsxOperations.ColumnLetterToIndex("AJ")].ToString();
-            string? street = row["Улица"]?.ToString();
-            string? house = row["Дом"]?.ToString();
-            string? building = row["Корпус"]?.ToString();
-            string? apartment = row["Квартира"].ToString();
+            string? street = row[contactFieldIndices["Улица"]]?.ToString();
+            string? house = row[contactFieldIndices["Дом"]]?.ToString();
+            string? building = row[contactFieldIndices["Корпус"]]?.ToString();
+            string? apartment = row[contactFieldIndices["Квартира"]].ToString();
 
             var contact = new XlsxExportedContactInformation(cityType, city, streetType, street,
                                                             house, building, apartment, phones, email);
