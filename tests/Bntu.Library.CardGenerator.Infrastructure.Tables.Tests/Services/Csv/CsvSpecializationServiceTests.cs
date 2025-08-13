@@ -6,24 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services
+namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Csv
 {
     [TestClass]
-    public class CsvProfessionServiceTests
+    public class CsvSpecializationServiceTests
     {
         private static string[] lines = [
-            "IdProfession;Libelle",
-            "1;специально",
-            "2;неспециально",
-            "3;стринг",
-            "4;лайн"
+            "IdCategSocioProf;Libelle;parent",
+            "1;профессионально;1",
+            "2;непрофессионально;2",
+            "3;стронг;5",
+            "4;текст;4"
             ];
 
-        private static Profession[] professions = [
-            new Profession(1, "специально"),
-            new Profession(2, "неспециально"),
-            new Profession(3, "стринг"),
-            new Profession(4, "лайн"),
+        private static Specialization[] specialiations = [
+            new Specialization(1, "профессионально", 1),
+            new Specialization(2, "непрофессионально", 2),
+            new Specialization(3, "стронг", 5),
+            new Specialization(4, "текст", 4),
             ];
 
         private static string filepath = "file.csv";
@@ -43,15 +43,15 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services
         [TestMethod]
         public void GetProfessionsSuccessTest()
         {
-            var service = new CsvProfessionService(filepath);
-            var result = service.GetProfessions();
+            var service = new CsvSpecializationService(filepath);
+            var result = service.GetSpecializations();
             Assert.IsTrue(result.IsSuccess);
             Assert.IsNotNull(result.Value);
-            foreach(var profession in professions)
+            foreach (var specialization in specialiations)
             {
-                var actual = result.Value[profession.Id];
+                var actual = result.Value[specialization.Id];
                 Assert.IsNotNull(actual);
-                Assert.AreEqual(profession.Name, actual.Name);
+                Assert.AreEqual(specialization.Name, actual.Name);
             }
         }
 
@@ -59,8 +59,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services
         public void GetProfessionsFailTest()
         {
             var wrongFilePath = "file.xlsx";
-            var service = new CsvProfessionService(wrongFilePath);
-            var result = service.GetProfessions();
+            var service = new CsvSpecializationService(wrongFilePath);
+            var result = service.GetSpecializations();
             Assert.IsTrue(result.IsOperationError);
             Assert.IsTrue(result.Message.Contains(wrongFilePath));
         }

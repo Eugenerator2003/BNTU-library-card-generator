@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Mapping
+namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Csv.Mapping
 {
     [TestClass]
     public class LibraryRegistrationTypeConverterTests
