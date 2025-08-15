@@ -2,6 +2,7 @@
 using Bntu.Library.CardGenerator.Application.Util;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,14 +35,21 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
 
         public ApplicationResult<EmptyResult> Export(IList<GeneratedReaderCard> values)
         {
-            if (templatesContext is null)
+            try
             {
-                LoadTemplates();
+                if (templatesContext is null)
+                {
+                    LoadTemplates();
+                }
+                DirectoryPreparing();
+                var document = ImportToDocument(values);
+                File.WriteAllText(Path.Combine(workDirectory, $"{groupFolder}.html"), document.ToString(), Encoding.UTF8);
+                return ApplicationResult<EmptyResult>.Success(null, "Читательские билеты были успешно экспортированы в формат HTML.");
             }
-            DirectoryPreparing();
-            var document = ImportToDocument(values);
-
-            throw new NotImplementedException();
+            catch (Exception ex)
+            {
+                return ApplicationResult<EmptyResult>.Error($"Ошибка экспортирования: {ex.Message}");
+            }
         }
 
         private void DirectoryPreparing()
@@ -114,7 +122,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
             var htmlCards = new StringBuilder();
             for(int i = 0; i < cards.Count; i++)
             {
-                if (i % 10 == 0)
+                if ((i + 1) % 10 == 0)
                 {
                     papers.Append(new StringBuilder(templatesContext.Paper).Replace("{cards}", htmlCards.ToString()));
                     htmlCards.Clear();
@@ -135,10 +143,21 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
             {
                 throw new FileNotFoundException($"Фотография студента {card.CodbarValue} с именем {card.PhotoName} не найдена в папке {photoFolder}.");
             }
-            File.Copy(filePath, Path.Combine(workDirectory, GroupPhotosFolder, card.PhotoName));
+            var groupPhotosFolder = Path.Combine(workDirectory, GroupPhotosFolder);
+            if (!Directory.Exists(groupPhotosFolder))
+            {
+                Directory.CreateDirectory(groupPhotosFolder);
+            }
+            File.Copy(filePath, Path.Combine(groupPhotosFolder, card.PhotoName), true);
+
+            var groupCodbarsFolder = Path.Combine(workDirectory, GroupBarcodesFolder);
+            if (!Directory.Exists(groupCodbarsFolder))
+            {
+                Directory.CreateDirectory(groupCodbarsFolder);
+            }
 
             var codbarFileName = $"{card.CodbarValue}.png";
-            filePath = Path.Combine(workDirectory, GroupBarcodesFolder, $"{codbarFileName}");
+            filePath = Path.Combine(groupCodbarsFolder, $"{codbarFileName}");
             barcodeGenerator.Generate(card.CodbarValue.ToString(), filePath);
             return codbarFileName;
         }
@@ -148,11 +167,12 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
             var exportedCard = new StringBuilder(templatesContext.Card);
             exportedCard.Replace("{codbar}", card.CodbarValue.ToString());
             exportedCard.Replace("{lastname}", card.Lastname);
-            exportedCard.Replace("{givenName}", card.Firstname);
+            exportedCard.Replace("{givenNames}", card.Firstname);
             exportedCard.Replace("{faculty}", card.Faculty);
+            exportedCard.Replace("{group}", card.StudyGroup);
             exportedCard.Replace("{department}", card.Department == Domain.ValueObjects.StudyGroup.DepartmentType.Fulltime ? "Студент ДО" : "Студент ЗО");
             exportedCard.Replace("{registrationDate}", card.IssueDate.ToString("yyyy-MM-dd"));
-            exportedCard.Replace("{graduationDate}", card.IssueDate.ToString("yyyy-MM-dd"));
+            exportedCard.Replace("{graduationDate}", card.ExpirationDate.ToString("yyyy-MM-dd"));
             exportedCard.Replace("{portraitPath}", card.PhotoName);
             exportedCard.Replace("{barcodePath}", barcodeFileName);
             return exportedCard;
