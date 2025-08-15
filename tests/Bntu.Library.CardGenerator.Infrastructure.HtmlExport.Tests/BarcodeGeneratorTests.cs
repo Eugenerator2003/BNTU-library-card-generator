@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Bntu.Library.CardGenerator.Infrastructure.HtmlExport.Tests.Barcodes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using ZXing;
@@ -27,15 +28,9 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport.Tests
             var generator = new BarcodeGenerator();
             generator.Generate(value, fileName);
 
-            using var image = Image.Load<Rgba32>(fileName);
-            var luminanceSource = new ImageSharpLuminanceSource(image);
-            var binaryBitmap = new BinaryBitmap(new HybridBinarizer(luminanceSource));
+            string text = new BarcodeTestReader().Read(fileName);
 
-            var reader = new BarcodeReaderGeneric();
-            var result = reader.Decode(luminanceSource);
-
-            Assert.IsNotNull(result, "Штрихкод не распознан.");
-            Assert.AreEqual(value, result.Text);
+            Assert.AreEqual(value, text);
         }
     }
 }
