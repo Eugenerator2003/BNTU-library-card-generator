@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример читательских билетов. 8 билетов</title>
+</head>
+<style>
+    .paper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 297mm;
+        width: 210mm;
+        /* border: 1px red dashed; */
+        gap: 0px;
+        align-content: flex-start;
+        padding-left: 30px;
+        padding-top: 20px;
+    }
+
+    .wrap {
+        border: 1px solid gray;
+        border-bottom: 6px solid gray;
+        display: flex;
+        flex-direction: column;
+        width: 9cm;
+        height: 5.34cm;
+    }
+
+    .wrap:nth-child(2n + 1) {
+        border-right: 6px solid gray;
+    }
+
+    .wrap:nth-last-child(-n+2) {
+        border-bottom: 1px solid gray;    
+    }
+
+    .logo-block {
+        height: 1cm;
+    }
+
+    .logo {
+        width: 9cm;
+        height: inherit;
+    }
+
+    .data-block {
+        width: inherit;
+        height: 4.35cm;
+        display: flex;
+        flex-direction: row;
+        color: #00005B;
+    }
+
+    .text-block,
+    .img-block {
+        height: inherit;
+        width: 5cm;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .text-block {
+        font-size: 10pt;
+    }
+
+    .text-block>div {
+        margin-bottom: 3px;
+        margin-left: 4px;
+    }
+
+    .black {
+        color: black;
+    }
+
+    .bold {
+        font-weight: bold;
+        font-size: 12pt;
+    }
+
+    .name {
+        text-align: center;
+    }
+
+    .img-block {
+        width: 4cm;
+    }
+
+    .photo {
+        height: 3cm;
+        width: 3.95cm;
+    }
+
+    .barcode {
+        height: 1cm;
+        width: 3.95cm;
+    }
+</style>
+
+<body>
+    <div class="paper">
+        <div class="wrap">
+            <div class="logo-block">
+                <img src="logo.PNG" class="logo">
+            </div>
+            <div class="data-block">
+                <div class="text-block">
+                    <div>Билет № <span class="bold black">3212315</span></div>
+                    <div class="bold name black">Фамилия</div>
+                    <div class="bold name black">Имя Отчество</div>
+                    <div>Факультет <span class="black">ФИТР гр. 5884800</span></div>
+                    <div>Категория: <span class="black">Студенты ДО</span></div>
+                    <div>Дата выдачи: <span class="black" style="white-space: pre-wrap;"> 2025-09-01</span></div>
+                    <div>Действителен <br>до: <span class="black" style="white-space: pre-wrap;">                  2030-09-01</span>
+                    </div>
+                </div>
+                <div class="img-block">
+                    <div class="photo-block"><img class="photo" src="portrait.png"></div>
+                    <div class="barcode-block"><img class="barcode" src="barcode.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="logo-block">
+                <img src="logo.PNG" class="logo">
+            </div>
+            <div class="data-block">
+                <div class="text-block">
+                    <div>Билет № <span class="bold black">3212315</span></div>
+                    <div class="bold name black">Фамилия</div>
+                    <div class="bold name black">Имя Отчество</div>
+                    <div>Факультет <span class="black">ФИТР гр. 5884800</span></div>
+                    <div>Категория: <span class="black">Студенты ДО</span></div>
+                    <div>Дата выдачи: <span class="black" style="white-space: pre-wrap;"> 2025-09-01</span></div>
+                    <div>Действителен <br>до: <span class="black" style="white-space: pre-wrap;">                  2030-09-01</span>
+                    </div>
+                </div>
+                <div class="img-block">
+                    <div class="photo-block"><img class="photo" src="portrait.png"></div>
+                    <div class="barcode-block"><img class="barcode" src="barcode.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="logo-block">
+                <img src="logo.PNG" class="logo">
+            </div>
+            <div class="data-block">
+                <div class="text-block">
+                    <div>Билет № <span class="bold black">3212315</span></div>
+                    <div class="bold name black">Фамилия</div>
+                    <div class="bold name black">Имя Отчество</div>
+                    <div>Факультет <span class="black">ФИТР гр. 5884800</span></div>
+                    <div>Категория: <span class="black">Студенты ДО</span></div>
+                    <div>Дата выдачи: <span class="black" style="white-space: pre-wrap;"> 2025-09-01</span></div>
+                    <div>Действителен <br>до: <span class="black" style="white-space: pre-wrap;">                  2030-09-01</span>
+                    </div>
+                </div>
+                <div class="img-block">
+                    <div class="photo-block"><img class="photo" src="portrait.png"></div>
+                    <div class="barcode-block"><img class="barcode" src="barcode.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="logo-block">
+                <img src="logo.PNG" class="logo">
+            </div>
+            <div class="data-block">
+                <div class="text-block">
+                    <div>Билет № <span class="bold black">3212315</span></div>
+                    <div class="bold name black">Фамилия</div>
+                    <div class="bold name black">Имя Отчество</div>
+                    <div>Факультет <span class="black">ФИТР гр. 5884800</span></div>
+                    <div>Категория: <span class="black">Студенты ДО</span></div>
+                    <div>Дата выдачи: <span class="black" style="white-space: pre-wrap;"> 2025-09-01</span></div>
+                    <div>Действителен <br>до: <span class="black" style="white-space: pre-wrap;">                  2030-09-01</span>
+                    </div>
+                </div>
+                <div class="img-block">
+                    <div class="photo-block"><img class="photo" src="portrait.png"></div>
+                    <div class="barcode-block"><img class="barcode" src="barcode.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="logo-block">
+                <img src="logo.PNG" class="logo">
+            </div>
+            <div class="data-block">
+                <div class="text-block">
+                    <div>Билет № <span class="bold black">3212315</span></div>
+                    <div class="bold name black">Фамилия</div>
+                    <div class="bold name black">Имя Отчество</div>
+                    <div>Факультет <span class="black">ФИТР гр. 5884800</span></div>
+                    <div>Категория: <span class="black">Студенты ДО</span></div>
+                    <div>Дата выдачи: <span class="black" style="white-space: pre-wrap;"> 2025-09-01</span></div>
+                    <div>Действителен <br>до: <span class="black" style="white-space: pre-wrap;">                  2030-09-01</span>
+                    </div>
+                </div>
+                <div class="img-block">
+                    <div class="photo-block"><img class="photo" src="portrait.png"></div>
+                    <div class="barcode-block"><img class="barcode" src="barcode.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="logo-block">
+                <img src="logo.PNG" class="logo">
+            </div>
+            <div class="data-block">
+                <div class="text-block">
+                    <div>Билет № <span class="bold black">3212315</span></div>
+                    <div class="bold name black">Фамилия</div>
+                    <div class="bold name black">Имя Отчество</div>
+                    <div>Факультет <span class="black">ФИТР гр. 5884800</span></div>
+                    <div>Категория: <span class="black">Студенты ДО</span></div>
+                    <div>Дата выдачи: <span class="black" style="white-space: pre-wrap;"> 2025-09-01</span></div>
+                    <div>Действителен <br>до: <span class="black" style="white-space: pre-wrap;">                  2030-09-01</span>
+                    </div>
+                </div>
+                <div class="img-block">
+                    <div class="photo-block"><img class="photo" src="portrait.png"></div>
+                    <div class="barcode-block"><img class="barcode" src="barcode.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="logo-block">
+                <img src="logo.PNG" class="logo">
+            </div>
+            <div class="data-block">
+                <div class="text-block">
+                    <div>Билет № <span class="bold black">3212315</span></div>
+                    <div class="bold name black">Фамилия</div>
+                    <div class="bold name black">Имя Отчество</div>
+                    <div>Факультет <span class="black">ФИТР гр. 5884800</span></div>
+                    <div>Категория: <span class="black">Студенты ДО</span></div>
+                    <div>Дата выдачи: <span class="black" style="white-space: pre-wrap;"> 2025-09-01</span></div>
+                    <div>Действителен <br>до: <span class="black" style="white-space: pre-wrap;">                  2030-09-01</span>
+                    </div>
+                </div>
+                <div class="img-block">
+                    <div class="photo-block"><img class="photo" src="portrait.png"></div>
+                    <div class="barcode-block"><img class="barcode" src="barcode.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="logo-block">
+                <img src="logo.PNG" class="logo">
+            </div>
+            <div class="data-block">
+                <div class="text-block">
+                    <div>Билет № <span class="bold black">3212315</span></div>
+                    <div class="bold name black">Фамилия</div>
+                    <div class="bold name black">Имя Отчество</div>
+                    <div>Факультет <span class="black">ФИТР гр. 5884800</span></div>
+                    <div>Категория: <span class="black">Студенты ДО</span></div>
+                    <div>Дата выдачи: <span class="black" style="white-space: pre-wrap;"> 2025-09-01</span></div>
+                    <div>Действителен <br>до: <span class="black" style="white-space: pre-wrap;">                  2030-09-01</span>
+                    </div>
+                </div>
+                <div class="img-block">
+                    <div class="photo-block"><img class="photo" src="portrait.png"></div>
+                    <div class="barcode-block"><img class="barcode" src="barcode.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="logo-block">
+                <img src="logo.PNG" class="logo">
+            </div>
+            <div class="data-block">
+                <div class="text-block">
+                    <div>Билет № <span class="bold black">3212315</span></div>
+                    <div class="bold name black">Фамилия</div>
+                    <div class="bold name black">Имя Отчество</div>
+                    <div>Факультет <span class="black">ФИТР гр. 5884800</span></div>
+                    <div>Категория: <span class="black">Студенты ДО</span></div>
+                    <div>Дата выдачи: <span class="black" style="white-space: pre-wrap;"> 2025-09-01</span></div>
+                    <div>Действителен <br>до: <span class="black" style="white-space: pre-wrap;">                  2030-09-01</span>
+                    </div>
+                </div>
+                <div class="img-block">
+                    <div class="photo-block"><img class="photo" src="portrait.png"></div>
+                    <div class="barcode-block"><img class="barcode" src="barcode.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="logo-block">
+                <img src="logo.PNG" class="logo">
+            </div>
+            <div class="data-block">
+                <div class="text-block">
+                    <div>Билет № <span class="bold black">3212315</span></div>
+                    <div class="bold name black">Фамилия</div>
+                    <div class="bold name black">Имя Отчество</div>
+                    <div>Факультет <span class="black">ФИТР гр. 5884800</span></div>
+                    <div>Категория: <span class="black">Студенты ДО</span></div>
+                    <div>Дата выдачи: <span class="black" style="white-space: pre-wrap;"> 2025-09-01</span></div>
+                    <div>Действителен <br>до: <span class="black" style="white-space: pre-wrap;">                 2030-09-01</span>
+                    </div>
+                </div>
+                <div class="img-block">
+                    <div class="photo-block"><img class="photo" src="portrait.png"></div>
+                    <div class="barcode-block"><img class="barcode" src="barcode.png"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
