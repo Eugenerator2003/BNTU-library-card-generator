@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Infrastructure.DocxExport
+namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
 {
     public class TemplatesContext
     {
