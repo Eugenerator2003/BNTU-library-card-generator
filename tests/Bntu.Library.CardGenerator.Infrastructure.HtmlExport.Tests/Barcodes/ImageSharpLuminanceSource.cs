@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ZXing;
 
-namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport.Tests
+namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport.Tests.Barcodes
 {
     internal class ImageSharpLuminanceSource : LuminanceSource
     {
@@ -35,7 +35,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport.Tests
             if (row == null || row.Length < Width)
                 row = new byte[Width];
 
-            System.Array.Copy(luminances, y * Width, row, 0, Width);
+            Array.Copy(luminances, y * Width, row, 0, Width);
             return row;
         }
 
