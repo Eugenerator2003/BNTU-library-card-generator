@@ -9,7 +9,39 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="..\..\Assets\templates\card.html" Link="templates\card.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Assets\templates\document.html" Link="templates\document.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Assets\templates\paper.html" Link="templates\paper.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\Bntu.Library.CardGenerator.Infrastructure.HtmlExport\Bntu.Library.CardGenerator.Infrastructure.HtmlExport.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="photo\" />
+    <Folder Include="templates\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="photo\portrait1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="photo\portrait2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="photo\portrait3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="photo\portrait4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
