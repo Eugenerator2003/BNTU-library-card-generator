@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Bntu.Library.CardGenerator.Application.StudentsImport\Bntu.Library.CardGenerator.Application.StudentsImport.csproj" />
     <ProjectReference Include="..\Bntu.Library.CardGenerator.Application\Bntu.Library.CardGenerator.Application.csproj" />
+    <ProjectReference Include="..\Bntu.Library.CardGenerator.Infrastructure.HtmlExport\Bntu.Library.CardGenerator.Infrastructure.HtmlExport.csproj" />
     <ProjectReference Include="..\Bntu.Library.CardGenerator.Infrastructure.Tables\Bntu.Library.CardGenerator.Infrastructure.Tables.csproj" />
   </ItemGroup>
 
