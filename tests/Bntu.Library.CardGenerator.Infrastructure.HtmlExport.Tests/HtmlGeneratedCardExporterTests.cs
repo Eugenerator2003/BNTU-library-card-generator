@@ -51,7 +51,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport.Tests
                 CollectionAssert.AreEqual(expected, actual);
             }
             Assert.IsTrue(Directory.Exists("groups/test/barcodes"));
-            var barcodesFiles = Directory.EnumerateFiles("grousps/test/barcodes").ToArray();
+            var barcodesFiles = Directory.EnumerateFiles("groups/test/barcodes").ToArray();
             Assert.IsTrue(barcodesFiles.Length == 4);
             var barcodeReader = new BarcodeTestReader();
             for (int i = 0; i < barcodesFiles.Length; i++)
@@ -84,10 +84,10 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport.Tests
                 exportedCard.Replace("{registrationDate}", cards[i].IssueDate.ToString("yyyy-MM-dd"));
                 exportedCard.Replace("{graduationDate}", cards[i].ExpirationDate.ToString("yyyy-MM-dd"));
                 exportedCard.Replace("{portraitPath}", cards[i].PhotoName);
-                exportedCard.Replace("{barcodePath}", $"groups/test/barcodes/{cards[i].CodbarValue}.png");
+                exportedCard.Replace("{barcodePath}", $"{cards[i].CodbarValue}.png");
                 expectedCards.Append(exportedCard);
             }
-            papers.Append(new StringBuilder(paper).Append(expectedCards.ToString()));
+            papers.Append(new StringBuilder(paper).Replace("{cards}", expectedCards.ToString()));
             expectedDocument.Replace("{papers}", papers.ToString());
 
             var actualDocument = File.ReadAllText("groups/test/test.html");
