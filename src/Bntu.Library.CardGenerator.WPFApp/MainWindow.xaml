@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bntu.Library.CardGenerator.WPFApp"
         mc:Ignorable="d"
-        Title="Генератор студенческих билетов" Height="450" Width="800">
+        Title="Генератор читательских билетов" Height="270" Width="275"
+        ResizeMode="NoResize"
+        FontSize="15px">
     <Grid>
-
+        <Button Height="40" Width="240" Margin="10, 10, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock TextWrapping="Wrap">
+                Генерация билетов
+            </TextBlock>
+        </Button>
+        <Button Height="54" Width="240" Margin="10, 80, 0, 0" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center">
+                Подготовка данных для импорта в Absotheque
+            </TextBlock>
+        </Button>
+        <Button Height="40" Width="240" Margin="10, 164, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center">
+                Справка
+            </TextBlock>
+        </Button>
     </Grid>
 </Window>
