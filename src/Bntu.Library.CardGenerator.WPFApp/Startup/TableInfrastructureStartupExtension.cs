@@ -3,6 +3,7 @@ using Bntu.Library.CardGenerator.Application.StudentsImport.Services;
 using Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories;
 using Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv;
 using Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx;
+using Bntu.Library.CardGenerator.WPFApp.PathProviders;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -22,16 +23,18 @@ namespace Bntu.Library.CardGenerator.WPFApp.Startup
 
         private static IServiceCollection UseCsv(this IServiceCollection services)
         {
-            services.AddTransient<IReaderCardRepository, ReaderCardCvsRepository>();
-            services.AddTransient<ISpecializationService, CsvSpecializationService>();
-            services.AddTransient<IProfessionService, CsvProfessionService>();
-            services.AddTransient<IImportInformationSaver, ImportInformationCsvSaver>();
+            var pathProvider = CsvFilesPathProvider.Instance;
+            services.AddTransient<IReaderCardRepository, ReaderCardCvsRepository>(sp => new ReaderCardCvsRepository(pathProvider.ReaderCardsSource!));
+            services.AddTransient<ISpecializationService, CsvSpecializationService>(sp => new CsvSpecializationService(pathProvider.SpecializationSource!));
+            services.AddTransient<IProfessionService, CsvProfessionService>(sp => new CsvProfessionService(pathProvider.ProfessionSource!));
+            services.AddTransient<IImportInformationSaver, ImportInformationCsvSaver>(sp => new ImportInformationCsvSaver(pathProvider.ImportInformationDestination!));
             return services;
         }
 
         private static IServiceCollection UseXlsx(this IServiceCollection services)
         {
-            services.AddTransient<IExportedInformationService, XlsxExportedInformationService>();
+            var pathProvider = XlsxFilesPathProvider.Instance;
+            services.AddTransient<IExportedInformationService, XlsxExportedInformationService>(sp => new XlsxExportedInformationService(pathProvider.ExportedInformationSource!));
             return services;
         }
     }
