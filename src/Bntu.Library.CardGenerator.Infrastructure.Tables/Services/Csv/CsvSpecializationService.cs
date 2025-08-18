@@ -27,7 +27,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
                 {
                     specs.Add(item);
                 }
-                return ApplicationResult<SpecializationCollection>.Success(specs, "");
+                return ApplicationResult<SpecializationCollection>.Success(specs, "Данные успешно загружены");
             }
             catch (Exception ex)
             {

@@ -27,7 +27,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Import.Ag
 
         protected override bool Contains(Specialization item)
         {
-            return values.Any(v => v.Id == item.Id || item.Name == v.Name || this[item.Name] != null);
+            return values.Any(v => v.Id == item.Id || item.Name == v.Name) || this[item.Name] != null;
         }
     }
 }
