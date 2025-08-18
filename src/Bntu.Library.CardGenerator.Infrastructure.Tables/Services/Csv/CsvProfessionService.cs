@@ -27,7 +27,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
                 {
                     profession.Add(item);
                 }
-                return ApplicationResult<ProfessionCollection>.Success(profession, "");
+                return ApplicationResult<ProfessionCollection>.Success(profession, "Данные успешно загружены");
             }
             catch (Exception ex)
             {
@@ -43,7 +43,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
         protected override Profession ReadFromCurrentLine()
         {
             var id = int.Parse(CsvReader.GetField(NextField()) ?? "");
-            var name = CsvReader.GetField(NextField()) ?? "";
+            var baseName = CsvReader.GetField(NextField());
+            var name = baseName == "NULL" ? "" : baseName ?? "";
             return new Profession(id, name);
         }
     }
