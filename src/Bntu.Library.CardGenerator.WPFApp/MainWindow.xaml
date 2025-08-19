@@ -14,7 +14,7 @@
                 Генерация билетов
             </TextBlock>
         </Button>
-        <Button Height="54" Width="240" Margin="10, 80, 0, 0" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Button Height="54" Width="240" Margin="10, 80, 0, 0" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Top" Click="OpenImportWindow">
             <TextBlock TextWrapping="Wrap" TextAlignment="Center">
                 Подготовка данных для импорта в Absotheque
             </TextBlock>
