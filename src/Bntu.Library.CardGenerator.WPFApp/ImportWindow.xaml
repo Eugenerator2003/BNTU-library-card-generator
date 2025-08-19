@@ -1,0 +1,325 @@
+﻿<Window x:Class="Bntu.Library.CardGenerator.WPFApp.ImportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bntu.Library.CardGenerator.WPFApp"
+        mc:Ignorable="d"
+        Title="Подготовка данных для импорта в Absotheque" Height="600" Width="400"
+        FontSize="14"
+        Closing="WindowClosing"
+        ResizeMode="NoResize">
+    <Grid Width="350" 
+          VerticalAlignment="Top"
+          HorizontalAlignment="Left"
+          Margin="10, 10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" 
+                       Grid.Column="0"
+                       Width="200"
+                       Height="18" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       FontSize="15"
+                       FontWeight="Bold">
+                    Специальности
+            </TextBlock>
+            <Button Grid.Row="0" 
+                    Grid.Column="1" 
+                    Height="24" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Click="LoadProfessions">
+                Загрузить
+            </Button>
+            <TextBlock Grid.Row="1" 
+                       Grid.Column="0" 
+                       Height="18" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       Margin="0, 0, 0, 5">
+                    Статус:
+            </TextBlock>
+            <ScrollViewer Grid.Row="2" 
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          HorizontalScrollBarVisibility="Auto" 
+                          VerticalScrollBarVisibility="Disabled" 
+                          HorizontalAlignment="Left" 
+                          VerticalAlignment="Top"
+                          Margin="0,0,0,0"
+                          Height="Auto">
+                <TextBox x:Name="ProfessionMessage" 
+                         HorizontalAlignment="Left" 
+                         VerticalAlignment="Top" 
+                         TextWrapping="NoWrap" 
+                         IsReadOnly="True" 
+                         BorderThickness="0">
+                    Заглушка
+                </TextBox>
+            </ScrollViewer>
+            <Border Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BorderBrush="Black"
+                    BorderThickness="0.4"
+                    Width="380"
+                    Margin="0,10,0,10">
+            </Border>
+
+        </Grid>
+        <Grid x:Name="SpecializationGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" 
+                       Grid.Column="0" 
+                       Width="200"
+                       Height="18" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       FontSize="15"
+                       FontWeight="Bold">
+                        Направления
+            </TextBlock>
+            <Button Grid.Row="0" 
+                    Grid.Column="1" 
+                    Height="24" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Click="LoadSpecializations">
+                Загрузить
+            </Button>
+            <TextBlock Grid.Row="1" 
+                       Grid.Column="0" 
+                       Height="18" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       Margin="0, 0, 0, 0">
+                Статус:
+            </TextBlock>
+            <ScrollViewer Grid.Row="2" 
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          HorizontalScrollBarVisibility="Auto" 
+                          VerticalScrollBarVisibility="Disabled"
+                          HorizontalAlignment="Left" 
+                          VerticalAlignment="Top"
+                          Margin="0, 0, 0, 0">
+                <TextBox x:Name="SpecializationMessage" 
+                     HorizontalAlignment="Left" 
+                     VerticalAlignment="Top" 
+                     TextWrapping="NoWrap" 
+                     IsReadOnly="True" 
+                     BorderThickness="0">
+                    Заглушка
+                </TextBox>
+            </ScrollViewer>
+            <Border Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                BorderBrush="Black"
+                BorderThickness="0.4"
+                Width="380"
+                Margin="0,10,0,10">
+            </Border>
+        </Grid>
+        <Grid x:Name="XlsxGrid" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" 
+                       Grid.Column="0" 
+                       TextWrapping="Wrap"
+                       Width="200"
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       FontSize="15"
+                       FontWeight="Bold">
+            Экспортированная информация о студентах
+            </TextBlock>
+            <Button Grid.Row="0" 
+                    Grid.Column="1" 
+                    Height="24" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Click="LoadExportedInformation">
+                Загрузить
+            </Button>
+            <TextBlock Grid.Row="1" 
+                       Grid.Column="0" 
+                       Height="18" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       Margin="0, 0, 0, 0">
+            Статус загрузки:
+            </TextBlock>
+            <ScrollViewer Grid.Row="2" 
+                          Grid.Column="0" 
+                          Grid.ColumnSpan="2"
+                          MaxHeight="50"
+                          HorizontalScrollBarVisibility="Auto" 
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalAlignment="Left" 
+                          VerticalAlignment="Top">
+                <TextBox x:Name="ExportedInformationMessage" 
+                         HorizontalAlignment="Left" 
+                         VerticalAlignment="Top" 
+                         TextWrapping="NoWrap" 
+                         IsReadOnly="True" 
+                         BorderThickness="0">
+                    Заглушка
+                </TextBox>
+            </ScrollViewer>
+            <Border Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                BorderBrush="Black"
+                BorderThickness="0.4"
+                Width="380"
+                Margin="0,10,0,10">
+            </Border>
+        </Grid>
+        <Grid x:Name="TransformationGrid" Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Height="18" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       Margin="0, 0, 0, 10"
+                       FontSize="15"
+                       FontWeight="Bold">
+                Подготовка данных к импорту
+            </TextBlock>
+            <TextBlock Grid.Row="1"
+                       Height="18" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       Width="200"
+                       Margin="0, 0, 0, 10">
+                Свободный штрих-код:
+            </TextBlock>
+            <TextBox x:Name="BarcodeBox" 
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     PreviewTextInput="OnlyDigits"
+                     DataObject.Pasting="OnlyDigitsPaste">
+            </TextBox>
+            <TextBlock Grid.Row="2"
+                       Height="18" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       Margin="0, 0, 0, 10">
+                Год поступления:
+            </TextBlock>
+            <TextBox x:Name="IssueYearBox"
+                     Grid.Row="2"
+                     Grid.Column="2"
+                     PreviewTextInput="OnlyDigits"
+                     DataObject.Pasting="OnlyDigitsPaste"></TextBox>
+            <Button Grid.Column="0"
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    Width="130"
+                    Height="30"
+                    Margin="0, 10, 0, 10"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Click="TranformExportedInformation"
+                    BorderBrush="Black"
+                    BorderThickness="1.5"
+                    >Подготовить</Button>
+            <TextBlock Grid.Row="4" 
+                       Grid.Column="0" 
+                       Height="18" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       Margin="0, 0, 0, 10">
+                Статус преобразований:
+            </TextBlock>
+            <ScrollViewer Grid.Row="5" 
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          HorizontalScrollBarVisibility="Auto" 
+                          VerticalScrollBarVisibility="Disabled" 
+                          HorizontalAlignment="Left" 
+                          VerticalAlignment="Top">
+                <TextBox x:Name="TransformationInformationMessage" 
+                         HorizontalAlignment="Left" 
+                         VerticalAlignment="Top" 
+                         TextWrapping="NoWrap" 
+                         IsReadOnly="True" 
+                         BorderThickness="0">
+                    Заглушка
+                </TextBox>
+            </ScrollViewer>
+            <Border Grid.Row="6"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                BorderBrush="Black"
+                BorderThickness="0.4"
+                Width="380"
+                Margin="0,10,0,10">
+            </Border>
+        </Grid>
+        <Grid x:Name="SaveGrid" Grid.Row="4">
+            <Button Margin="0, 10, 0, 10"
+                    Width="170"
+                    Height="30"
+                    BorderBrush="Black"
+                    BorderThickness="1.5"
+                    Click="SaveTransformedInformation"
+                >Сохранить для импорта</Button>
+        </Grid>
+    </Grid>
+</Window>
