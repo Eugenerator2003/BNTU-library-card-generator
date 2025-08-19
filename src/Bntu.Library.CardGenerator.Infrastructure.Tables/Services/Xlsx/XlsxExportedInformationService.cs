@@ -98,7 +98,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
                 var list = new List<ExportedInformation>();
                 for (i = 0; i < table.Rows.Count; i++)
                 {
-                    var rowData = GetFromRow(table.Rows[i]);
+                    var rowData = GetFromRow(table.Rows[i], list);
                     list.Add(rowData);
                 }
                 return ApplicationResult<IList<ExportedInformation>>.Success(list, "Экспортированные данные успешно загружены.");
@@ -115,11 +115,11 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
             }
         }
 
-        private ExportedInformation GetFromRow(DataRow row)
+        private ExportedInformation GetFromRow(DataRow row, List<ExportedInformation> context)
         {
             var id = int.Parse(row["#"].ToString()!);
             var student = GetStudentFromRow(row);
-            var studyInformation = GetStudyFromRow(row);
+            var studyInformation = GetStudyFromRow(row, context);
             var contactInformation = GetContactFromRow(row);
             var photo = (string)row["Фотография"];
 
@@ -163,24 +163,36 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
             return student;
         }
 
-        private ExportedStudyInformation GetStudyFromRow(DataRow row)
+        private ExportedStudyInformation GetStudyFromRow(DataRow row, IList<ExportedInformation> context)
         {
-            string? studyStartString = row[studyFields[studyFieldIndices["Дата начала обучения"]]]?.ToString();
-            string? studyEndString = row[studyFields[studyFieldIndices["Дата окончания обучения"]]]?.ToString();
-            if (string.IsNullOrEmpty(studyEndString) || string.IsNullOrEmpty(studyStartString) ||
-                !DateTime.TryParse(studyStartString, out DateTime studyDate) ||
-                !DateTime.TryParse(studyEndString, out DateTime graduationDate))
-                throw new InvalidDataException("Даты начала и окончания обучения не могут быть пустыми и должны быть в формате ГГГГ-ММ-ДД");
-
-            string? faculty = row[studyFields[studyFieldIndices["Факультет"]]]?.ToString();
-            string? specialization = row[studyFields[studyFieldIndices["Код специальности"]]]?.ToString();
-            if (string.IsNullOrEmpty(faculty))
-                throw new InvalidDataException("Факультет или специальность не могут быть пустыми.");
+            ExportedInformation? classmate = null;
 
             string? group = row[studyFields[studyFieldIndices["Номер группы"]]]?.ToString();
             string? departmentString = row[studyFields[studyFieldIndices["Форма обучения"]]]?.ToString();
             if (string.IsNullOrEmpty(group) || string.IsNullOrEmpty(departmentString))
                 throw new InvalidDataException("Группа или отделение не могут быть пустыми.");
+
+            string? studyStartString = row[studyFields[studyFieldIndices["Дата начала обучения"]]]?.ToString();
+            string? studyEndString = row[studyFields[studyFieldIndices["Дата окончания обучения"]]]?.ToString();
+            if (string.IsNullOrEmpty(studyEndString) || string.IsNullOrEmpty(studyStartString) ||
+                !DateTime.TryParse(studyStartString, out DateTime studyDate) ||
+                !DateTime.TryParse(studyEndString, out DateTime graduationDate))
+            {
+                classmate = context.FirstOrDefault(a => a.StudyInformation.GroupNumber == group);
+                if (classmate == null)
+                    throw new InvalidDataException("Даты начала и окончания обучения не могут быть пустыми и должны быть в формате ГГГГ-ММ-ДД");
+                studyDate = classmate.StudyInformation.StudyStartDate;
+                graduationDate = classmate.StudyInformation.GraduationDate;
+            }
+
+            string? faculty = row[studyFields[studyFieldIndices["Факультет"]]]?.ToString();
+            string? specialization = row[studyFields[studyFieldIndices["Код специальности"]]]?.ToString();
+            if (string.IsNullOrEmpty(faculty))
+                throw new InvalidDataException("Факультет не может быть пустым.");
+            if (string.IsNullOrEmpty(specialization))
+            {
+                specialization = classmate?.StudyInformation.Specialization;
+            }
 
             StudyGroup.DepartmentType department = departmentString == "дневное" ?
                                                     StudyGroup.DepartmentType.Fulltime :
