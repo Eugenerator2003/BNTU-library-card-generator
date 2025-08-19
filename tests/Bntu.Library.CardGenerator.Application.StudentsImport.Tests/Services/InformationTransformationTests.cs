@@ -30,7 +30,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Tests.Services
             var importingParameter = new ImportingParameter(DateTime.Now, 1);
             var actualResult = service.Transform(expectedList, importingParameter);
             Assert.IsTrue(actualResult.IsSuccess);
-            Assert.AreEqual(actualResult.Message, "");
+            Assert.AreEqual("Данные успешно преобразованы", actualResult.Message);
             Assert.IsNotNull(actualResult.Value);
             var actual = actualResult.Value[0];
             InformationOperations.AssertingEquals(1, expectedList[0], actual, professions);
@@ -50,7 +50,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Tests.Services
             var importingParameter = new ImportingParameter(DateTime.Now, 1);
             var actualResult = service.Transform(expectedList, importingParameter);
             Assert.IsTrue(actualResult.IsSuccess);
-            Assert.AreEqual(actualResult.Message, "");
+            Assert.AreEqual("Данные успешно преобразованы", actualResult.Message);
             Assert.IsNotNull(actualResult.Value);
             for (int i = 0; i < 4000; i++)
             {
