@@ -174,7 +174,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
 
             string? faculty = row[studyFields[studyFieldIndices["Факультет"]]]?.ToString();
             string? specialization = row[studyFields[studyFieldIndices["Код специальности"]]]?.ToString();
-            if (string.IsNullOrEmpty(faculty) || string.IsNullOrEmpty(specialization))
+            if (string.IsNullOrEmpty(faculty))
                 throw new InvalidDataException("Факультет или специальность не могут быть пустыми.");
 
             string? group = row[studyFields[studyFieldIndices["Номер группы"]]]?.ToString();
@@ -186,7 +186,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
                                                     StudyGroup.DepartmentType.Fulltime :
                                                     StudyGroup.DepartmentType.Correspondence;
 
-            var study = new XlsxExportedStudyInformation(studyDate, graduationDate, faculty, specialization, group, department);
+            var study = new XlsxExportedStudyInformation(studyDate, graduationDate, faculty, specialization ?? "", group, department);
             return study;
         }
 
