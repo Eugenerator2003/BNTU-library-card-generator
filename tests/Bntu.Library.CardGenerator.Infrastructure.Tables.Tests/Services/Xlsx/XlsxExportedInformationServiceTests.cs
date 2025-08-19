@@ -16,7 +16,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Xlsx
         private static string filesDirectory = "TestAssets\\Xlsx";
         private static string validFile = Path.Combine(filesDirectory, "valid.xlsx");
 
-        private static string GetPath(string path) => Path.Combine(filesDirectory, path); 
+        private static string GetPath(string path) => Path.Combine(filesDirectory, path);
 
         private static ExportedInformation[] ExpectedInfos = [
             new ExportedInformation(1,
@@ -77,7 +77,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Xlsx
             Assert.IsTrue(result.IsSuccess);
             Assert.IsNotNull(result.Value);
             Assert.AreEqual(ExpectedInfos.Length, result.Value.Count);
-            for(int i = 0; i < ExpectedInfos.Length; i++)
+            for (int i = 0; i < ExpectedInfos.Length; i++)
             {
                 Assert.AreEqual(ExpectedInfos[i].Student, result.Value[i].Student);
                 Assert.AreEqual(ExpectedInfos[i].StudyInformation, result.Value[i].StudyInformation);
@@ -124,7 +124,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Xlsx
             var result = service.GetExportedInformation();
             Assert.IsTrue(result.IsOperationError);
             Assert.IsTrue(result.Message.Contains("Строка данных - 2"));
-            Assert.IsTrue(result.Message.Contains("Факультет или специальность не могут быть пустыми."));
+            Assert.IsTrue(result.Message.Contains("Факультет не может быть пустым."));
         }
 
         [TestMethod]
