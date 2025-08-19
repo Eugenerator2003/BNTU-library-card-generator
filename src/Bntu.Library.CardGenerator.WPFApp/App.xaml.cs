@@ -1,4 +1,4 @@
-﻿using Bntu.Library.CardGenerator.WPFApp.PathProviders;
+﻿using Bntu.Library.CardGenerator.WPFApp.Factories.PathProviders;
 using Bntu.Library.CardGenerator.WPFApp.Startup;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
@@ -12,7 +12,7 @@ namespace Bntu.Library.CardGenerator.WPFApp
     /// </summary>
     public partial class App : System.Windows.Application
     {
-        public IServiceCollection Services { get; }
+        public IServiceProvider Services { get; }
 
         public CsvFilesPathProvider CsvPathProvider { get; }
 
@@ -25,7 +25,8 @@ namespace Bntu.Library.CardGenerator.WPFApp
             Services = new ServiceCollection().UseApplication()
                                               .UseStudentsImport()
                                               .UseTables()
-                                              .UseHtmlExport();
+                                              .UseHtmlExport()
+                                              .BuildServiceProvider();
             CsvPathProvider = CsvFilesPathProvider.Instance;
             HtmlPathProvider = HtmlFilesPathProvider.Instance;
             XlsxPathProvider = XlsxFilesPathProvider.Instance;
