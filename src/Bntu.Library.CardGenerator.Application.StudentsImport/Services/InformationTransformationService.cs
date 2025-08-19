@@ -49,7 +49,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Services
                     codbar++;
                 }
 
-                return ApplicationResult<IList<ImportInformation>>.Success(list, null);
+                return ApplicationResult<IList<ImportInformation>>.Success(list, "Данные успешно преобразованы");
             }
             catch (Exception ex)
             {
