@@ -1,6 +1,5 @@
 ﻿using Bntu.Library.CardGenerator.Application.StudentsImport.Services;
 using Bntu.Library.CardGenerator.Application.StudentsImport.UseCases;
-using Bntu.Library.CardGenerator.WPFApp.Factories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,7 +13,7 @@ namespace Bntu.Library.CardGenerator.WPFApp.Startup
     {
         public static IServiceCollection UseStudentsImport(this IServiceCollection services)
         {
-            services.AddTransient(sp => new InformationTransformationServiceFactory().Create());
+            services.AddTransient<InformationTransformationService>();
             return services.UseImportUseCases();
         }
 

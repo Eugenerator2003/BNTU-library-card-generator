@@ -3,8 +3,7 @@ using Bntu.Library.CardGenerator.Application.StudentsImport.Services;
 using Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories;
 using Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv;
 using Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx;
-using Bntu.Library.CardGenerator.WPFApp.Factories.PathProviders;
-using Bntu.Library.CardGenerator.WPFApp.Factories;
+using Bntu.Library.CardGenerator.WPFApp.PathProviders;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -25,17 +24,17 @@ namespace Bntu.Library.CardGenerator.WPFApp.Startup
         private static IServiceCollection UseCsv(this IServiceCollection services)
         {
             var pathProvider = CsvFilesPathProvider.Instance;
-            services.AddTransient<IReaderCardRepository, ReaderCardCvsRepository>(sp => new ReaderCardCvsRepositoryFactory().Create());
-            services.AddTransient<ISpecializationService, CsvSpecializationService>(sp => new CsvSpecializationServiceFactory().Create());
-            services.AddTransient<IProfessionService, CsvProfessionService>(sp => new CsvProfessionServiceFactory().Create());
-            services.AddTransient<IImportInformationSaver, ImportInformationCsvSaver>(sp => new ImportInformationCsvSaverFactory().Create());
+            services.AddTransient<IReaderCardRepository, ReaderCardCvsRepository>(sp => new ReaderCardCvsRepository(pathProvider.ReaderCardsSource!));
+            services.AddTransient<ISpecializationService, CsvSpecializationService>(sp => new CsvSpecializationService(pathProvider.SpecializationSource!));
+            services.AddTransient<IProfessionService, CsvProfessionService>(sp => new CsvProfessionService(pathProvider.ProfessionSource!));
+            services.AddTransient<IImportInformationSaver, ImportInformationCsvSaver>(sp => new ImportInformationCsvSaver(pathProvider.ImportInformationDestination!));
             return services;
         }
 
         private static IServiceCollection UseXlsx(this IServiceCollection services)
         {
             var pathProvider = XlsxFilesPathProvider.Instance;
-            services.AddTransient<IExportedInformationService, XlsxExportedInformationService>(sp => new XlsxExportedInformationServiceFactory().Create());
+            services.AddTransient<IExportedInformationService, XlsxExportedInformationService>(sp => new XlsxExportedInformationService(pathProvider.ExportedInformationSource!));
             return services;
         }
     }
