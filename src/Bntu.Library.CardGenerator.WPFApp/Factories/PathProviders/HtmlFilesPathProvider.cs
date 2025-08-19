@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.WPFApp.PathProviders
+namespace Bntu.Library.CardGenerator.WPFApp.Factories.PathProviders
 {
     public class HtmlFilesPathProvider
     {
         public static HtmlFilesPathProvider Instance
-        { get
+        {
+            get
             {
                 if (instance == null)
                     instance = new HtmlFilesPathProvider();
                 return instance;
-            } 
+            }
         }
 
         private static HtmlFilesPathProvider instance = null!;

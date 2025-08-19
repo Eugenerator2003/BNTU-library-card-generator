@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.WPFApp.PathProviders
+namespace Bntu.Library.CardGenerator.WPFApp.Factories.PathProviders
 {
     public class CsvFilesPathProvider
     {
