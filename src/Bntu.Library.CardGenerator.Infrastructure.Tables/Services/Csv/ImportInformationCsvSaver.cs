@@ -35,14 +35,14 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
 
         private void WriteToFile(IList<ImportInformation> importInformation)
         {
-            StreamWriter stream = null!;
-            CsvWriter writer = null!;
+            StreamWriter? stream = null;
+            CsvWriter? writer = null;
             try
             {
-                stream = new StreamWriter(filename);
+                stream = new StreamWriter(filename, false, Encoding.GetEncoding(1251));
                 var config = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
                 {
-                    Delimiter = ";"
+                    Delimiter = ";",
                 };
                 writer = new CsvWriter(stream, config);
             }
