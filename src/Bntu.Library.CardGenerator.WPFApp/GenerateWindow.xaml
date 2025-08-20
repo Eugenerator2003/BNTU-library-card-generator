@@ -1,0 +1,195 @@
+﻿<Window x:Class="Bntu.Library.CardGenerator.WPFApp.GenerateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bntu.Library.CardGenerator.WPFApp"
+        mc:Ignorable="d"
+        Title="Генерация читательских билетов" Height="480" Width="350"
+        FontSize="14"
+        Closing="WindowClosing">
+    <Grid Width="310"
+          Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Width="150"
+                       FontSize="15"
+                       FontWeight="Bold"
+                       Margin="0,0,0,0"
+                       TextAlignment="Center"
+                       >Данные читателей
+            </TextBlock>
+            <Button Grid.Row="1"
+                    Grid.Column="0"
+                    Height="24"
+                    Width="200"
+                    Click="ChooseCsvFile"
+                    Margin="10"
+                    BorderBrush="Black"
+                    BorderThickness="1.5"
+                    >Выбрать из файла импорта</Button>
+            <Border Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BorderBrush="Black"
+                    BorderThickness="0.4"
+                    Width="380"
+                    Margin="0,0,0,10">
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1"
+              x:Name="PhotoGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Width="150"
+                   FontSize="15"
+                   FontWeight="Bold"
+                   Margin="0,0,0,0"
+                   TextAlignment="Center"
+                   >Фотографии
+            </TextBlock>
+            <Button Grid.Row="1"
+                    Grid.Column="0"
+                    Height="24"
+                    Width="230"
+                    Click="ChoosePhotoFolder"
+                    Margin="10"
+                    BorderBrush="Black"
+                    BorderThickness="1.5"
+            >Выбрать папку с фотографиями</Button>
+            <Border Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BorderBrush="Black"
+                    BorderThickness="0.4"
+                    Width="380"
+                    Margin="0,0,0,10">
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2"
+              x:Name="FolderGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Width="220"
+                       FontSize="15"
+                       FontWeight="Bold"
+                       Margin="0,0,0,0"
+                       TextAlignment="Center"
+                >Папка для экспорта билетов
+            </TextBlock>
+            <Button Grid.Row="1"
+                        Grid.Column="0"
+                        Height="24"
+                        Width="230"
+                        Click="ChooseRootFolder"
+                        Margin="10"
+                        BorderBrush="Black"
+                        BorderThickness="1.5"
+            >Выбрать папку для экспорта</Button>
+            <Border Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                BorderBrush="Black"
+                BorderThickness="0.4"
+                Width="380"
+                Margin="0,0,0,10">
+            </Border>
+        </Grid>
+        <Grid Grid.Row="3"
+              x:Name="SaveGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Width="220"
+                       FontSize="15"
+                       FontWeight="Bold"
+                       Margin="0,0,0,5"
+                       TextAlignment="Center"
+                    >Экспорт
+            </TextBlock>
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Height="18"
+                       FontSize="15"
+                       Width="150">
+                        Группа:
+            </TextBlock>
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     PreviewTextInput="OnlyDigits"
+                     DataObject.Pasting="OnlyDigitsPaste"
+                     x:Name="GroupBox"
+                     ></TextBox>
+            <Button Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Height="24"
+                    Width="230"
+                    Click="ExportReaderCards"
+                    Margin="10"
+                    BorderBrush="Black"
+                    BorderThickness="1.5"
+                >Экспортировать</Button>
+            <TextBlock Grid.Row="3" 
+                       Grid.Column="0" 
+                       Height="18" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       Margin="0, 0, 0, 5"
+                       >Статус:
+            </TextBlock>
+            <ScrollViewer Grid.Row="4" 
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          HorizontalScrollBarVisibility="Auto" 
+                          VerticalScrollBarVisibility="Disabled" 
+                          HorizontalAlignment="Center" 
+                          VerticalAlignment="Center"
+                          Margin="0,0,0,0"
+                          Width="300"
+                          Height="Auto">
+                <TextBox x:Name="ReaderCardsMessage" 
+                         HorizontalAlignment="Left" 
+                         VerticalAlignment="Top" 
+                         TextWrapping="NoWrap" 
+                         IsReadOnly="True" 
+                         BorderThickness="0">
+                    Заглушка
+                </TextBox>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>
