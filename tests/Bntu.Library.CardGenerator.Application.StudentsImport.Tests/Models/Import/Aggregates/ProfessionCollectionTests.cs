@@ -44,10 +44,18 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Tests.Models.Imp
         }
 
         [TestMethod]
-        public void IndexerNotFoundTest()
+        public void IndexerIdNotFoundTest()
         {
             var collection = new ProfessionCollection();
             var result = collection[999];
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void IndexerNumberNotFoundTest()
+        {
+            var collection = new ProfessionCollection();
+            var result = collection["99999"];
             Assert.IsNull(result);
         }
     }
