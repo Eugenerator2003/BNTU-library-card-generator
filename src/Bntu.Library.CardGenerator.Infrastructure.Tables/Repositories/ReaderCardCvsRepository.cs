@@ -102,7 +102,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
 
         protected override Encoding GetEncoding()
         {
-            return Encoding.GetEncodings().FirstOrDefault(a => a.Name == "windows-1251")?.GetEncoding() ?? Encoding.UTF8;
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            return Encoding.GetEncoding("windows-1251");
         }
     }
 }
