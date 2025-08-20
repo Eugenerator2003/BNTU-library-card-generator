@@ -122,16 +122,16 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
             var htmlCards = new StringBuilder();
             for(int i = 0; i < cards.Count; i++)
             {
+                var barcodeFileName = PrepareCardFiles(cards[i]);
+                var exportedCard = GetExportedCard(cards[i], barcodeFileName);
+                htmlCards.Append(exportedCard);
                 if ((i + 1) % 10 == 0)
                 {
                     papers.Append(new StringBuilder(templatesContext.Paper).Replace("{cards}", htmlCards.ToString()));
                     htmlCards.Clear();
                 }
-                var barcodeFileName = PrepareCardFiles(cards[i]);
-                var exportedCard = GetExportedCard(cards[i], barcodeFileName);
-                htmlCards.Append(exportedCard);
             }
-            papers.Append(new StringBuilder(templatesContext.Paper).Replace("{cards}", htmlCards.ToString()));
+            //papers.Append(new StringBuilder(templatesContext.Paper).Replace("{cards}", htmlCards.ToString()));
             doc.Replace("{papers}", papers.ToString());
             return doc;
         }
