@@ -29,9 +29,12 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Models.Export
             Faculty = faculty;
             if (specialization is null)
                 Specialization = "";
-            else if (int.TryParse(SpecializationNumberComparer.GetFormattedNumber(specialization), out int _))
+            else if (long.TryParse(specialization, out long spec)) {
+                Specialization = specialization;
+            }
+            else if (long.TryParse(SpecializationNumberComparer.GetFormattedNumber(specialization), out spec))
             {
-                Specialization = SpecializationNumberComparer.GetFormattedNumber(specialization);
+                Specialization = spec.ToString();
             }
             else
             {
