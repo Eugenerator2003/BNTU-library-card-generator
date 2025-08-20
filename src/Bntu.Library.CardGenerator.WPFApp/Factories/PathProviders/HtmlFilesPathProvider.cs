@@ -26,7 +26,7 @@ namespace Bntu.Library.CardGenerator.WPFApp.Factories.PathProviders
 
         public string? CardPath { get; set; }
 
-        public string? RootFolder { get; }
+        public string? RootFolder { get; set; }
 
         public string? Subfolder { get; set; }
 
