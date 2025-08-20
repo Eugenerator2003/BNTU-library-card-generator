@@ -82,8 +82,12 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Services
             }
 
             var faculty = GetFaculty(studyInformation.Faculty, parameter);
+            var profession = GetProfession(studyInformation.Specialization);
             var specialization = GetSpecialization(studyInformation.Specialization);
-            var profession = GetProfession(specialization);
+            if (profession is null && specialization?.ProfessionId is not null)
+            {
+                profession = _professions[specialization.ProfessionId.Value];
+            }
             var graduationDate = new DateTime(studyInformation.GraduationDate.Year, 9, 1);
 
             group = new ImportStudyGroup(faculty, profession, specialization, studyInformation.GroupNumber, 
@@ -104,12 +108,9 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Services
             return faculty;
         }
 
-        private Profession? GetProfession(Specialization? specialization)
+        private Profession? GetProfession(string specializationSemiformattedNumber)
         {
-            if (specialization is not null && specialization.ProfessionId is not null)
-                return _professions[specialization.ProfessionId.Value];
-            else
-                return null;
+            return _professions[specializationSemiformattedNumber];
         }
 
         private Specialization? GetSpecialization(string semiformattedNumber)
