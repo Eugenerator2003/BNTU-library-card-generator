@@ -10,6 +10,8 @@ namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
 {
     public class GetReaderCardsCaseResult
     {
+        public int CardsCount => groupCards.Select(a => a.Value?.Count ?? 0).Sum();
+
         public string[] Groups => groupCards.Keys.ToArray();
 
         public IReadOnlyCollection<ReaderCard>? this[string groupNumber]
