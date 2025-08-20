@@ -27,6 +27,7 @@ namespace Bntu.Library.CardGenerator.Application.UseCases
                 var groupCardsResult = cardService.GetReaderCardsByGroup(group);
                 if (groupCardsResult.IsSuccess)
                 {
+                    result.SetSuccess(true);
                     result.SetGroupCards(group, groupCardsResult.Value!);
                 }
                 else
