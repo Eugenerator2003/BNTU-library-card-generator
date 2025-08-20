@@ -39,7 +39,16 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
             CsvWriter? writer = null;
             try
             {
-                stream = new StreamWriter(filename, false, Encoding.GetEncoding(1251));
+                Encoding encoding = null!;
+                try
+                {
+                    encoding = Encoding.GetEncoding("windows-1251");
+                }
+                catch
+                {
+                    encoding = Encoding.UTF8;
+                }
+                stream = new StreamWriter(filename, false, encoding);
                 var config = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
                 {
                     Delimiter = ";",
