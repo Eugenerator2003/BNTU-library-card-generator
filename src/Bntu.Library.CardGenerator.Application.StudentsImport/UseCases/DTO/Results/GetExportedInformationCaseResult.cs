@@ -1,4 +1,5 @@
 ﻿using Bntu.Library.CardGenerator.Application.StudentsImport.Models.Export;
+using Bntu.Library.CardGenerator.Application.UseCases.DTO.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
