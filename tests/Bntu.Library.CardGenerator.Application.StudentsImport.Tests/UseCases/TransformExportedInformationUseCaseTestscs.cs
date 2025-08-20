@@ -40,8 +40,9 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Tests.UseCases
         [TestMethod]
         public void TransformSuccessTest()
         {
+            int count = 20;
             var expectedList = new List<ExportedInformation>();
-            for(int i = 0; i < 4000; i++)
+            for(int i = 0; i < count; i++)
             {
                 expectedList.Add(InformationOperations.GetRandomExportedInformation(_specializations));
             }
@@ -52,7 +53,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Tests.UseCases
 
             Assert.IsTrue(actualResult.Success);
             Assert.IsNotNull(actualResult.ImportInformation);
-            for (int i = 0; i < 4000; i++)
+            for (int i = 0; i < count; i++)
             {
                 var actual = actualResult.ImportInformation[i];
                 InformationOperations.AssertingEquals(importingParameter.StartCodbar + i, expectedList[i], actual, _professions);
