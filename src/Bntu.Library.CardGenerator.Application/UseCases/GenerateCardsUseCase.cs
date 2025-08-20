@@ -23,6 +23,7 @@ namespace Bntu.Library.CardGenerator.Application.UseCases
                     result.AddGeneratedCards(group, generationResult.Value!);
                 }
             }
+            result.SetSuccess(true);
             return result;
         }
     }

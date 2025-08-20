@@ -29,6 +29,11 @@ namespace Bntu.Library.CardGenerator.Application.UseCases
                 {
                     result.SetGroupCards(group, groupCardsResult.Value!);
                 }
+                else
+                {
+                    result.SetSuccess(false);
+                    result.SetMessage(groupCardsResult.Message);
+                }
             }
             return result;
         }
