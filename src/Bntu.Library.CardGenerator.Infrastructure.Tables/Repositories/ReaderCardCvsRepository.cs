@@ -103,7 +103,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
         protected override Encoding GetEncoding()
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            return Encoding.GetEncoding("windows-1251");
+            return Encoding.GetEncoding(1251);
         }
     }
 }

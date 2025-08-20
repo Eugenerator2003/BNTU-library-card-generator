@@ -69,7 +69,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
         {
             try
             {
-                reader = new StreamReader(Filename);
+                reader = new StreamReader(Filename, GetEncoding());
                 return true;
             }
             catch
@@ -85,8 +85,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
                 HasHeaderRecord = true,
                 IgnoreBlankLines = true,
                 BadDataFound = null,
-                Delimiter = ";",
-                Encoding = GetEncoding()
+                Delimiter = ";"
             });
         }
 

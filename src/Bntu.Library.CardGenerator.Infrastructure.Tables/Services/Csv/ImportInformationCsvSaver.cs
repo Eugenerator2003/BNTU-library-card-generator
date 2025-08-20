@@ -40,7 +40,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
             try
             {
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                var enc = Encoding.GetEncoding("windows-1251");
+                var enc = Encoding.GetEncoding(1251);
                 stream = new StreamWriter(filename, false, enc);
                 var config = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
                 {
