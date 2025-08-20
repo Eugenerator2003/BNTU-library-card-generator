@@ -47,5 +47,10 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
             var name = baseName == "NULL" ? "" : baseName ?? "";
             return new Profession(id, name);
         }
+
+        protected override Encoding GetEncoding()
+        {
+            return Encoding.UTF8;
+        }
     }
 }

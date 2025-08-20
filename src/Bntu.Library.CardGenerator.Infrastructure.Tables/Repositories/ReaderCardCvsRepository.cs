@@ -99,5 +99,10 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
             ReaderCard card = new ReaderCard(cardInfo, student, photo);
             return card;
         }
+
+        protected override Encoding GetEncoding()
+        {
+            return Encoding.GetEncodings().FirstOrDefault(a => a.Name == "windows-1251")?.GetEncoding() ?? Encoding.UTF8;
+        }
     }
 }

@@ -47,5 +47,10 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
             var parentId = int.Parse(CsvReader.GetField(NextField()) ?? "");
             return new Specialization(id, name, parentId);
         }
+
+        protected override Encoding GetEncoding()
+        {
+            return Encoding.UTF8;
+        }
     }
 }

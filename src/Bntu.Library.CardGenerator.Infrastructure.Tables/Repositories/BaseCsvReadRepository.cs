@@ -2,6 +2,7 @@
 using CsvHelper;
 using CsvHelper.Configuration;
 using System.Globalization;
+using System.Text;
 
 namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
 {
@@ -62,6 +63,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
 
         protected abstract T ReadFromCurrentLine();
 
+        protected abstract Encoding GetEncoding();
+
         protected bool OpenStream()
         {
             try
@@ -82,7 +85,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
                 HasHeaderRecord = true,
                 IgnoreBlankLines = true,
                 BadDataFound = null,
-                Delimiter = ";"
+                Delimiter = ";",
+                Encoding = GetEncoding()
             });
         }
 
