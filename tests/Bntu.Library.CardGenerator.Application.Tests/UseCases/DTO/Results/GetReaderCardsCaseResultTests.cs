@@ -55,6 +55,36 @@ namespace Bntu.Library.CardGenerator.Application.Tests.UseCases.DTO.Results
         }
 
         [TestMethod]
+        public void CardsCountTest()
+        {
+            int groupsCount = 3;
+            int allCardsCount = 0;
+            string[] groups = GetGroups(groupsCount);
+            Dictionary<string, List<ReaderCard>> exptectedValues = new Dictionary<string, List<ReaderCard>>();
+            var actualResult = new GetReaderCardsCaseResult(groups);
+            for (int i = 0; i < groupsCount; i++)
+            {
+                var cardsCount = Random.Shared.Next(1, 41);
+                allCardsCount += cardsCount;
+                List<ReaderCard> cards = new List<ReaderCard>();
+                for (int j = 0; j < cardsCount; j++)
+                {
+                    cards.Add(RandomValuesGenerator.GenerateRandomReaderCard());
+                }
+                actualResult.SetGroupCards(groups[i], cards);
+                exptectedValues.Add(groups[i], cards);
+            }
+            Assert.AreEqual(allCardsCount, actualResult.CardsCount);
+        }
+
+        [TestMethod]
+        public void CardsCountZeroTest()
+        {
+            var result = new GetReaderCardsCaseResult([]);
+            Assert.AreEqual(0, result.CardsCount);
+        }
+
+        [TestMethod]
         public void SetGroupCardsExceptionTest()
         {
             string[] groups = GetGroups(10);
