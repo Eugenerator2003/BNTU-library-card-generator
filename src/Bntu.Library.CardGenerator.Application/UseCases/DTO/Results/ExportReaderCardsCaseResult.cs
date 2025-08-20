@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
 {
-    public class ExportReaderCardsCaseResult
+    public class ExportReaderCardsCaseResult : CaseResult
     {
-        public bool IsSuccess { get; }
-        
-        public string Message { get; }
-
-        public ExportReaderCardsCaseResult(bool isSuccess, string? message)
+        public ExportReaderCardsCaseResult(bool success, string message) 
+            : base(success, message)
         {
-            IsSuccess = isSuccess;
-            Message = message ?? "";
         }
     }
 }

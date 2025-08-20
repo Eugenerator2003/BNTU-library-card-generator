@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
 {
-    public class GenerateReaderCardsCaseResult
+    public class GenerateReaderCardsCaseResult : LazyCaseResult
     {
         public string[] Groups => generatedCards.Keys.ToArray();
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
 {
-    public class GetReaderCardsCaseResult
+    public class GetReaderCardsCaseResult : LazyCaseResult
     {
         public int CardsCount => groupCards.Select(a => a.Value?.Count ?? 0).Sum();
 
