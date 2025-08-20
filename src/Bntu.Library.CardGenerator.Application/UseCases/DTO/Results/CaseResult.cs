@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bntu.Library.CardGenerator.Application.StudentsImport.UseCases.DTO.Results
+namespace Bntu.Library.CardGenerator.Application.UseCases.DTO.Results
 {
     public abstract class CaseResult
     {
