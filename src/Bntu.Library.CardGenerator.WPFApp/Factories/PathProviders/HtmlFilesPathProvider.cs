@@ -28,11 +28,11 @@ namespace Bntu.Library.CardGenerator.WPFApp.Factories.PathProviders
 
         public string? RootFolder { get; }
 
-        public string? Subfolder { get; }
+        public string? Subfolder { get; set; }
 
-        public string? GroupFolder { get; }
+        public string? GroupFolder { get; set; }
 
-        public string? PhotoFolder { get; }
+        public string? PhotoFolder { get; set; }
 
         private HtmlFilesPathProvider()
         {
