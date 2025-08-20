@@ -30,6 +30,7 @@ namespace Bntu.Library.CardGenerator.WPFApp
             CsvPathProvider = CsvFilesPathProvider.Instance;
             HtmlPathProvider = HtmlFilesPathProvider.Instance;
             XlsxPathProvider = XlsxFilesPathProvider.Instance;
+            new HtmlTemplateFilesPathProvider().SetTemplatesPathes(HtmlPathProvider);
         }
     }
 }
