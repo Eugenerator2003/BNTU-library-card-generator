@@ -26,5 +26,11 @@ namespace Bntu.Library.CardGenerator.WPFApp
             ImportWindow importWindow = new ImportWindow(this);
             importWindow.Visibility = Visibility.Visible;
         }
+
+        private void OpenGenerateWindow(object sender, RoutedEventArgs e)
+        {
+            GenerateWindow window = new GenerateWindow(this);
+            window.Visibility = Visibility.Visible;
+        }
     }
 }
