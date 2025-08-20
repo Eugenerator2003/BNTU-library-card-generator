@@ -24,7 +24,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
             Map(m => m.LibraryRegistration.RegistrationDate).Name("Дата записи в библиотеку").Index(6).TypeConverterOption.Format("dd.MM.yyy");
             Map(m => m.Group.GraduationDate).Name("Дата окончания обучения").Index(7).TypeConverterOption.Format("dd.MM.yyy");
             Map(m => m.Student.PassportInfromation).Name("Примечания (паспортные данные)").Index(8);
-            Map(m => m.Group.Number).Name("Примечания ( продолж. ) (номер группы)").Index(9);
+            Map(m => m.Group.Number).Name("Примечания ( продолж.) (номер группы)").Index(9);
             Map(m => m.Group.Profession).Name("Профессия / Специальность / Направление").TypeConverter<ProfessionConverter>().Index(10);
 
             Map(m => m.Group.DepartmentType)
