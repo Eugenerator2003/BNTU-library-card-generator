@@ -57,7 +57,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Repositories
 
         private static void WriteIncorrect(int row, int column)
         {
-            StreamWriter writer = new StreamWriter(invalidfilePath);
+            StreamWriter writer = new StreamWriter(invalidfilePath, false, Encoding.GetEncoding(1251));
             writer.WriteLine(Lines[0]);
             for (int i = 1; i < Lines.Length; i++)
             {
@@ -89,7 +89,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Repositories
         [TestInitialize]
         public void Initialize()
         {
-            File.WriteAllLines(filepath, Lines);
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            File.WriteAllLines(filepath, Lines, Encoding.GetEncoding(1251));
         }
 
         [TestCleanup]
