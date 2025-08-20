@@ -114,6 +114,31 @@ namespace Bntu.Library.CardGenerator.Application.Tests.UseCases.DTO.Results
             Assert.AreEqual("groupNumber", exception.ParamName);
         }
 
+        [TestMethod]
+        public void SetSeccussTrueTest()
+        {
+            var result = new GetReaderCardsCaseResult([]);
+            result.SetSuccess(true);
+            Assert.IsTrue(result.Success);
+        }
+
+        [TestMethod]
+        public void SetSeccussFalseTest()
+        {
+            var result = new GetReaderCardsCaseResult([]);
+            result.SetSuccess(false);
+            Assert.IsFalse(result.Success);
+        }
+
+        [TestMethod]
+        public void SetMessageTest()
+        {
+            var result = new GetReaderCardsCaseResult([]);
+            var message = "daksd;asd";
+            result.SetMessage(message);
+            Assert.AreEqual(message, result.Message);
+        }
+
         private static string[] GetGroups(int groupsCount)
         {
             string[] groups = new string[groupsCount];

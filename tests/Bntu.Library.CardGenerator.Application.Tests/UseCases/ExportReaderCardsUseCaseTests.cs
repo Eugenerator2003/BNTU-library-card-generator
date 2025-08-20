@@ -23,7 +23,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests.UseCases
             var param = new ExportReaderCardsCaseParameter(new ReadOnlyCollection<GeneratedReaderCard>(cards));
             var actualResult = useCase.Export(param);
 
-            Assert.IsTrue(actualResult.IsSuccess);
+            Assert.IsTrue(actualResult.Success);
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests.UseCases
             var param = new ExportReaderCardsCaseParameter(new ReadOnlyCollection<GeneratedReaderCard>(cards));
             var actualResult = useCase.Export(param);
 
-            Assert.IsFalse(actualResult.IsSuccess);
+            Assert.IsFalse(actualResult.Success);
         }
 
         private ExportReaderCardsUseCase GetUseCase(IList<GeneratedReaderCard> cards, bool result)

@@ -72,5 +72,30 @@ namespace Bntu.Library.CardGenerator.Application.Tests.UseCases.DTO.Results
 
             Assert.AreEqual("cards", ex.ParamName);
         }
+
+        [TestMethod]
+        public void SetSeccussTrueTest()
+        {
+            var result = new GenerateReaderCardsCaseResult();
+            result.SetSuccess(true);
+            Assert.IsTrue(result.Success);
+        }
+
+        [TestMethod]
+        public void SetSeccussFalseTest()
+        {
+            var result = new GenerateReaderCardsCaseResult();
+            result.SetSuccess(false);
+            Assert.IsFalse(result.Success);
+        }
+
+        [TestMethod]
+        public void SetMessageTest()
+        {
+            var result = new GenerateReaderCardsCaseResult();
+            var message = "daksd;asd";
+            result.SetMessage(message);
+            Assert.AreEqual(message, result.Message);
+        }
     }
 }

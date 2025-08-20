@@ -12,13 +12,12 @@ namespace Bntu.Library.CardGenerator.Application.Tests.UseCases.DTO.Results
     {
         [DataTestMethod]
         [DataRow(true, "message")]
-        [DataRow(true, null)]
         [DataRow(false, "")]
-        public void InitializeTest(bool success, string? message)
+        public void InitializeTest(bool success, string message)
         {
             var actualResult = new ExportReaderCardsCaseResult(success, message);
 
-            Assert.AreEqual(success, actualResult.IsSuccess);
+            Assert.AreEqual(success, actualResult.Success);
             Assert.AreEqual(message ?? "", actualResult.Message);
         }
     }
