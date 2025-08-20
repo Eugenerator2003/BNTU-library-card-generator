@@ -9,6 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="..\..\Assets\templates\card.html" Link="templates\card.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Assets\templates\document.html" Link="templates\document.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Assets\templates\paper.html" Link="templates\paper.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.8" />
   </ItemGroup>
@@ -18,6 +30,10 @@
     <ProjectReference Include="..\Bntu.Library.CardGenerator.Application\Bntu.Library.CardGenerator.Application.csproj" />
     <ProjectReference Include="..\Bntu.Library.CardGenerator.Infrastructure.HtmlExport\Bntu.Library.CardGenerator.Infrastructure.HtmlExport.csproj" />
     <ProjectReference Include="..\Bntu.Library.CardGenerator.Infrastructure.Tables\Bntu.Library.CardGenerator.Infrastructure.Tables.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="templates\" />
   </ItemGroup>
 
 </Project>
