@@ -58,6 +58,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests.UseCases
 
             var actualResult = useCase.GetReaderCards(parameter);
 
+            Assert.IsFalse(actualResult.Success);
             CollectionAssert.AreEquivalent(cards, actualResult.Groups);
             for (int i = 0; i < cards.Count; i++)
             {
@@ -92,6 +93,7 @@ namespace Bntu.Library.CardGenerator.Application.Tests.UseCases
             var parameter = new GetReaderCardsCaseParameter(cards.Keys.ToList());
             var actualResult = useCase.GetReaderCards(parameter);
 
+            Assert.IsFalse(actualResult.Success);
             AssertResult(cards, actualResult);
         }
 
