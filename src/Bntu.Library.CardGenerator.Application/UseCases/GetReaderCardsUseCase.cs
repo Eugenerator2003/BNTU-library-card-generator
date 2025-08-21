@@ -22,12 +22,17 @@ namespace Bntu.Library.CardGenerator.Application.UseCases
         {
             var groups = parameter.Groups.ToArray();
             var result = new GetReaderCardsCaseResult(groups);
+            result.SetSuccess(true);
+            if (parameter.Groups.Count == 0)
+            {
+                result.SetSuccess(false);
+                return result;
+            }
             foreach(var group in parameter.Groups)
             {
                 var groupCardsResult = cardService.GetReaderCardsByGroup(group);
                 if (groupCardsResult.IsSuccess)
                 {
-                    result.SetSuccess(true);
                     result.SetGroupCards(group, groupCardsResult.Value!);
                 }
                 else
