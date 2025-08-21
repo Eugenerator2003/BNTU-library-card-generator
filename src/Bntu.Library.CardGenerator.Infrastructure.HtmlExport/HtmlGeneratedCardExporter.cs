@@ -134,6 +134,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
                     htmlCards.Clear();
                 }
             }
+            if (cards.Count % 10 != 0)
+                papers.Append(new StringBuilder(templatesContext.Paper).Replace("{cards}", htmlCards.ToString()));
             doc.Replace("{papers}", papers.ToString());
             doc.Replace("{title}", $"Билеты группы {groupFolder}");
             return doc;
@@ -185,7 +187,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
         {
             StringBuilder list = new StringBuilder();
             var groupedCards = cards.GroupBy(a => new { a.Faculty, a.StudyGroup })
-                                    .OrderBy(a => new { a.Key.Faculty, a.Key.StudyGroup });
+                                    .OrderBy(a => a.Key.Faculty)
+                                    .ThenBy(a => a.Key.StudyGroup);
             var lastFaculty = "";
             var lastGroup = "";
             int index = 1;
