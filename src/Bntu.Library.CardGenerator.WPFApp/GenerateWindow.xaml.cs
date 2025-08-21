@@ -105,6 +105,7 @@ namespace Bntu.Library.CardGenerator.WPFApp
 
         private void ExportReaderCards(object sender, RoutedEventArgs e)
         {
+            ReaderCardsMessage.Text = "";
             var group = GroupBox.Text;
             if (string.IsNullOrEmpty(group))
             {
