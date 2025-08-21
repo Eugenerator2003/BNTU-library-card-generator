@@ -69,11 +69,6 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport.Tests
             var expectedCards = new StringBuilder();
             for (int i = 0; i < cards.Count; i++)
             {
-                if ((i + 1) % 10 == 0)
-                {
-                    papers.Append(new StringBuilder(paper).Append(expectedCards.ToString()));
-                    expectedCards.Clear();
-                }
                 var exportedCard = new StringBuilder(card);
                 exportedCard.Replace("{codbar}", cards[i].CodbarValue.ToString());
                 exportedCard.Replace("{lastname}", cards[i].Lastname);
@@ -86,9 +81,16 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport.Tests
                 exportedCard.Replace("{portraitPath}", cards[i].PhotoName);
                 exportedCard.Replace("{barcodePath}", $"{cards[i].CodbarValue}.png");
                 expectedCards.Append(exportedCard);
+                if ((i + 1) % 10 == 0)
+                {
+                    papers.Append(new StringBuilder(paper).Append(expectedCards.ToString()));
+                    expectedCards.Clear();
+                }
             }
-            papers.Append(new StringBuilder(paper).Replace("{cards}", expectedCards.ToString()));
+            if (cards.Count % 10 != 0)
+                papers.Append(new StringBuilder(paper).Replace("{cards}", expectedCards.ToString()));
             expectedDocument.Replace("{papers}", papers.ToString());
+            expectedDocument.Replace("{title}", $"Билеты группы test");
 
             var actualDocument = File.ReadAllText("groups/test/test.html");
             Assert.AreEqual(expectedDocument.ToString(), actualDocument);
