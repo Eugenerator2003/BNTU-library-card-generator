@@ -36,17 +36,18 @@
     .text-block,
     .img-block {
         height: inherit;
-        width: 5cm;
         display: flex;
         flex-direction: column;
     }
 
     .text-block {
         font-size: 10pt;
+        width: 6.5cm;
     }
 
     .text-block>div {
         margin-bottom: 3px;
+        margin-left: 4px;
     }
 
     .black {
@@ -63,7 +64,7 @@
     }
 
     .img-block {
-        width: 4cm;
+        overflow: hidden;
     }
 
     .photo {
@@ -72,7 +73,7 @@
     }
 
     .barcode {
-        height: 1cm;
+        height: 1.2cm;
         width: 4cm;
     }
 </style>
@@ -91,7 +92,7 @@
                 <div>Факультет <span class="black">ФИТР гр. 5884800</span></div>
                 <div>Категория: <span class="black">Студенты ДО</span></div>
                 <div>Дата выдачи: <span class="black" style="white-space: pre-wrap;"> 2025-09-01</span></div>
-                <div>Действителен <br>до: <span class="black" style="white-space: pre-wrap;">                  2030-09-01</span></div>
+                <div>Действителен <br>до: <span class="black" style="white-space: pre-wrap;"> 2030-09-01</span></div>
             </div>
             <div class="img-block">
                 <div class="photo-block"><img class="photo" src="portrait.png"></div>
