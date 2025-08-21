@@ -141,7 +141,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
             var filePath = Path.Combine(photoFolder, card.PhotoName);
             if (!File.Exists(filePath))
             {
-                throw new FileNotFoundException($"Фотография студента {card.CodbarValue} с именем {card.PhotoName} не найдена в папке {photoFolder}.");
+                throw new FileNotFoundException($"Фотография студента {card.Lastname} {card.Firstname} с именем {card.PhotoName} не найдена в папке {photoFolder}.");
             }
             var groupPhotosFolder = Path.Combine(workDirectory, GroupPhotosFolder);
             if (!Directory.Exists(groupPhotosFolder))
