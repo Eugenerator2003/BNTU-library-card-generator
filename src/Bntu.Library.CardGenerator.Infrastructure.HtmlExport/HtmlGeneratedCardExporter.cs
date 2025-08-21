@@ -1,5 +1,6 @@
 ﻿using Bntu.Library.CardGenerator.Application.Services.Generator;
 using Bntu.Library.CardGenerator.Application.Util;
+using Bntu.Library.CardGenerator.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,6 +45,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
                 DirectoryPreparing();
                 var document = ImportToDocument(values);
                 File.WriteAllText(Path.Combine(workDirectory, $"{groupFolder}.html"), document.ToString(), Encoding.UTF8);
+                var listDocument = GetStudentsList(values);
+                File.WriteAllText(Path.Combine(workDirectory, $"{groupFolder}_студенты.html"), listDocument.ToString(), Encoding.UTF8);
                 return ApplicationResult<EmptyResult>.Success(null, "Читательские билеты были успешно экспортированы в формат HTML.");
             }
             catch (Exception ex)
@@ -131,8 +134,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
                     htmlCards.Clear();
                 }
             }
-            //papers.Append(new StringBuilder(templatesContext.Paper).Replace("{cards}", htmlCards.ToString()));
             doc.Replace("{papers}", papers.ToString());
+            doc.Replace("{title}", $"Билеты группы {groupFolder}");
             return doc;
         }
 
@@ -176,6 +179,44 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
             exportedCard.Replace("{portraitPath}", card.PhotoName);
             exportedCard.Replace("{barcodePath}", barcodeFileName);
             return exportedCard;
+        }
+
+        private StringBuilder GetStudentsList(IList<GeneratedReaderCard> cards)
+        {
+            StringBuilder list = new StringBuilder();
+            var groupedCards = cards.GroupBy(a => new { a.Faculty, a.StudyGroup })
+                                    .OrderBy(a => new { a.Key.Faculty, a.Key.StudyGroup });
+            var lastFaculty = "";
+            var lastGroup = "";
+            int index = 1;
+
+            list.AppendLine("");
+            foreach(var group in groupedCards)
+            {
+                if (lastFaculty != group.Key.Faculty)
+                {
+                    lastFaculty = group.Key.Faculty;
+                    list.AppendLine($"<h1>Факультет {group.Key.Faculty}</h1>");
+                }
+
+                if (lastGroup != group.Key.StudyGroup)
+                {
+                    lastGroup = group.Key.StudyGroup;
+                    list.AppendLine($"<h2>Группа {group.Key.StudyGroup}:</h2>");
+                    index = 1;
+                }
+
+                foreach(var card in group)
+                {
+                    list.Append($"<h3>{index}. {card.Lastname} {card.Firstname}</h3>");
+                    index++;
+                }
+            }
+            list.AppendLine("</div>");
+            StringBuilder document = new StringBuilder(templatesContext.Document);
+            document.Replace("{papers}", list.ToString());
+            document.Replace("{title}", $"Список группы {groupFolder}");
+            return document;
         }
     }
 }
