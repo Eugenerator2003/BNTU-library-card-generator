@@ -193,7 +193,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
             var lastGroup = "";
             int index = 1;
 
-            list.AppendLine("");
+            list.AppendLine("<div style='padding: 10px'>");
             foreach(var group in groupedCards)
             {
                 if (lastFaculty != group.Key.Faculty)
