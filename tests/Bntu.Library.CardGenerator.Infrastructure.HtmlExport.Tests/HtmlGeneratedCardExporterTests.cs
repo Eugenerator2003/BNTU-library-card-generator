@@ -16,7 +16,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport.Tests
         [TestInitialize]
         public void Initialize()
         {
-            Directory.Delete("groups", true);
+            if (Directory.Exists("groups"))
+                Directory.Delete("groups", true);
             Directory.CreateDirectory("groups");
             var issue = DateTime.Now;
             var graduation = issue.AddYears(5);
