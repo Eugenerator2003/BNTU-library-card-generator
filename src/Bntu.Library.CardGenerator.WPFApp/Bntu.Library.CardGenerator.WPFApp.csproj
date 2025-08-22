@@ -6,8 +6,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <AssemblyName>Генератор читательских билетов</AssemblyName>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <Content Include="..\..\Assets\templates\card.html" Link="templates\card.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
