@@ -66,7 +66,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
 
                 sb.Append($"д. {House}");
 
-                if (string.IsNullOrEmpty(Building))
+                if (!string.IsNullOrEmpty(Building))
                 {
                     sb.Append(", корпус");
                     sb.Append(Building);
