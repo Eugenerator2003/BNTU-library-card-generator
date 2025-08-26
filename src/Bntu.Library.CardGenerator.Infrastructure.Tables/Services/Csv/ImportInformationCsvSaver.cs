@@ -45,6 +45,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv
                 var config = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
                 {
                     Delimiter = ";",
+                    TrimOptions = CsvHelper.Configuration.TrimOptions.Trim
                 };
                 writer = new CsvWriter(stream, config);
             }
