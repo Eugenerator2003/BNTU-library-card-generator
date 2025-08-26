@@ -56,7 +56,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
             if (!string.IsNullOrEmpty(_city) && !string.IsNullOrEmpty(CityType))
             {
                 StringBuilder sb = new StringBuilder();
-                if (string.IsNullOrEmpty(StreetType))
+                if (!string.IsNullOrEmpty(StreetType))
                 {
                     sb.Append(StreetType);
                     sb.Append(' ');
@@ -78,7 +78,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
                     sb.Append(Apartment);
                 }
 
-                return sb.ToString();
+                return sb.ToString().Replace("\"", "");
             }
             else
             {
