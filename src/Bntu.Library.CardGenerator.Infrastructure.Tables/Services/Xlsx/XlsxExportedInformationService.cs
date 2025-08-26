@@ -12,6 +12,7 @@ using Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx;
 using Bntu.Library.CardGenerator.Application.StudentsImport.Models;
 using Bntu.Library.CardGenerator.Domain.ValueObjects;
 using Bntu.Library.CardGenerator.Infrastructure.Tables.Util;
+using System.Text.RegularExpressions;
 
 namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
 {
@@ -33,6 +34,22 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
             if (!ignoreSpace)
             {
                 sb.Replace(" ", "");
+            }
+            return sb.ToString();
+        }
+
+        private static string RemoveLetters(string? value)
+        {
+            if (value is null)
+                return "";
+
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i < value.Length; i++)
+            {
+                if (!char.IsLetter(value[i]))
+                {
+                    sb.Append(value[i]);
+                }
             }
             return sb.ToString();
         }
@@ -229,9 +246,11 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
             string? phonesLine = row[contactFields[contactFieldIndices["Телефоны"]]]?.ToString();
             if (!string.IsNullOrEmpty(phonesLine))
             {
-                foreach (var phoneS in phonesLine.Split(","))
+                phonesLine = RemoveLetters(phonesLine);
+                Regex regex = new Regex(@"(?:\+?375|8)\s*\(?\d{2}\)?\s*\d{3}\s*\d{2}\s*\d{2}\b");
+                foreach (var phoneS in regex.Matches(phonesLine))
                 {
-                    var phone = RemoveTrash(phoneS, false);
+                    var phone = RemoveTrash(phoneS.ToString(), false);
                     phones.Add(phone);
                 }
             }
