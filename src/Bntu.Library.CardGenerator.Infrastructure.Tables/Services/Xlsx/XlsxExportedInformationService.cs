@@ -17,6 +17,26 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
 {
     public class XlsxExportedInformationService : IExportedInformationService
     {
+        private static string RemoveTrash(string? value, bool ignoreSpace = true)
+        {
+            if (value is null)
+                return "";
+            
+            StringBuilder sb = new StringBuilder(value);
+            sb.Replace("(", "")
+                .Replace(")", "")
+                .Replace("+", "")
+                .Replace("-", "")
+                .Replace("'", "")
+                .Replace("\"", "")
+                .Replace(";", "");
+            if (!ignoreSpace)
+            {
+                sb.Replace(" ", "");
+            }
+            return sb.ToString();
+        }
+
         private static string[] studentFields =
         [
             "Фамилия",
@@ -158,8 +178,8 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
                 sexType = Person.SexType.Male;
             }
 
-            var student = new XlsxExportedStudentInformation(lastname ?? "", firstname ?? "", patronymic ?? "",
-                                                             birthDate, passportNumber ?? "", passportInfo ?? "", sexType);
+            var student = new XlsxExportedStudentInformation(RemoveTrash(lastname), RemoveTrash(firstname), RemoveTrash(patronymic),
+                                                             birthDate, RemoveTrash(passportNumber), RemoveTrash(passportInfo), sexType);
             return student;
         }
 
@@ -198,7 +218,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
                                                     StudyGroup.DepartmentType.Fulltime :
                                                     StudyGroup.DepartmentType.Correspondence;
 
-            var study = new XlsxExportedStudyInformation(studyDate, graduationDate, faculty, specialization ?? "", group, department);
+            var study = new XlsxExportedStudyInformation(studyDate, graduationDate, RemoveTrash(faculty), RemoveTrash(specialization, false), RemoveTrash(group), department);
             return study;
         }
 
@@ -211,15 +231,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
             {
                 foreach (var phoneS in phonesLine.Split(","))
                 {
-                    var phone = phoneS.Trim()
-                                      .Replace("(", "")
-                                      .Replace(")", "")
-                                      .Replace("+", "")
-                                      .Replace("-", "")
-                                      .Replace(" ", "")
-                                      .Replace("'", "")
-                                      .Replace("\"", "")
-                                      .Replace(";", "");
+                    var phone = RemoveTrash(phoneS, false);
                     phones.Add(phone);
                 }
             }
@@ -237,8 +249,9 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
             string? building = row[contactFields[contactFieldIndices["Корпус"]]]?.ToString();
             string? apartment = row[contactFields[contactFieldIndices["Квартира"]]].ToString();
 
-            var contact = new XlsxExportedContactInformation(cityType, city, streetType, street,
-                                                             house, building, apartment, phones, email);
+            var contact = new XlsxExportedContactInformation(RemoveTrash(cityType), RemoveTrash(city), RemoveTrash(streetType), 
+                                                             RemoveTrash(street), RemoveTrash(house), RemoveTrash(building), RemoveTrash(apartment), phones, 
+                                                             RemoveTrash(email));
             return contact;
         }
     }
