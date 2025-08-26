@@ -217,7 +217,9 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
                                       .Replace("+", "")
                                       .Replace("-", "")
                                       .Replace(" ", "")
-                                      .Replace("'", "");
+                                      .Replace("'", "")
+                                      .Replace("\"", "")
+                                      .Replace(";", "");
                     phones.Add(phone);
                 }
             }
