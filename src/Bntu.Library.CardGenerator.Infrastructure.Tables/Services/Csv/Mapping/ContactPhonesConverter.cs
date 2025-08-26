@@ -11,7 +11,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Csv.Mapping
         {
             if (value is ImportContactInformation contact)
             {
-                return string.Join(',', contact.Phones);
+                return contact.Phones.FirstOrDefault() ?? "";
             }
             return base.ConvertToString(value, row, memberMapData);
         }
