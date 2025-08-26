@@ -40,6 +40,9 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Services
                     if (exportedInformation[i].StudyInformation.StudyStartDate.Year != parameter.CurrentYear.Year)
                         continue;
 
+                    if (exportedInformation[i].StudyInformation.Faculty == "Солигорск")
+                        continue;
+                        
                     var student = GetStudentInformation(exportedInformation[i].Student);
                     var contact = GetContactInformation(exportedInformation[i].ContactInformation);
                     var studyGroup = GetStudyGroup(exportedInformation[i].StudyInformation, parameter);
