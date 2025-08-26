@@ -176,10 +176,16 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
             }
 
             string? dateTimeString = row[studentFields[studentFieldIndices["Дата рождения"]]]?.ToString();
-            if (!(!string.IsNullOrEmpty(dateTimeString) && DateTime.TryParse(dateTimeString, out DateTime birthDate)))
+            if (string.IsNullOrEmpty(dateTimeString) ||
+                !DateTime.TryParse(dateTimeString, out DateTime birthDate) || birthDate.Year < 1900)
             {
                 birthDate = new DateTime(1900, 1, 1);
             }
+
+            //if (birthDate.Year < 1900)
+            //{
+            //    birthDate = new DateTime(1900, 1, 1);
+            //}
 
             string? passportNumber = row[studentFields[studentFieldIndices["Серия и номер паспорта"]]]?.ToString();
             string? passportInfo = row[studentFields[studentFieldIndices["Кем выдан паспорт"]]]?.ToString();
