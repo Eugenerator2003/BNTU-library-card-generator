@@ -67,7 +67,8 @@
 
         .text-block {
             font-size: 10pt;
-            width: 6.5cm;
+            width: 5.8cm;
+            flex: 0 0 5.8cm;
         }
 
         .text-block>div {
@@ -89,17 +90,29 @@
         }
 
         .img-block {
-            overflow: hidden;
+            flex: 1;
         }
 
+        .photo-block,
+        .barcode-block {
+            width: 3.2cm;
+            overflow: hidden;
+        }
+        
+        .photo-block {
+            margin-bottom: 3px;
+            height: 2.9cm;
+        }
+        
         .photo {
-            height: 3cm;
-            width: 3.95cm;
+            height: inherit;
+            position: relative;
+            left: -10px;
         }
 
         .barcode {
-            height: 1cm;
-            width: 3.95cm;
+            height: 1.3cm;
+            width: 3.1cm;
         }
 
         h3 {
@@ -108,7 +121,9 @@
     </style>
 
 </head>
+
 <body>
     {papers}
 </body>
+
 </html>
