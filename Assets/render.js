@@ -42,7 +42,7 @@ async function getCards(cardCount) {
     const renderedCards = new Array(cardCount);
     const template = await loadCard();
     for (let i = 0; i < cardCount; i++) {
-        let card = template.replace('{codbar}', 1234567890);
+        let card = template.replace('{codbar}', 85785);
         card = card.replace('{lastname}', 'Фамилия');
         card = card.replace('{givenNames}', 'Имя Отчество');
         card = card.replace('{faculty}', 'ФКЛТТ');
