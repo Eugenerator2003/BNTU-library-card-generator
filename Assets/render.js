@@ -2,15 +2,17 @@ const DOCUMENT_PATH = 'templates\\document.html';
 const PAPER_PATH = 'templates\\paper.html';
 const CARD_PATH = 'templates\\card.html';
 
+const CARDS_BY_PAGE = 10;
+
 async function renderDocument(cardCount) {
     let document = await loadDocument();
     let papers = '';
     const paperTemplate = await loadPaper();
-    let papersCount = Math.floor(cardCount / 8);
+    let papersCount = Math.floor(cardCount / CARDS_BY_PAGE);
     for (let i = 0; i < papersCount; i++) {
-        papers = await addCardsToPaper(papers, paperTemplate, 8);
+        papers = await addCardsToPaper(papers, paperTemplate, CARDS_BY_PAGE);
     }
-    const remain = cardCount % 8;
+    const remain = cardCount % CARDS_BY_PAGE;
     if (remain > 0)  {
         papers = await addCardsToPaper(papers, paperTemplate, remain);
     }
