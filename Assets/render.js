@@ -1,6 +1,7 @@
 const DOCUMENT_PATH = 'templates\\document.html';
 const PAPER_PATH = 'templates\\paper.html';
 const CARD_PATH = 'templates\\card.html';
+const DATA_PATH = 'data\\example_data.json';
 
 const CARDS_BY_PAGE = 10;
 
@@ -40,21 +41,21 @@ async function loadPaper() {
 
 async function getCards(cardCount) {
     const renderedCards = new Array(cardCount);
+    const data = await getData();
     const template = await loadCard();
     for (let i = 0; i < cardCount; i++) {
-        let card = template.replace('{codbar}', 85785);
-        card = card.replace('{lastname}', 'Фамилия');
-        card = card.replace('{givenNames}', 'Имя Отчество');
-        card = card.replace('{faculty}', 'ФКЛТТ');
-        card = card.replace('{group}', '10203040');
-        card = card.replace('{department}', 'Студент ДО');
-        card = card.replace('{registrationDate}', '2025-09-01');
-        card = card.replace('{graduationDate}', '2030-09-01');
-        card = card.replace('{portraitPath}', 'portrait.png');
-        card = card.replace('{barcodePath}', 'barcode.png');
+        let card = template;
+        for (const key in data) {
+            card = card.replace(`{${key}}`, data[key]);
+        }
         renderedCards[i] = card;
     }
     return renderedCards;
+}
+
+async function getData() {
+    const data = await fetch(DATA_PATH);
+    return await data.json();
 }
 
 async function loadCard() {

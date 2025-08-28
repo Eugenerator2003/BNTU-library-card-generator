@@ -1,0 +1,12 @@
+{
+  "codbar": 85785,
+  "lastname": "Оченьдлиннаяфамилия",
+  "givenNames": "Длинные ИмяиОтчество",
+  "faculty": "ФКЛТТ",
+  "group": "10203040",
+  "department": "Студент ДО",
+  "registrationDate": "2025-09-01",
+  "graduationDate": "2030-09-01",
+  "portraitPath": "portrait.png",
+  "barcodePath": "barcode.png"
+}
