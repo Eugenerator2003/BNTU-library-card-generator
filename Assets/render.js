@@ -5,6 +5,8 @@ const DATA_PATH = 'data\\example_data.json';
 
 const CARDS_BY_PAGE = 10;
 
+let counter = 0;
+
 async function renderDocument(cardCount) {
     let document = await loadDocument();
     let papers = '';
@@ -46,7 +48,13 @@ async function getCards(cardCount) {
     for (let i = 0; i < cardCount; i++) {
         let card = template;
         for (const key in data) {
+            if (key == 'codbar' && data[key] < counter) {
+                data[key] = counter++;
+            }
             card = card.replace(`{${key}}`, data[key]);
+            if (key == 'codbar' && counter == 0) {
+                counter = data[key] + 1;
+            }
         }
         renderedCards[i] = card;
     }
