@@ -14,31 +14,31 @@
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            height: 295mm;
-            width: 210mm;
-            gap: 0px;
+            /* height: 297mm; */
+            width: 212mm;
+            gap: 25px;
             align-content: flex-start;
             padding-left: 30px;
-            padding-top: 50px;
+            padding-top: 20px;
             page-break-after: always;
         }
 
         .wrap {
             border: 1px solid gray;
-            border-bottom: 3px solid gray;
+            border-bottom: 1px solid gray;
             display: flex;
             flex-direction: column;
             width: 9cm;
             height: 5.34cm;
         }
 
-        .wrap:nth-child(2n + 1) {
-            border-right: 3px solid gray;
+        /* .wrap:nth-child(2n + 1) {
+            border-right: 1px solid gray;
         }
 
         .wrap:nth-last-child(-n+2) {
             border-bottom: 1px solid gray;
-        }
+        } */
 
         .logo-block {
             height: 1cm;
@@ -98,12 +98,12 @@
             width: 3.2cm;
             overflow: hidden;
         }
-        
+
         .photo-block {
             margin-bottom: 3px;
             height: 2.9cm;
         }
-        
+
         .photo {
             height: inherit;
             position: relative;
@@ -118,12 +118,224 @@
         h3 {
             font-weight: normal;
         }
-    </style>
 
+        #editButton {
+            margin: 10px 0px 0px 35px;
+            font-size: 16px;
+        }
+
+        .edit-block {
+            width: 8cm;
+            height: max-content;
+            font-size: 18px;
+            border: 2px dashed purple;
+            padding: 0px 10px 0 10px;
+        }
+
+        .number-block {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        hr {
+            margin: 7px 0px 3px 0px;
+            height: 1px;
+            background-color: black;
+        }
+
+        .label-block {
+            margin: 3px 0px 5px 0px;
+        }
+
+        input {
+            font-size: 15px;
+            width: inherit;
+        }
+
+        .slider {
+            width: 6.7cm;
+            margin-bottom: 5px;
+        }
+
+        .reset {
+            width: 1cm;
+            position: relative;
+            margin: 0px 0px 10px 10px;
+        }
+
+        @media print {
+
+            button,
+            .edit-block {
+                display: none !important;
+            }
+
+            .paper {
+                width: 212mm;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <button id="editButton" onclick="startEdit()">Войти в режим редактирования</button>
     {papers}
+
+    <script>
+        let controlCreated = false;
+
+        const SLIDER_MIN = 0;
+        const SLIDER_MAX = 200;
+        const SLIDER_STEP = 1;
+        const SLIDER_BASE = 100;
+
+        function startEdit() {
+            if (controlCreated) {
+                showEditBlocks();
+            }
+            else {
+                let papers = document.querySelectorAll('.paper');
+
+                for (const paper of papers) {
+                    const cards = paper.getElementsByClassName('wrap');
+                    for (let i = 0; i < cards.length; i++) {
+
+                        const cardEditBlock = createCardEditBlock(cards[i]);
+                        cards[i].after(cardEditBlock);
+                    }
+                }
+                controlCreated = true;
+            }
+
+            switchTo('Выйти из режима редактирования', endEdit);
+        }
+
+        function createCardEditBlock(cardElement) {
+            const block = document.createElement('div');
+            block.className = 'edit-block';
+
+            const { numberBlock, number } = createNumberBlock(cardElement);
+            const { lastnameLabel, lastnameInput } = createLastnameControl(cardElement, number);
+            const { givenNamesLabel, givenNamesInput } = createGivenNamesControl(cardElement, number);
+            const { sliderLabel, sliderInput, resetInput } = createSliderControl(cardElement, number);
+
+            block.appendChild(numberBlock);
+            block.appendChild(lastnameLabel);
+            block.appendChild(lastnameInput);
+            block.appendChild(document.createElement('hr'));
+            block.appendChild(givenNamesLabel);
+            block.appendChild(givenNamesInput);
+            block.appendChild(document.createElement('hr'));
+            block.appendChild(sliderLabel);
+            block.appendChild(sliderInput);
+            block.appendChild(resetInput);
+            return block;
+        }
+
+        function createNumberBlock(cardElement) {
+            const numberBlock = document.createElement('div');
+            const number = cardElement.getElementsByClassName('bold black')[0].innerText;
+            numberBlock.textContent = 'Билет №' + number;
+            numberBlock.className = 'number-block';
+            return { numberBlock, number };
+        }
+
+        function createLastnameControl(cardElement, number) {
+            const lastnameLabel = document.createElement('div');
+            lastnameLabel.textContent = 'Фамилия';
+            lastnameLabel.className = 'label-block';
+            const lastnameInput = document.createElement('input');
+            lastnameInput.type = 'text';
+            lastnameInput.id = `${number}_lastname`
+            bindToLastname(cardElement, lastnameInput);
+            return { lastnameLabel, lastnameInput };
+        }
+
+        function createGivenNamesControl(cardElement, number) {
+            const givenNamesLabel = document.createElement('div');
+            givenNamesLabel.textContent = 'Имя и отчество';
+            givenNamesLabel.className = 'label-block';
+            const givenNamesInput = document.createElement('input');
+            givenNamesInput.type = 'text';
+            givenNamesInput.id = `${number}_givenNames`
+            bindToGivenNames(cardElement, givenNamesInput);
+            return { givenNamesLabel, givenNamesInput };
+        }
+
+        function createSliderControl(cardElement, number) {
+            const sliderLabel = document.createElement('div');
+            sliderLabel.textContent = 'Яркость фотографии';
+            sliderLabel.className = 'label-block';
+            const sliderInput = document.createElement('input');
+            sliderInput.type = 'range';
+            sliderInput.ip = `${number}_slider`;
+            sliderInput.className = 'slider';
+            sliderInput.min = SLIDER_MIN;
+            sliderInput.max = SLIDER_MAX;
+            sliderInput.step = SLIDER_STEP;
+            sliderInput.value = SLIDER_BASE;
+
+            const resetInput = document.createElement('input');
+            resetInput.type = 'button';
+            resetInput.className = 'reset';
+            resetInput.value = '🔃';
+
+            bindToImage(cardElement, sliderInput, resetInput);
+
+            return { sliderLabel, sliderInput, resetInput };
+        }
+
+        function bindToLastname(cardElement, input) {
+            const lastnameDiv = cardElement.getElementsByClassName('bold name black')[0];
+            input.value = lastnameDiv.textContent;
+
+            input.addEventListener('input', (e) => {
+                lastnameDiv.textContent = input.value;
+            });
+        }
+
+        function bindToGivenNames(cardElement, input) {
+            const givenNamesDiv = cardElement.getElementsByClassName('bold name black')[1];
+            input.value = givenNamesDiv.textContent;
+
+            input.addEventListener('input', (e) => {
+                givenNamesDiv.textContent = input.value;
+            });
+        }
+
+        function bindToImage(cardElement, sliderInput, resetInput) {
+            const img = cardElement.getElementsByClassName('photo')[0];
+
+            sliderInput.addEventListener('input', (e) => {
+                img.style.filter = `brightness(${sliderInput.value}%)`;
+            });
+
+            resetInput.addEventListener('click', (e) => {
+                sliderInput.value = 100;
+                img.style.filter = `brightness(${SLIDER_BASE}%)`;
+            });
+        }
+
+        function switchTo(text, func) {
+            const button = document.getElementById('editButton');
+            button.onclick = () => func();
+            button.innerText = text;
+        }
+
+        function showEditBlocks() {
+            document.querySelectorAll('.edit-block').forEach(b => b.style.display = 'block');
+        }
+
+        function hideEditBlocks() {
+            document.querySelectorAll('.edit-block').forEach(b => b.style.display = 'none');
+        }
+
+        function endEdit() {
+            hideEditBlocks();
+            switchTo('Войти в режим редактирования', startEdit);
+        }
+    </script>
 </body>
 
 </html>
