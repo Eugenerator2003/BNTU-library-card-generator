@@ -4,4 +4,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.querySelectorAll('script').forEach(s => {
         window.eval(s.textContent);
     });
+
+    window.addBorders();
 });
