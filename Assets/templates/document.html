@@ -21,6 +21,7 @@
             padding-left: 30px;
             padding-top: 20px;
             page-break-after: always;
+            transition: width 0.3s, margin 0.3s, opacity 0.3s;
         }
 
         .wrap {
@@ -112,10 +113,12 @@
         }
 
         #editButton {
-            margin: 0px 0px 0px 250px;
+            margin: 2px 0 0 260px;
             font-size: 16px;
             position: fixed;
             z-index: 100;
+            border: 2px solid black;
+            border-radius: 3px;
         }
 
         .edit-block {
@@ -124,6 +127,7 @@
             font-size: 18px;
             border: 2px dashed purple;
             padding: 0px 10px 0 10px;
+            overflow: hidden;
         }
 
         .number-block {
@@ -133,13 +137,13 @@
         }
 
         hr {
-            margin: 7px 0px 3px 0px;
+            margin: 5px 0px 3px 0px;
             height: 1px;
             background-color: black;
         }
 
         .label-block {
-            margin: 3px 0px 5px 0px;
+            margin: 3px 0px 3px 0px;
         }
 
         input {
@@ -155,7 +159,7 @@
         .reset {
             width: 1cm;
             position: relative;
-            margin: 0px 0px 10px 10px;
+            margin: -5px 0px 5px 10px;
         }
 
         .border {
@@ -197,9 +201,9 @@
 
         function addBorders() {
             let papers = document.querySelectorAll('.paper');
-            for(const paper of papers) {
+            for (const paper of papers) {
                 const cards = paper.getElementsByClassName('wrap');
-                for(let i = 0; i < cards.length; i++) {
+                for (let i = 0; i < cards.length; i++) {
                     const even = (i + 1) % 2 == 0;
                     if (!even) {
                         const div = document.createElement('div');
@@ -224,19 +228,19 @@
         const SLIDER_BASE = 100;
 
         function startEdit() {
+            hideBorder();
             if (controlCreated) {
-                showEditBlocks();
+                animateEditBlockChanding('block');
             }
             else {
-                let papers = document.querySelectorAll('.paper');
-
-                for (const paper of papers) {
-                    const cards = paper.getElementsByClassName('wrap');
-                    for (let i = 0; i < cards.length; i++) {
-                        const cardEditBlock = createCardEditBlock(cards[i]);
-                        cards[i].after(cardEditBlock);
-                    }
+                const cards = getCardContainers();
+                const firstPos = getPositions(cards);
+                for(const card of cards) {
+                    const cardEditBlock = createCardEditBlock(card);
+                    card.after(cardEditBlock);
                 }
+                const lastPos = getPositions(cards);
+                setTransform(cards, firstPos, lastPos);
                 controlCreated = true;
             }
 
@@ -355,16 +359,49 @@
             button.innerText = text;
         }
 
-        function showEditBlocks() {
-            document.querySelectorAll('.edit-block').forEach(b => b.style.display = 'block');
+        function animateEditBlockChanding(editBlockDisplay) {
+            const items = getCardContainers();
+            const first = getPositions(items);
+            document.querySelectorAll('.edit-block').forEach(b => b.style.display = editBlockDisplay);
+            const last = getPositions(items);
+            setTransform(items, first, last);
         }
 
-        function hideEditBlocks() {
-            document.querySelectorAll('.edit-block').forEach(b => b.style.display = 'none');
+        function getCardContainers() {
+            return [...document.getElementsByClassName('wrap')];
+        }
+
+        function getPositions(items) {
+            const positions = items.map(el => el.getBoundingClientRect());
+            return positions;
+        }
+
+        function setTransform(items, firstPos, lastPos) {
+            items.forEach((el, i) => {
+                const dx = firstPos[i].left - lastPos[i].left;
+                const dy = firstPos[i].top - lastPos[i].top;
+                if (dx || dy) {
+                    el.style.transform = `translate(${dx}px, ${dy}px)`;
+                    el.style.transition = 'none';
+                    requestAnimationFrame(() => {
+                        el.style.transform = '';
+                        el.style.transition = 'transform 0.3s ease';
+                    });
+                }
+            });
+        }
+
+        function showBorder() {
+            [...document.getElementsByClassName('border')].forEach(el => el.style.display = 'block');
+        }
+
+        function hideBorder() {
+            [...document.getElementsByClassName('border')].forEach(el => el.style.display = 'none');
         }
 
         function endEdit() {
-            hideEditBlocks();
+            showBorder();
+            animateEditBlockChanding('none');
             switchTo('Войти в режим редактирования', startEdit);
         }
     </script>
