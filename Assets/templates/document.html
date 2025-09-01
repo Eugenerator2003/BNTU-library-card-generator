@@ -112,13 +112,20 @@
             font-weight: normal;
         }
 
-        #editButton {
-            margin: 2px 0 0 260px;
+        button {
             font-size: 16px;
             position: fixed;
             z-index: 100;
             border: 2px solid black;
             border-radius: 3px;
+        }
+
+        #editButton {
+            margin: 2px 0 0 160px;
+        }
+
+        #printButton {
+            margin: 2px 0 0 460px;
         }
 
         .edit-block {
@@ -194,6 +201,7 @@
 
 <body>
     <button id="editButton" onclick="startEdit()">Войти в режим редактирования</button>
+    <button id="printButton" onclick="window.print()">Печать</button>
     {papers}
 
     <script>
@@ -244,7 +252,7 @@
                 setTransform(cards, firstPos, lastPos);
                 controlCreated = true;
             }
-
+            document.getElementById('printButton').style.display = 'none';
             switchTo('Выйти из режима редактирования', endEdit);
         }
 
@@ -433,6 +441,7 @@
         function endEdit() {
             showBorder();
             animateEditBlockChanding('none');
+            document.getElementById('printButton').style.display = 'block';
             switchTo('Войти в режим редактирования', startEdit);
         }
     </script>
