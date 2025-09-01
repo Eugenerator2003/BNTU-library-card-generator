@@ -197,6 +197,7 @@
     {papers}
 
     <script>
+
         window.addEventListener('DOMContentLoaded', () => addBorders());
 
         function addBorders() {
@@ -254,7 +255,7 @@
             const { numberBlock, number } = createNumberBlock(cardElement);
             const { lastnameLabel, lastnameInput } = createLastnameControl(cardElement, number);
             const { givenNamesLabel, givenNamesInput } = createGivenNamesControl(cardElement, number);
-            const { sliderLabel, sliderInput, resetInput } = createSliderControl(cardElement, number);
+            const { sliderLabel, sliderInput } = createSliderControl(cardElement, number);
 
             block.appendChild(numberBlock);
             block.appendChild(lastnameLabel);
@@ -265,6 +266,8 @@
             block.appendChild(document.createElement('hr'));
             block.appendChild(sliderLabel);
             block.appendChild(sliderInput);
+            
+            const resetInput = createResetInput(cardElement, block);
             block.appendChild(resetInput);
             return block;
         }
@@ -312,14 +315,20 @@
             sliderInput.step = SLIDER_STEP;
             sliderInput.value = SLIDER_BASE;
 
+            bindToImage(cardElement, sliderInput);
+
+            return { sliderLabel, sliderInput };
+        }
+
+        function createResetInput(cardElement, editBlock) {
             const resetInput = document.createElement('input');
             resetInput.type = 'button';
             resetInput.className = 'reset';
             resetInput.value = '🔃';
 
-            bindToImage(cardElement, sliderInput, resetInput);
+            bindToReset(cardElement, editBlock, resetInput);
 
-            return { sliderLabel, sliderInput, resetInput };
+            return resetInput;
         }
 
         function bindToLastname(cardElement, input) {
@@ -340,16 +349,38 @@
             });
         }
 
-        function bindToImage(cardElement, sliderInput, resetInput) {
+        function bindToImage(cardElement, sliderInput) {
             const img = cardElement.getElementsByClassName('photo')[0];
 
             sliderInput.addEventListener('input', (e) => {
                 img.style.filter = `brightness(${sliderInput.value}%)`;
             });
+        }
+
+        function bindToReset(cardElement, editBlock, resetInput) {
+            const image = cardElement.getElementsByClassName('photo')[0];
+            
+            const labels = cardElement.getElementsByClassName('bold name black');
+            const lastnameLabel = labels[0];
+            const givenNameLabel = labels[1];
+            
+            const inputs = editBlock.getElementsByTagName('input');
+            const lastnameInput = inputs[0];
+            const givenNameInput = inputs[1];
+            const sliderInput = inputs[2];
+            
+            const lastnameValue = lastnameLabel.textContent;
+            const givenNameValue = givenNameLabel.textContent;
 
             resetInput.addEventListener('click', (e) => {
+                lastnameInput.value = lastnameValue;
+                lastnameLabel.textContent = lastnameValue;
+                
+                givenNameInput.value = givenNameValue;
+                givenNameLabel.textContent = givenNameValue;
+                
+                image.style.filter = `brightness(${SLIDER_BASE}%)`;
                 sliderInput.value = 100;
-                img.style.filter = `brightness(${SLIDER_BASE}%)`;
             });
         }
 
