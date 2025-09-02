@@ -205,8 +205,14 @@
     {papers}
 
     <script>
-
+        window.addEventListener('DOMContentLoaded', () => checkCards());
         window.addEventListener('DOMContentLoaded', () => addBorders());
+
+        function checkCards() {
+            if (document.getElementsByClassName('wrap').length == 0) {
+                document.getElementById('editButton').style.display = 'none';
+            }
+        }
 
         function addBorders() {
             let papers = document.querySelectorAll('.paper');
@@ -244,7 +250,7 @@
             else {
                 const cards = getCardContainers();
                 const firstPos = getPositions(cards);
-                for(const card of cards) {
+                for (const card of cards) {
                     const cardEditBlock = createCardEditBlock(card);
                     card.after(cardEditBlock);
                 }
@@ -274,7 +280,7 @@
             block.appendChild(document.createElement('hr'));
             block.appendChild(sliderLabel);
             block.appendChild(sliderInput);
-            
+
             const resetInput = createResetInput(cardElement, block);
             block.appendChild(resetInput);
             return block;
@@ -367,26 +373,26 @@
 
         function bindToReset(cardElement, editBlock, resetInput) {
             const image = cardElement.getElementsByClassName('photo')[0];
-            
+
             const labels = cardElement.getElementsByClassName('bold name black');
             const lastnameLabel = labels[0];
             const givenNameLabel = labels[1];
-            
+
             const inputs = editBlock.getElementsByTagName('input');
             const lastnameInput = inputs[0];
             const givenNameInput = inputs[1];
             const sliderInput = inputs[2];
-            
+
             const lastnameValue = lastnameLabel.textContent;
             const givenNameValue = givenNameLabel.textContent;
 
             resetInput.addEventListener('click', (e) => {
                 lastnameInput.value = lastnameValue;
                 lastnameLabel.textContent = lastnameValue;
-                
+
                 givenNameInput.value = givenNameValue;
                 givenNameLabel.textContent = givenNameValue;
-                
+
                 image.style.filter = `brightness(${SLIDER_BASE}%)`;
                 sliderInput.value = 100;
             });
