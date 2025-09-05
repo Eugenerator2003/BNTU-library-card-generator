@@ -38,7 +38,7 @@ namespace Bntu.Library.CardGenerator.Application.StudentsImport.Services
                 var year = (parameter.CurrentYear.Year % 2000).ToString();
                 for (int i = 0; i < exportedInformation.Count; i++)
                 {
-                    if (exportedInformation[i].StudyInformation.GroupNumber.EndsWith(year))
+                    if (!exportedInformation[i].StudyInformation.GroupNumber.EndsWith(year))
                         continue;
 
                     if (exportedInformation[i].StudyInformation.Faculty == "Солигорск")
