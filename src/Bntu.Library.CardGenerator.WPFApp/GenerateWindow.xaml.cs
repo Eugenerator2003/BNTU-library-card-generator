@@ -140,7 +140,6 @@ namespace Bntu.Library.CardGenerator.WPFApp
             if (!exportResult.Success)
             {
                 MessageBox.Show(this, exportResult.Message, "Ошибка");
-                return;
             }
             ReaderCardsMessage.Text = exportResult.Message;
         }
