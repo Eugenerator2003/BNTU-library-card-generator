@@ -158,7 +158,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
             var student = GetStudentFromRow(row);
             var studyInformation = GetStudyFromRow(row, context);
             var contactInformation = GetContactFromRow(row);
-            var photo = (string)row["Фотография"];
+            var photo = GetPhoto(row);
 
             var information = new ExportedInformation(id, student, studyInformation, contactInformation, photo);
             return information;
@@ -278,6 +278,12 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
                                                              RemoveTrash(street), RemoveTrash(house), RemoveTrash(building), RemoveTrash(apartment), phones, 
                                                              RemoveTrash(email));
             return contact;
+        }
+
+        private string GetPhoto(DataRow row)
+        {
+            var value = row["Фотография"];
+            return value is DBNull ? "" : (string)value;
         }
     }
 }
