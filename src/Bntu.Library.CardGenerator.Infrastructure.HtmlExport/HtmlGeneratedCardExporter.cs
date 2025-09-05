@@ -43,6 +43,9 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
                     LoadTemplates();
                 }
                 DirectoryPreparing();
+
+                values = values.Where(c => string.IsNullOrEmpty(c.PhotoName)).ToList();
+
                 var document = ImportToDocument(values);
                 File.WriteAllText(Path.Combine(workDirectory, $"{groupFolder}.html"), document.ToString(), Encoding.UTF8);
                 var listDocument = GetStudentsList(values);
