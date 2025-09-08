@@ -87,9 +87,9 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
                                 StudyGroup.DepartmentType.Fulltime :
                                 StudyGroup.DepartmentType.Correspondence;
 
-            var photoName = CsvReader.GetField(NextField());
-            if (string.IsNullOrEmpty(photoName))
-                throw new Exception($"Путь к фото не может быть пустым");
+            var photoName = CsvReader.GetField(NextField()) ?? "";
+            //if (string.IsNullOrEmpty(photoName))
+            //    throw new Exception($"Путь к фото не может быть пустым");
 
             CardInfo cardInfo = new CardInfo(codbar, codbar, issueDate, expirationDate);
             StudyGroup studyGroup = new StudyGroup(group, department);

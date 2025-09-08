@@ -44,7 +44,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
                 }
                 DirectoryPreparing();
 
-                values = values.Where(c => string.IsNullOrEmpty(c.PhotoName)).ToList();
+                values = values.Where(c => !string.IsNullOrEmpty(c.PhotoName)).ToList();
 
                 var document = ImportToDocument(values);
                 File.WriteAllText(Path.Combine(workDirectory, $"{groupFolder}.html"), document.ToString(), Encoding.UTF8);
