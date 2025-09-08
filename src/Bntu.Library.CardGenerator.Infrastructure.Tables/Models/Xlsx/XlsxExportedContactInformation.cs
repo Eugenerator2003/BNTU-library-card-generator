@@ -72,7 +72,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Models.Xlsx
                     sb.Append(Building);
                 }
 
-                if (string.IsNullOrEmpty(Apartment))
+                if (!string.IsNullOrEmpty(Apartment))
                 {
                     sb.Append(", кв");
                     sb.Append(Apartment);
