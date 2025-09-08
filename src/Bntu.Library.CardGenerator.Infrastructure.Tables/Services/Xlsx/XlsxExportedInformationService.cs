@@ -66,7 +66,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
         ];
 
         private static string[] studyFields = [
-            "Дата начала обучения",
+            "Год поступления",
             "Дата окончания обучения",
             "Факультет",
             "Код специальности",
@@ -215,17 +215,21 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
             if (string.IsNullOrEmpty(group) || string.IsNullOrEmpty(departmentString))
                 throw new InvalidDataException("Группа или отделение не могут быть пустыми.");
 
-            string? studyStartString = row[studyFields[studyFieldIndices["Дата начала обучения"]]]?.ToString();
+            string? studyStartString = row[studyFields[studyFieldIndices["Год поступления"]]]?.ToString();
             string? studyEndString = row[studyFields[studyFieldIndices["Дата окончания обучения"]]]?.ToString();
             if (string.IsNullOrEmpty(studyEndString) || string.IsNullOrEmpty(studyStartString) ||
-                !DateTime.TryParse(studyStartString, out DateTime studyDate) ||
+                !DateTime.TryParse($"01-09-{studyStartString}", out DateTime studyDate) ||
                 !DateTime.TryParse(studyEndString, out DateTime graduationDate))
             {
-                classmate = context.FirstOrDefault(a => a.StudyInformation.GroupNumber == group);
-                if (classmate == null)
+                // Студенты с пустыми датами окончания обучения и заполненными группами, скорее всего,
+                // ранее обучались, а затем по определенными причинам приостановили обучение.
+                // Такие студенты уже имеют соответствующую запись в Абсотек
+
+                //classmate = context.FirstOrDefault(a => a.StudyInformation.GroupNumber == group);
+                //if (classmate == null)
                     throw new InvalidDataException("Даты начала и окончания обучения не могут быть пустыми и должны быть в формате ГГГГ-ММ-ДД");
-                studyDate = classmate.StudyInformation.StudyStartDate;
-                graduationDate = classmate.StudyInformation.GraduationDate;
+                //studyDate = classmate.StudyInformation.StudyStartDate;
+                //graduationDate = classmate.StudyInformation.GraduationDate;
             }
 
             string? faculty = row[studyFields[studyFieldIndices["Факультет"]]]?.ToString();
