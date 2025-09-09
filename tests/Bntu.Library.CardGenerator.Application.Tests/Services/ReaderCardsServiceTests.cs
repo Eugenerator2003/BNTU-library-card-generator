@@ -59,6 +59,51 @@ namespace Bntu.Library.CardGenerator.Application.Tests.Services
             repositoryMoq.Verify(s => s.GetCardsByGroup(group), Times.Once);
         }
 
+        [DataTestMethod]
+        [DataRow("AAFITN", 5)]
+        [DataRow("ADSNN", 1)]
+        [DataRow("JJJJJJ", 30)]
+        public void GetReaderCardsByFacultySuccessTest(string faculty, int count)
+        {
+            var repositoryMoq = new Mock<IReaderCardRepository>();
+            IList<ReaderCard> list = new List<ReaderCard>();
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(RandomValuesGenerator.GenerateRandomReaderCard(faculty));
+            }
+            repositoryMoq.Setup(s => s.GetCardsByFaculty(faculty)).Returns(() =>
+            {
+                return list;
+            });
+
+            var readerCardService = new ReaderCardService(repositoryMoq.Object);
+            var result = readerCardService.GetReaderCardsByFaculty(faculty);
+
+            Assert.IsTrue(result.IsSuccess);
+            Assert.AreEqual(string.Empty, result.Message);
+            Assert.IsNotNull(result.Value);
+            CollectionAssert.AreEqual((ICollection)list, (ICollection)result.Value);
+
+            repositoryMoq.Verify(s => s.GetCardsByFaculty(faculty), Times.Once());
+        }
+
+        [DataTestMethod]
+        [DataRow("fac")]
+        [DataRow("-faq")]
+        public void GetReaderCardsByFacultyFailTest(string faculty)
+        {
+            var repositoryMoq = new Mock<IReaderCardRepository>();
+            repositoryMoq.Setup(s => s.GetCardsByFaculty(faculty)).Returns(new List<ReaderCard>());
+            var readerCardService = new ReaderCardService(repositoryMoq.Object);
+            var result = readerCardService.GetReaderCardsByFaculty(faculty);
+
+            Assert.IsTrue(result.IsOperationError);
+            Assert.IsFalse(result.IsValidationError);
+            Assert.IsNull(result.Value);
+            Assert.AreEqual($"Отсутствует информация по студентам указаннного факультета {faculty}", result.Message);
+            repositoryMoq.Verify(s => s.GetCardsByFaculty(faculty), Times.Once);
+        }
+
         [TestMethod]
         public void GetReaderCardsExceptionTest()
         {
