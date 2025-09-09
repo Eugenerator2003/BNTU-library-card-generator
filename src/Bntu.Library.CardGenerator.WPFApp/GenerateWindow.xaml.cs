@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -113,7 +114,9 @@ namespace Bntu.Library.CardGenerator.WPFApp
                 return;
             }
 
-            var getParameter = new GetReaderCardsCaseParameter([group]);
+            var groups = group.Split(";").Select(a => a.Trim()).Where(a => !string.IsNullOrWhiteSpace(a)).ToList();
+
+            var getParameter = new GetReaderCardsCaseParameter(groups);
             var getUseCase = services.GetRequiredService<GetReaderCardsUseCase>();
             var getReaderCardsResult = getUseCase.GetReaderCards(getParameter);
             if (!getReaderCardsResult.Success)
@@ -133,7 +136,7 @@ namespace Bntu.Library.CardGenerator.WPFApp
                 return;
             }
 
-            var exportParameter = generateResult.ToExportReaderCardsCaseParameter(group);
+            var exportParameter = generateResult.ToExportReaderCardsCaseParameter();
             htmlFilesPathProvider.GroupFolder = group;
             var exportUseCase = services.GetRequiredService<ExportReaderCardsUseCase>();
             var exportResult = exportUseCase.Export(exportParameter);
@@ -169,7 +172,7 @@ namespace Bntu.Library.CardGenerator.WPFApp
 
         private void OnlyDigits(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.Text, 0);
+            e.Handled = !char.IsDigit(e.Text, 0) && e.Text != ";";
         }
 
         private void OnlyDigitsPaste(object sender, DataObjectPastingEventArgs e)

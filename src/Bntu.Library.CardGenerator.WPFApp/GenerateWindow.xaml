@@ -143,10 +143,10 @@
             </TextBlock>
             <TextBlock Grid.Row="1"
                        Grid.Column="0"
-                       Height="18"
+                       Height="20"
                        FontSize="15"
-                       Width="150">
-                        Группа:
+                       Width="120">
+                        Группы через ;
             </TextBlock>
             <TextBox Grid.Row="1"
                      Grid.Column="1"
