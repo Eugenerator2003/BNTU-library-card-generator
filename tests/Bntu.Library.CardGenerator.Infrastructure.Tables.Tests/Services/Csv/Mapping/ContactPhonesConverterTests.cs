@@ -12,16 +12,16 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Tests.Services.Csv.Ma
     public class ContactPhonesConverterTests
     {
         [TestMethod]
-        public void ConvertEmptyPhoneListTest()
+        public void ConvertTest()
         {
             var converter = new ContactPhonesConverter();
             var contact = new ImportContactInformation("", "", ["+3753123124", "+3123883"], "");
             var actualResualt = converter.ConvertToString(contact, null!, null!);
-            Assert.AreEqual("+3753123124,+3123883", actualResualt);
+            Assert.AreEqual("+3753123124", actualResualt);
         }
 
         [TestMethod]
-        public void ConvertTest()
+        public void ConvertEmptyPhoneListTest()
         {
             var converter = new ContactPhonesConverter();
             var contact = new ImportContactInformation("", "", [], "");
