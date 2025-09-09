@@ -126,7 +126,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
             var doc = new StringBuilder(templatesContext.Document);
             var papers = new StringBuilder();
             var htmlCards = new StringBuilder();
-            for(int i = 0; i < cards.Count; i++)
+            for (int i = 0; i < cards.Count; i++)
             {
                 var barcodeFileName = PrepareCardFiles(cards[i]);
                 var exportedCard = GetExportedCard(cards[i], barcodeFileName);
@@ -192,18 +192,13 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
             var groupedCards = cards.GroupBy(a => new { a.Faculty, a.StudyGroup })
                                     .OrderBy(a => a.Key.Faculty)
                                     .ThenBy(a => a.Key.StudyGroup);
-            var lastFaculty = "";
+
             var lastGroup = "";
             int index = 1;
-
-            list.AppendLine("<div style='padding: 10px'>");
-            foreach(var group in groupedCards)
+            foreach (var group in groupedCards)
             {
-                if (lastFaculty != group.Key.Faculty)
-                {
-                    lastFaculty = group.Key.Faculty;
-                    list.AppendLine($"<h1>Факультет {group.Key.Faculty}</h1>");
-                }
+                list.AppendLine("<div style='padding: 10px; height:270mm'>");
+                list.AppendLine($"<h1>Факультет {group.Key.Faculty}</h1>");
 
                 if (lastGroup != group.Key.StudyGroup)
                 {
@@ -212,13 +207,13 @@ namespace Bntu.Library.CardGenerator.Infrastructure.HtmlExport
                     index = 1;
                 }
 
-                foreach(var card in group)
+                foreach (var card in group)
                 {
                     list.Append($"<h3>{index}. {card.Lastname} {card.Firstname}</h3>");
                     index++;
                 }
+                list.AppendLine("</div>");
             }
-            list.AppendLine("</div>");
             StringBuilder document = new StringBuilder(templatesContext.Document);
             document.Replace("{papers}", list.ToString());
             document.Replace("{title}", $"Список группы {groupFolder}");
