@@ -54,6 +54,11 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Repositories
             return GetAllItems(r => (r.GetField(Fields[6]) ?? "") == groupNumber, false);
         }
 
+        public IList<ReaderCard> GetCardsByFaculty(string faculty)
+        {
+            return GetAllItems(r => (r.GetField(Fields[5])?.Split("-")[0] ?? "") == faculty, false);
+        }
+
         protected override CsvFields GetCsvFields()
         {
             return new CsvFields(Fields);

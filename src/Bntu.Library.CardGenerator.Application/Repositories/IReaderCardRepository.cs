@@ -16,5 +16,7 @@ namespace Bntu.Library.CardGenerator.Application.Repositories
         ReaderCard? GetCardByPid(int pid);
 
         IList<ReaderCard> GetCardsByGroup(string groupNumber);
+
+        IList<ReaderCard> GetCardsByFaculty(string faculty);
     }
 }
