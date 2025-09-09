@@ -201,7 +201,7 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
                 sexType = Person.SexType.Male;
             }
 
-            var student = new XlsxExportedStudentInformation(RemoveTrash(lastname), RemoveTrash(firstname), RemoveTrash(patronymic),
+            var student = new XlsxExportedStudentInformation(lastname ?? "", firstname ?? "", patronymic ?? "",
                                                              birthDate, RemoveTrash(passportNumber), RemoveTrash(passportInfo), sexType);
             return student;
         }
