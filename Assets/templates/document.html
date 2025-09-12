@@ -176,13 +176,13 @@
         .vertical {
             height: 5.34cm;
             width: 0px;
-            margin: 0 6px 0 6px;
+            margin: 0 2px 0 2px;
         }
 
         .horizontal {
             width: 200mm;
             height: 0px;
-            margin: 6px 0 6px 0;
+            margin: 2px 0 2px 0;
         }
 
         @media print {
@@ -220,17 +220,17 @@
                 const cards = paper.getElementsByClassName('wrap');
                 for (let i = 0; i < cards.length; i++) {
                     const even = (i + 1) % 2 == 0;
-                    if (!even) {
-                        const div = document.createElement('div');
-                        div.className = 'border vertical';
-                        cards[i].after(div);
+                    
+                    if (even) {
+                        const bottomDiv = document.createElement('div');
+                        bottomDiv.className = 'border horizontal';
+                        cards[i].after(bottomDiv);
                     }
+                    
+                    const sideDiv = document.createElement('div');
+                    sideDiv.className = 'border vertical';
+                    cards[i].after(sideDiv);
 
-                    if (even && i + 1 < cards.length) {
-                        const div = document.createElement('div');
-                        div.className = 'border horizontal';
-                        cards[i].after(div);
-                    }
                 }
             }
         }
