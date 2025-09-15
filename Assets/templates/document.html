@@ -180,7 +180,7 @@
         }
 
         .horizontal {
-            width: 200mm;
+            width: 210mm;
             height: 0px;
             margin: 2px 0 2px 0;
         }
@@ -220,8 +220,20 @@
                 const cards = paper.getElementsByClassName('wrap');
                 for (let i = 0; i < cards.length; i++) {
                     const even = (i + 1) % 2 == 0;
-                    
-                    if (even) {
+
+                    if (i % 10 == 0) {
+                        const bottomDiv = document.createElement('div');
+                        bottomDiv.className = 'border horizontal';
+                        cards[i].before(bottomDiv);
+                    }
+
+                    if (!even) {
+                        const bottomDiv = document.createElement('div');
+                        bottomDiv.className = 'border vertical';
+                        cards[i].before(bottomDiv);
+                    }
+
+                    if (even || i + 1 == cards.length) {
                         const bottomDiv = document.createElement('div');
                         bottomDiv.className = 'border horizontal';
                         cards[i].after(bottomDiv);
@@ -230,7 +242,6 @@
                     const sideDiv = document.createElement('div');
                     sideDiv.className = 'border vertical';
                     cards[i].after(sideDiv);
-
                 }
             }
         }
