@@ -208,8 +208,6 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
 
         private ExportedStudyInformation GetStudyFromRow(DataRow row, IList<ExportedInformation> context)
         {
-            ExportedInformation? classmate = null;
-
             string? group = row[studyFields[studyFieldIndices["Номер группы"]]]?.ToString();
             string? departmentString = row[studyFields[studyFieldIndices["Форма обучения"]]]?.ToString();
             if (string.IsNullOrEmpty(group) || string.IsNullOrEmpty(departmentString))
@@ -236,9 +234,14 @@ namespace Bntu.Library.CardGenerator.Infrastructure.Tables.Services.Xlsx
             string? specialization = row[studyFields[studyFieldIndices["Код специальности"]]]?.ToString();
             if (string.IsNullOrEmpty(faculty))
                 throw new InvalidDataException("Факультет не может быть пустым.");
-            if (string.IsNullOrEmpty(specialization))
+
+            if (specialization != null)
             {
-                specialization = classmate?.StudyInformation.Specialization;
+                string[] words = specialization.Split(' ');
+                if (words.Length > 1)
+                {
+                    specialization = words[0];
+                }
             }
 
             StudyGroup.DepartmentType department = departmentString == "дневное" ?
